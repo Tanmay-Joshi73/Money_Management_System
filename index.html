@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Landing_Page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Signika+Negative:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+            <header id="Header-Section">
+                    <div class="left">
+                        <h1>Logo</h1>
+                    </div>
+                    <div class="Right">
+                        <ul>
+                            <li onclick="SignUP()"> <a href="#SignUp_Section">Sign-Up</a></li>
+                            <li onclick="Login()"> <a href="#Login_Section">Login</a></li>
+                        </ul>
+                    </div>
+            </header>
+
+                <div class="Mid_Page">
+                        <div class="Left_Page">
+                            <div class="SignUp" id="SignUp_Section">
+                                    <h1>Let's Get Started</h1>
+                                    <input type="text" placeholder="Enter Email">
+                                    <input type="text" placeholder="UserName">
+                                    <input type="password" placeholder="Password">
+                                    <input type="password" placeholder="Conform Password">
+                                    <button id="Submit-Btn">Submit</button>
+                                </div>
+
+                                            <div class="Login" style="display: none;" id="Login_Section">
+                                                <h1>Let's Get Started</h1>
+                                                <input type="text" placeholder="Enter Email">
+                                                <input type="text" placeholder="UserName">
+                                                <input type="password" placeholder="Password">
+                                                <button id="Submit-Btn">Submit</button>
+
+                                            </div>
+                        </div>
+
+
+
+                        <div class="Right_Page">
+                            <h1>Manage Your Money With Us</h1>
+                            <div class="Info-Part">
+
+                                <div class="Part-Information">
+                                    <div class="Part1-Logo">
+                                        <img src="./SampleImage/Benchmark-your-Venture.svg" alt="LOGO">
+                                    </div>
+                                    <div class="Part1-Info">
+                                        <span id="part-title">Financial Security</span><br>
+                                        <span id="part-info-main">Saving money provides a safety net for  expenses </span>
+                                    </div>
+                                </div>
+
+                                <div class="Part-Information">
+                                    <div class="Part1-Logo">
+                                        <img src="./SampleImage/Plan-Co-founder-Ownership.svg" alt="LOGO">
+                                    </div>
+                                    <div class="Part1-Info">
+                                        <span id="part-title">Financial Goals</span><br>
+                                        <span id="part-info-main">Saving Enables You To Work Towards
+                                            Your Financial  </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="Part-Information">
+                                    <div class="Part1-Logo">
+                                        <img src="./SampleImage/Start-your-Company.svg" alt="LOGO">
+                                    </div>
+                                    <div class="Part1-Info">
+                                        <span id="part-title">Financial Freedom</span><br>
+                                        <span id="part-info-main">Saving money  help users achieve
+                                            financial independence </span>
+                                    </div>
+                                </div>
+                </div>
+            <script src="Landing_Page.js"></script>
+            </body>
+
+</html>
