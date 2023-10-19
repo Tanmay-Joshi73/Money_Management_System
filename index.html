@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="Landing_Page.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Signika+Negative:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Signika+Negative:wght@300&display=swap" rel="stylesheet">
 
 </head>
 <body>
             <header id="Header-Section">
                     <div class="left">
-                        <h1>Logo</h1>
+                       <a href="index.html"> <img src="./Logo/moneyfy-low-resolution-logo-color-on-transparent-background (1).png" alt="Logo"> </a>
                     </div>
                     <div class="Right">
                         <ul>
@@ -25,26 +25,29 @@
             </header>
 
                 <div class="Mid_Page">
-                        <div class="Left_Page">
-                            <div class="SignUp" id="SignUp_Section">
-                                    <h1>Let's Get Started</h1>
-                                    <input type="text" placeholder="Enter Email">
-                                    <input type="text" placeholder="UserName">
-                                    <input type="password" placeholder="Password">
-                                    <input type="password" placeholder="Conform Password">
-                                    <button id="Submit-Btn">Submit</button>
-                                </div>
-
-                                            <div class="Login" style="display: none;" id="Login_Section">
-                                                <h1>Let's Get Started</h1>
-                                                <input type="text" placeholder="Enter Email">
-                                                <input type="text" placeholder="UserName">
-                                                <input type="password" placeholder="Password">
-                                                <button id="Submit-Btn">Submit</button>
-
-                                            </div>
+                    <div class="Left_Page">
+                        <div class="SignUp" id="SignUp_Section">
+                            <form id="signupForm" method="post">
+                                <h1>Let's Get Started</h1>
+                                <input type="text" placeholder="Enter Email" name="email">
+                                <input type="text" placeholder="UserName" name="username">
+                                <input type="password" placeholder="Password" name="password">
+                                <input type="password" placeholder="Confirm Password" name="confirmPassword">
+                                <button type="submit" id="submitBtn">Submit</button>
+                            </form>
                         </div>
-
+                    
+                        <div class="Login" style="display: none;" id="Login_Section">
+                            <form id="loginForm" method="post">
+                                <h1>Let's Get Started</h1>
+                                <input type="text" placeholder="Enter Email" name="loginEmail">
+                                <input type="text" placeholder="UserName" name="loginUsername">
+                                <input type="password" placeholder="Password" name="loginPassword">
+                                <button type="submit" id="loginBtn">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    
 
 
                         <div class="Right_Page">

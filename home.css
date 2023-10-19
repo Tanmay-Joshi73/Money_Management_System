@@ -1,0 +1,147 @@
+html {
+    font-size: 62.5%;
+}
+
+#Header_ID {
+    display: flex;
+    justify-content: space-between;
+    background-color:white; 
+    /* border: 2px solid green; */
+    color: black; /* Text color */
+    padding: 1rem 1.5rem; /* Adjust padding for better spacing */
+    font-family: 'Roboto Slab', sans-serif; /* Font family with fallbacks */
+    font-style: normal;
+    margin-left: 5rem;
+    font-weight: 300;
+    font-display: swap;
+    font-family: 'Roboto Slab', sans-serif;;
+    font-size: 1.2rem; /* Adjust font size */
+    border-radius: 5px; /* Add rounded corners */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Add a subtle shadow */
+    opacity: 1; /* Initially hidden */
+    /* transition: opacity 2s ease-in-out; */
+    width: 140rem;
+}
+
+.Right-Side ul {
+    color: black; /* Style links within the header */
+    text-decoration: none; /* Remove underlines from links */
+    list-style: none;
+    transition: transform 1s ease-in-out;
+    cursor: pointer;
+    display: flex;
+}
+
+.Right-Side ul li {
+    margin-right: 2rem; /* Add margin to separate list items */
+    /* background-color:#7b68EE;  */
+    color: white; /* Text color on the li elements */
+    border-radius: 6%;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    font-size: 1.5rem; /* Adjust font size */
+    text-transform: uppercase; /* Uppercase the text */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.Right-Side ul li:hover {
+    background-color: white; /* Darker pink on hover */
+    color: black; /* White text on hover */
+}
+
+.Left-Side img{
+    width: 12rem;
+    position: absolute;
+    margin-top: -.5rem;
+    margin-left:1rem;
+}
+.Middle-Page{
+    display: flex;
+}
+.Left-Mid-Page{
+    /* border: 2px solid black; */
+    width: 50%;
+    height: 50vh;
+    margin-left: 14rem;
+    margin-top: 5rem;
+}
+.Right-Mid-Page {
+    /* border: 2px solid blue; */
+    position: relative;
+    /* background-color: #7b68EE; */
+    background: linear-gradient(to right top, #a07ba0, #6e54ff); /* Purple to light violet */ 
+    top: -25rem;
+    left: 20rem;
+    border-radius: 45%;
+    width: 60%;
+    z-index: 0;
+    height: 80vh;
+    transform: rotate(55deg); 
+
+}
+.LeftInfoPage{
+    font-family: 'Roboto Slab', sans-serif;
+    /* border: 2px solid darkblue; */
+    width: 40vw;
+    margin-top: 5rem;
+    font-weight:bolder;
+    font-size:1.5rem;
+    line-height: 4.5rem;
+    margin-right: 10rem;
+    margin-bottom: -110rem;
+}
+.LeftInfoPage h1{
+    margin-left: 14rem;
+}
+.LeftInfoPage span{
+    margin-left: 7.2rem;
+}
+#Left-Mid-Page-Info {
+    margin-left: -5rem;
+}
+#Left_Section_Span{
+    margin-left: -1rem;
+    padding: 0 2rem;
+    /* line-height: 2rem; */
+}
+#SpanText2{
+    /* margin-right: 10rem; */
+    margin-left: 7.6rem;
+}
+.LeftInfoPage input{
+    display: block;
+    width: 60%;
+    padding: 1.4rem 2rem;
+    margin: 2rem 5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    outline: none;
+}
+
+.LeftInfoPage input::placeholder{
+    text-align: left   
+}
+.LeftInfoPage a{
+    display: none;
+}
+#Get-Started-btn {
+    padding: 1.6rem 4rem; /* Slightly increased padding for better button size */
+    margin: 0rem 0 0 5rem; /* Added some top margin and adjusted left margin */
+    outline: none;
+    border: none; /* Remove the border */
+    font-family: monospace;
+    border-radius: 1rem;
+    background-color: #7b68EE; /* Choose a bold and attractive background color */
+    color: #fff; /* White text color for better contrast */
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem; /* Slightly increased font size for readability */
+    cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Add a subtle box shadow */
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+#Get-Started-btn:hover {
+    opacity: 0.7; /* Darker color on hover for interactivity */
+}
