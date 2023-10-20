@@ -30,14 +30,17 @@ html {
     transition: transform 1s ease-in-out;
     cursor: pointer;
     display: flex;
+    /* border: 2px solid black; */
+    margin-right: -4rem;
 }
 
 .Right-Side ul li {
-    margin-right: 2rem; /* Add margin to separate list items */
+    margin-right: 2.5rem; /* Add margin to separate list items */
     /* background-color:#7b68EE;  */
     color: white; /* Text color on the li elements */
     border-radius: 6%;
     z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow */
     padding: 1rem 2rem;
     font-size: 1.5rem; /* Adjust font size */
     text-transform: uppercase; /* Uppercase the text */
@@ -57,6 +60,7 @@ html {
 }
 .Middle-Page{
     display: flex;
+    /* width: 00%; */
 }
 .Left-Mid-Page{
     /* border: 2px solid black; */
@@ -69,15 +73,31 @@ html {
     /* border: 2px solid blue; */
     position: relative;
     /* background-color: #7b68EE; */
-    background: linear-gradient(to right top, #a07ba0, #6e54ff); /* Purple to light violet */ 
-    top: -25rem;
-    left: 20rem;
-    border-radius: 45%;
-    width: 60%;
+    background: linear-gradient(to right top, #a07ba0, #6e54ff);  
+    top: -24rem;
+    left: 10rem;
+    border-radius: 45% 45% 45% 45%;
+    width: 70%;
     z-index: 0;
-    height: 80vh;
-    transform: rotate(55deg); 
+    height: 110vh;
+    transform: rotate(152deg); 
 
+}
+.Middle-Mid-Page{
+    /* border-radius: 20rem; */
+    /* border: 2px solid red; */
+    width: 30rem;
+    position: absolute;
+    right: 42rem;
+    height: 60rem;
+    top:11rem;
+    z-index: 10;
+   
+}
+.Middle-Mid-Page video{
+    width: 65rem;
+    border-radius: 9rem;
+    background-size: cover;
 }
 .LeftInfoPage{
     font-family: 'Roboto Slab', sans-serif;
@@ -92,6 +112,7 @@ html {
 }
 .LeftInfoPage h1{
     margin-left: 14rem;
+    font-weight:bolder;
 }
 .LeftInfoPage span{
     margin-left: 7.2rem;
@@ -110,7 +131,7 @@ html {
 }
 .LeftInfoPage input{
     display: block;
-    width: 60%;
+    width: 50%;
     padding: 1.4rem 2rem;
     margin: 2rem 5rem;
     border: 1px solid #ccc;
@@ -131,11 +152,12 @@ html {
     outline: none;
     border: none; /* Remove the border */
     font-family: monospace;
+    /* display: ; */
     border-radius: 1rem;
     background-color: #7b68EE; /* Choose a bold and attractive background color */
     color: #fff; /* White text color for better contrast */
     font-family: 'Roboto Slab', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.5rem; /* Slightly increased font size for readability */
     cursor: pointer; /* Add a pointer cursor to indicate interactivity */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Add a subtle box shadow */
@@ -144,4 +166,8 @@ html {
 
 #Get-Started-btn:hover {
     opacity: 0.7; /* Darker color on hover for interactivity */
+}
+.LeftInfoPage h3{
+    line-height: 5rem;
+    display: inline-block;
 }
