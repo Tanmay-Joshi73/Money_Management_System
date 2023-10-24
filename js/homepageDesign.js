@@ -1,8 +1,3 @@
-const video = document.querySelector('video');
-window.addEventListener('onload', function () {
-    video.play();
-
-})
 const SignUp=document.getElementById('SignUp_Section')
 const Login_Up=document.getElementById('Login_Section')
 const Password=document.getElementById('Or_Pass')
@@ -61,33 +56,8 @@ function ValidateForm() {
 }
 
 
+
+            ///Authenticaion Images
+            // Define an array of image sources
+
 // Define an array of image sources
-const imageSources = [
-  "./Images/undraw_access_account_re_8spm.svg",
-  "./Images/MyPassword.png", 
-  "./Images/Projection-Image.png",
-  "./Images/MobileLogin.png",
-  // Add the path to your second image
-  // Add more image paths as needed
-];
-
-const imageElement = document.getElementById("image");
-let currentIndex = 0;
-    if(currentIndex>imageSources.length){
-      currentIndex=0
-    }
-// Function to change the image with a fade-out effect
-function changeImageWithAnimation() {
-  currentIndex = (currentIndex + 1) % imageSources.length;
-  imageElement.style.opacity = 0; // Fade out the current image
-  setTimeout(() => {
-      imageElement.src = imageSources[currentIndex];
-      imageElement.style.opacity = 1; // Fade in the new image
-  }, 1000); // Change the image source after 1 second (adjust as needed)
-}
-
-// Initial image change after 5 seconds
-setTimeout(changeImageWithAnimation, 5000);
-
-// Set up a repeating interval to change the image every 5 seconds
-setInterval(changeImageWithAnimation, 5000);

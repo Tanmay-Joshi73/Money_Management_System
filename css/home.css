@@ -1,7 +1,10 @@
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
-
+::selection{
+    background-color: #aca2e8;
+}
 #Header_ID {
     display: flex;
     justify-content: space-between;
@@ -29,6 +32,8 @@ html {
     list-style: none;
     transition: transform 1s ease-in-out;
     cursor: pointer;
+    text-decoration: none; /* Remove underlines from links */
+    list-style: none;
     display: flex;
     /* border: 2px solid black; */
     margin-right: -4rem;
@@ -39,6 +44,8 @@ html {
     /* background-color:#7b68EE;  */
     color: white; /* Text color on the li elements */
     border-radius: 6%;
+    text-decoration: none; /* Remove underlines from links */
+    list-style: none;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow */
     padding: 1rem 2rem;
@@ -47,9 +54,24 @@ html {
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+.Right-Side ul li {
+    text-decoration: none; /* Remove underlines from links */
+    list-style: none;
+    /* color: white; */
+    /* color:white; */
+}
 .Right-Side ul li:hover {
     background-color: white; /* Darker pink on hover */
     color: black; /* White text on hover */
+}
+.Right-Side ul li a {
+    color: inherit; /* Inherit the color from the parent li element */
+    text-decoration: none;
+}
+
+.Right-Side ul li a:hover {
+    background-color: white;
+    color: black;
 }
 
 .Left-Side img{
@@ -60,6 +82,8 @@ html {
 }
 .Middle-Page{
     display: flex;
+    /* border: 2px solid red; */
+    height: 90vh;
     /* width: 00%; */
 }
 .Left-Mid-Page{
@@ -170,4 +194,96 @@ html {
 .LeftInfoPage h3{
     line-height: 5rem;
     display: inline-block;
+}       
+
+                        /* Authentication Part */
+.Login,.SignUp{
+    display: block;
+    width: 33rem;
+    padding: 1.8rem 1.3rem; /* Adjust padding for text alignment */
+    margin-left: 10rem;
+    margin-top: 3rem;
+    text-align: left; /* Set text alignment to left */
+    /* border: 1px solid #ccc; */
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+     font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight:bolder;
+    font-display: swap;;
+}
+.Login h1 ,.SignUp h1{
+    font-size: 2.3rem; /* Increase the font size */
+    margin: 10px 0; /* Adjust the top and bottom margin */
+    text-align: center; /* Center-align the text */
+    color: #007acc; /* Change the text color */
+    text-transform: uppercase; /* Make the text uppercase */
+    font-weight: bold;
+    letter-spacing: 2px; /* Add letter spacing */
+  }
+#submitBtn ,#loginBtn{
+    background-color: rgb(104, 192, 222);
+    color: white;
+    padding: 1rem 5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem; /* You mentioned 1rem = 10px, so this will make the font larger */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth color transition on hover */
+     margin-left: 12rem;
+    /* Optional: Add box-shadow for a 3D effect on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#submitBtn:hover #loginBtn:hover {
+    background-color: rgb(82, 162, 192); /* Change the background color on hover */
+  }
+
+  .Login input ,.SignUp input{
+    display: block;
+    width: 85%;
+    padding: 1.6rem 2.2rem;
+    margin: 2rem 5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    outline: none;
+  }
+  
+  /* Customize the input placeholder text */
+  .Login input::placeholder ,.SignUp input::placeholder{
+    color: #999; /* Change the color of the placeholder text */
+   
+  }
+  
+  /* Add a box-shadow when an input element is focused */
+  .Login input:focus ,.SignUp input:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
+  }
+  .Authentication{
+    /* border: 2px solid black; */
+    /* margin-left: ; */
+    display: flex;
+  }
+  .Left_Page{
+    /* border: 2px solid green; */
+    margin-left: 7rem;
+    width:50%;
+  }
+  .Right_Page{
+    width: 50%;
+    /* border: 2px solid red; */
+  }
+  .Right_Page img{
+   /* border: 2px solid blue; */
+    width: 38rem;
+    margin-top: 4rem;
+    margin-left: 10rem;
+  }
+  .Right_Page img {
+    max-width: 100%;
+    transition: opacity 1s; /* Apply a 1-second opacity transition */
 }
