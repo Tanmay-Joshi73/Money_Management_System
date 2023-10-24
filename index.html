@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/Landing_Page.css">
+    <link rel="stylesheet" href="/css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,80 +12,74 @@
 
 </head>
 <body>
-            <header id="Header-Section">
-                    <div class="left">
-                       <a href="index.html"> <img src="./Logo/moneyfy-low-resolution-logo-color-on-transparent-background (1).png" alt="Logo"> </a>
-                    </div>
-                    <div class="Right">
-                        <ul>
-                            <li onclick="SignUP()"> <a href="#SignUp_Section">Sign-Up</a></li>
-                            <li onclick="Login()"> <a href="#Login_Section">Login</a></li>
-                        </ul>
-                    </div>
-            </header>
-
-                <div class="Mid_Page">
-                    <div class="Left_Page">
-                        <div class="SignUp" id="SignUp_Section">
-                            <form id="signupForm" method="post" action="/Home" onsubmit="return ValidateForm()">
-                                <h1>Let's Get Started</h1>
-                                <input type="email" id="Form_mail" placeholder="Enter Email" name="email" required>
-                                <input type="text" id="Form_User" placeholder="UserName" name="username" required>
-                                <input type="password" id="Or_Pass" placeholder="Password" name="password" required>
-                                <input type="password" id="Dup_Pass" placeholder="Confirm Password" name="confirmPassword">
-                                <button type="submit" id="submitBtn">Submit</button>
-                            </form>
-                            
-                        </div>
-                    
-                        <div class="Login" style="display: none;" id="Login_Section">
-                            <form id="loginForm" method="post" onsubmit="return LoginForm()" action="/Home">
-                                <h1>Let's Get Started</h1>
-                                <input type="email" id="Login_Email" placeholder="Enter Email" name="loginEmail" required>
-                                <input type="text" id="Login_User" placeholder="UserName" name="loginUsername" required>
-                                <input type="password" id="Login_Pass" placeholder="Password" name="loginPassword" required>
-                                <button type="submit" id="loginBtn">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                        <div class="Right_Page">
-                            <h1>Manage Your Money With Us</h1>
-                            <div class="Info-Part">
-
-                                <div class="Part-Information">
-                                    <div class="Part1-Logo">
-                                        <img src="./SampleImage/Benchmark-your-Venture.svg" alt="LOGO">
-                                    </div>
-                                    <div class="Part1-Info">
-                                        <span id="part-title">Financial Security</span><br>
-                                        <span id="part-info-main">Saving money provides a safety net for  expenses </span>
-                                    </div>
-                                </div>
-
-                                <div class="Part-Information">
-                                    <div class="Part1-Logo">
-                                        <img src="./SampleImage/Plan-Co-founder-Ownership.svg" alt="LOGO">
-                                    </div>
-                                    <div class="Part1-Info">
-                                        <span id="part-title">Financial Goals</span><br>
-                                        <span id="part-info-main">Saving Enables You To Work Towards
-                                            Your Financial  </span>
-                                    </div>
-                                </div>
-
-
-                                <div class="Part-Information">
-                                    <div class="Part1-Logo">
-                                        <img src="./SampleImage/Start-your-Company.svg" alt="LOGO">
-                                    </div>
-                                    <div class="Part1-Info">
-                                        <span id="part-title">Financial Freedom</span><br>
-                                        <span id="part-info-main">Saving money  help users achieve
-                                            financial independence </span>
-                                    </div>
-                                </div>
+    <header id="Header_ID">
+        <div class="Left-Side">
+        <img src="./Logo/moneyfy-low-resolution-logo-color-on-transparent-background (1).png" alt="Logo">
+        </div>
+        <div class="Right-Side">
+            <ul>
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#AboutUs">About Us</a></li>
+                <li onclick="SignUP()"><a href="#SignUp_Section">Sign-Up</a></li>
+                <li onclick="Login()"><a href="#Login_Section">Login</a></li>
+            </ul>
+        </div>
+        
+    </header>
+    <div class="Middle-Page">
+            <div class="Left-Mid-Page">
+                    <div class="LeftInfoPage">
+                        <h1>Simply Save Money <br><span id="SpanText">With US</span>.</h1>
+                        <h2><span id="Left_Section_Span">We provide a effective solutions on various ways of</span><br><span id="SpanText2">managing money in effective mannar</span></h2>
+                        <input type="text" placeholder="Enter Your Work Email">
+                        <button id="Get-Started-btn">Get-Started</button>
+                            </div>
                 </div>
-            <script src="./js/Landing_Page.js"></script>
-            </body>
+                <div class="Middle-Mid-Page">
+                    <video autoplay loop muted playsinline >
+                        <source src="./Images/header-graphic-v08-vp9.webm" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            <div class="Right-Mid-Page">
+                    
+            </div>
+        </div>
 
+
+
+
+            <div class="Authentication">
+                <div class="Left_Page">
+                    <div class="SignUp" id="SignUp_Section">
+                        <form id="signupForm" method="post" action="/Home" onsubmit="return ValidateForm()">
+                            <h1>Let's Get Started</h1>
+                            <input type="email" id="Form_mail" placeholder="Enter Email" name="email" required>
+                            <input type="text" id="Form_User" placeholder="UserName" name="username" required>
+                            <input type="password" id="Or_Pass" placeholder="Password" name="password" required>
+                            <input type="password" id="Dup_Pass" placeholder="Confirm Password" name="confirmPassword">
+                            <button type="submit" id="submitBtn">Submit</button>
+                        </form>
+                        
+                    </div>
+                
+                    <div class="Login" style="display: none;" id="Login_Section">
+                        <form id="loginForm" method="post" onsubmit="return LoginForm()" action="/Home">
+                            <h1>Let's Get Started</h1>
+                            <input type="email" id="Login_Email" placeholder="Enter Email" name="loginEmail" required>
+                            <input type="text" id="Login_User" placeholder="UserName" name="loginUsername" required>
+                            <input type="password" id="Login_Pass" placeholder="Password" name="loginPassword" required>
+                            <button type="submit" id="loginBtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="Right_Page">
+                    <img id="image" src="./Images/undraw_access_account_re_8spm.svg" alt="">
+                </div>
+                
+            </div>  
+        <!-- background: linear-gradient(to right, #a07ba0, #6e54ff); /* Purple to light violet */ -->
+        <script src="./js/home.js"></script>
+        <!-- <script src=""></script> -->
+</body>
 </html>
