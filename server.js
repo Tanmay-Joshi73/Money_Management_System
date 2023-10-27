@@ -1,7 +1,9 @@
 const express = require('express');
 const fs = require('fs');
+const dotenv=require('dotenv')
+dotenv.config({path:'./.env'})
+const PORT=process.env.PORT
 const app = express();
-
 // Read HTML files
 const HomePage=fs.readFileSync(`${__dirname}/index.html`,'utf-8')
 
@@ -16,6 +18,6 @@ app.get('/Home',(req,res)=>{
     res.end(HomePage)
 })
 
-app.listen(8000, '127.0.0.1', () => {
-    console.log('Server is running on http://127.0.0.1:8000');
+app.listen(PORT, '127.0.0.1', () => {
+    console.log(`Server is running on ${PORT}`);
 });

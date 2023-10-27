@@ -50,6 +50,7 @@ html {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow */
     padding: 1rem 2rem;
     font-size: 1.5rem; /* Adjust font size */
+    font-weight:600;
     text-transform: uppercase; /* Uppercase the text */
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
@@ -260,7 +261,9 @@ html {
   
   /* Add a box-shadow when an input element is focused */
   .Login input:focus ,.SignUp input:focus {
-    border-color: #007acc;
+    /* border-color: #007acc; */
+    border-color: lightblue;
+    /* border-color: rgb(74, 211, 74); */
     box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
   }
   .Authentication{
