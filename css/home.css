@@ -2,6 +2,31 @@ html {
     font-size: 62.5%;
     scroll-behavior: smooth;
 }
+body{
+    overflow:hidden;
+    overflow-y:scroll;
+    cursor: none;
+}
+.cursor-dot{
+    width: 5px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.468);
+}
+.cursor-outline{
+    width: 30px;
+    height: 30px;
+    border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+.cursor-dot,.cursor-outline{
+    position:fixed;
+    top:0;
+    left:0;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+
 ::selection{
     background-color: #aca2e8;
 }
@@ -47,7 +72,8 @@ html {
     text-decoration: none; /* Remove underlines from links */
     list-style: none;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); 
+    /* box-shadow: 0 2px 4px rgb(240, 9, 9); */
     padding: 1rem 2rem;
     font-size: 1.5rem; /* Adjust font size */
     font-weight:600;
@@ -81,9 +107,27 @@ html {
     margin-top: -.5rem;
     margin-left:1rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /* Mid-Page */
 .Middle-Page{
     display: flex;
     /* border: 2px solid red; */
+    /* overflow: hidden; */
     height: 90vh;
     /* width: 00%; */
 }
@@ -177,25 +221,40 @@ html {
     outline: none;
     border: none; /* Remove the border */
     font-family: monospace;
-    /* display: ; */
+    /* display:  */
     border-radius: 1rem;
     background-color: #7b68EE; /* Choose a bold and attractive background color */
     color: #fff; /* White text color for better contrast */
     font-family: 'Roboto Slab', sans-serif;
-    font-weight: 600;
-    font-size: 1.5rem; /* Slightly increased font size for readability */
+    font-weight:bolder;
+    font-size: 1.6rem; /* Slightly increased font size for readability */
     cursor: pointer; /* Add a pointer cursor to indicate interactivity */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Add a subtle box shadow */
     transition: background-color 0.3s ease; /* Smooth color transition on hover */
 }
 
 #Get-Started-btn:hover {
-    opacity: 0.7; /* Darker color on hover for interactivity */
+    opacity: 0.9; /* Darker color on hover for interactivity */
 }
 .LeftInfoPage h3{
     line-height: 5rem;
     display: inline-block;
 }       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         /* Authentication Part */
 .Login,.SignUp{

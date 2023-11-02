@@ -1,0 +1,38 @@
+html{
+    font-size:62.5%;
+}
+
+/* Styles for very small portrait-oriented smartphones (e.g., iPhone SE) */
+@media (max-width: 320px) {
+    /* Your CSS styles for this screen size */
+}
+
+/* Styles for standard smartphones in portrait mode (e.g., most Android devices) */
+@media (max-width: 375px) {
+    /* Your CSS styles for this screen size */
+}
+
+/* Styles for iPhones in portrait mode (e.g., iPhone 6/7/8) */
+@media (max-width: 414px) {
+    /* Your CSS styles for this screen size */
+}
+
+/* Styles for very small landscape-oriented smartphones (e.g., iPhone SE landscape) */
+@media (max-width: 480px) {
+    /* Your CSS styles for this screen size */
+}
+
+/* Styles for standard smartphones in landscape mode (e.g., most Android devices landscape) */
+@media (max-width: 568px) {
+    /* Your CSS styles for this screen size */
+}
+
+/* Styles for iPhones in landscape mode (e.g., iPhone 6/7/8 landscape) */
+@media (max-width: 667px) {
+    /* Your CSS styles for this screen size */
+}
+
+/* Styles for larger smartphones and phablets in portrait mode */
+@media (max-width: 768px) {
+    /* Your CSS styles for this screen size */
+}

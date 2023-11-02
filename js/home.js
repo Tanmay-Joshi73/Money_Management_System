@@ -87,7 +87,35 @@ function changeImageWithAnimation() {
 }
 
 // Initial image change after 5 seconds
-setTimeout(changeImageWithAnimation, 5000);
+setTimeout(changeImageWithAnimation, 7000);
 
 // Set up a repeating interval to change the image every 5 seconds
-setInterval(changeImageWithAnimation, 5000);
+setInterval(changeImageWithAnimation, 7000);
+
+
+
+
+
+        //Scrollng Dot
+  
+const cursor_dot=document.querySelector('[data-cursor-dot]')
+const cursor_Outline=document.querySelector('[data-cursor-outline]')
+window.addEventListener('mousemove',(e)=>{
+const posx=e.clientX
+const posy=e.clientY
+cursor_dot.style.left=`${posx}px`
+cursor_dot.style.top=`${posy}px`
+
+cursor_Outline.animate({
+  left:`${posx}px`,
+  top:`${posy}px`
+},{duration:500,fill:"forwards"})
+})
+  // const dot = document.getElementById('dot');
+        
+  // // Add a mousemove event listener to track mouse movement
+  // document.addEventListener('mousemove', (event) => {
+  //     // Update the dot's position to follow the mouse cursor
+  //     dot.style.left = (event.pageX - 10) + 'px'; // Subtract half of the dot's width
+  //     dot.style.top = (event.pageY - 10) + 'px';  // Subtract half of the dot's height
+  // });
