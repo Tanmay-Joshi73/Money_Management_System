@@ -10,6 +10,7 @@ body{
 .cursor-dot{
     width: 5px;
     height: 5px;
+    /* z-index: 10000; */
     background-color: red
 }
 .cursor-outline{
@@ -194,6 +195,10 @@ body{
     padding: 0 2rem;
     /* line-height: 2rem; */
 }
+/* #SpanText{
+color: #007acc;
+font-size:larger;
+} */
 #SpanText2{
     /* margin-right: 10rem; */
     margin-left: 7.6rem;
@@ -240,6 +245,121 @@ body{
     line-height: 5rem;
     display: inline-block;
 }       
+
+
+
+
+
+
+
+                /* Second mid page */
+.secondMid{
+    width: 99%;
+    display: flex;
+    margin-left: 1rem;
+    height:70rem ;
+    /* border: 2px solid red; */
+}
+.LeftPageInfo{
+    /* width: 40rem; */
+    width: 50%;
+    margin-top: 2rem;
+    height: 80%;
+    /* border: 2px solid black; */
+}
+.LeftPageInfo img{
+    width: 68%;
+    margin-top: 10rem;
+    margin-left: 12rem;
+}
+.RightPageInfo{
+    width: 50%;
+    font-family: 'Roboto Slab', sans-serif;
+    margin-top: 2rem;
+    margin-left: -5rem;
+    /* border: 2px solid green; */
+    height: 80%;
+}
+.RightPageInfo-title{
+    width: 60rem;
+    color: #1f1f1ff5;
+    font-weight: bolder;
+    font-size: 2.5rem;
+    font-family: 'Roboto Slab', sans-serif;
+    /* border: 2px solid green; */
+
+}
+.RightPageInfo-Information span {
+    font-size: 2.1rem;
+    line-height: 3rem;
+   color: #333333;
+    
+  }
+  .RightPageInfo-Information{
+    /* border: 2px solid red; */
+    width: 70rem;
+  }
+  .RightPageInfo-Box{
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    height: 10rem;
+    /* border: 2px solid red; */
+  }
+  .RightPageInfo-Box1{
+    display: flex;
+  }
+  .RightPageInfo-Box1{
+    width: 22rem;
+    
+    height: 100%;
+    /* border: 2px solid black; */
+
+  }
+  .RightPageInfo-Box1:nth-child(2){
+    margin-left: 1rem;
+  }
+  
+  .RightPageInfo-Box1:nth-child(3){
+    margin-left: 1rem;
+  }
+   .RightPageInfo-Box1-img img{
+    width: 3.2rem;
+    margin-top: .2rem;
+  }
+  .RightPageInfo-Box1-Info{
+    margin-left: .9rem;
+    font-family: Poppins,Roboto,Helvetica,Arial,sans-serif;
+  }
+  .RightPageInfo-Box1-Info-title span{
+    font-size: 2.5rem;
+    font-weight: 400;
+  }
+  .RightPageInfo-Box1-Info-description {
+    font-size: 1.9rem;
+    margin-top: .5rem;
+    /* font-family: ; */
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
