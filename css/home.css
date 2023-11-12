@@ -1,3 +1,9 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@700&family=Signika+Negative:wght@300&display=swap');
+ 
+  @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
+
 html {
     font-size: 62.5%;
     scroll-behavior: smooth;
@@ -283,9 +289,14 @@ font-size:larger;
 .RightPageInfo-title{
     width: 60rem;
     color: #1f1f1ff5;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     font-size: 2.5rem;
-    font-family: 'Roboto Slab', sans-serif;
+    font-family: 'Roboto';
+    font-style: normal;
+    /* font-weight: 800; */
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
     /* border: 2px solid green; */
 
 }
@@ -329,7 +340,8 @@ font-size:larger;
   }
   .RightPageInfo-Box1-Info{
     margin-left: .9rem;
-    font-family: Poppins,Roboto,Helvetica,Arial,sans-serif;
+    color: #333333;
+    font-family: Poppins,Helvetica,Arial,sans-serif;
   }
   .RightPageInfo-Box1-Info-title span{
     font-size: 2.5rem;
@@ -338,7 +350,7 @@ font-size:larger;
   .RightPageInfo-Box1-Info-description {
     font-size: 1.9rem;
     margin-top: .5rem;
-    /* font-family: ; */
+    /* font-family: 'Times New Roman', Times, serif; */
   }
 
 

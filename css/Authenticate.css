@@ -1,0 +1,246 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@700&family=Signika+Negative:wght@300&display=swap');
+ 
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  
+}
+body{
+    /* background-color:#aca2e8; */
+  overflow:hidden;
+  overflow-y:hidden;
+  cursor: none;
+}
+.cursor-dot{
+  width: 5px;
+  height: 5px;
+  /* z-index: 10000; */
+  background-color: red
+}
+.cursor-outline{
+  width: 30px;
+  height: 30px;
+  border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+.cursor-dot,.cursor-outline{
+  position:fixed;
+  top:0;
+  left:0;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+::selection{
+  background-color: #aca2e8;
+}
+
+
+        /* Mid Page-Left */
+.Authentication-page{
+    display: flex;
+}
+.LeftPage{
+    width: 60%;
+    /* border: 2px solid red; */
+    height: 100vh;
+}
+.RightPage{
+    width: 40%;
+    background-color: #6a51fb;
+    height: 100vh;
+    /* border: 2px solid black; */
+}
+.Page1-Info{
+    /* border: 2px solid green; */
+    width: 50rem;
+    height: 50rem;
+    margin-top: 14%;
+    margin-left: 25%;
+}
+.Info-Title{
+    font-size: 3.3rem;
+    color: #333333;
+    margin-left: 4rem;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+.Info-Desctiption{
+    margin-top: 1.5rem;
+    margin-left: 7rem;
+}
+.Info-Desctiption span{
+    font-size: 1.7rem;
+    /* display: none; */
+    color: black;
+   
+    font-family: 'Lato';
+    font-style: normal;
+    /* font-weight: 700; */
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+
+}
+.continue-Google {
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* border: 2px solid black; */
+    height: 3.8rem;
+    margin-left: 3rem;
+    border-radius: 2%;
+    margin-top: 5rem;
+    width: 80%;
+    /* outline: none; */
+    color: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.269);
+}
+
+.continue-Google img {
+    width: 2.2rem;
+    position: absolute;
+    margin-top: -1.75rem;
+    margin-left: -2.2rem;
+    /* margin-left: 8rem; */
+    /* margin-top: 1rem; */
+    /* margin-right: 1rem; Adjust the margin as needed */
+}
+.google-logo{
+    margin-left: 10.8rem;
+   
+}
+.google-logo{
+display: inline-block;
+}
+.continue-Google span {
+    font-size: 1.65rem;
+    font-family: 'Lato', sans-serif;
+    /* margin-top: -2rem; */
+    margin-left: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+.orText{
+    font-size: 1.7rem;
+    margin-left:43%;
+    /* border: 1px solid rgba(0, 0, 0, 0.269); */
+    width:40rem;
+    display: flex;
+    margin-top: 1rem;
+}
+
+.Page1-Info input {
+    width: 38rem;
+    padding: 1rem;
+    /* display: none; */
+    margin-left: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.269);
+    border-radius: 2%;
+    margin-top:1.5rem;
+    font-size: 1.5rem;
+    height: 1.9rem;
+    /* display: none; */
+    text-align: left;
+    /* margin-top: 2rem; */
+}
+
+.Page1-Info input::placeholder {
+    color: #7f8c8d; /* Placeholder text color */
+}
+
+#NextButton{
+    width: 40rem;
+    padding: 1.2rem;
+    margin-left: 3rem;
+    margin-top: 1.6rem;
+    outline: none;
+    border-radius: 5px;
+    background-color: #0d7ef7;
+    color: white;
+    display: block;
+    font-size: 1.6rem;
+    border: none;
+}
+
+.TermsAndPolicy{
+    font-size: 1.65rem;
+    /* display: none; */
+    color: black;
+    line-height: 2.3rem;
+    margin-left: 11.5rem;
+    margin-top: 2rem;
+    font-family: 'Lato';
+    font-style: normal;
+    /* font-weight: 700; */
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+
+}
+.specialText{
+    margin-left: -1rem;
+    
+}
+.specialText-Text1{
+    font-weight: 500;
+    color: #6a51fb;
+}
+.Login-Text-Container{
+    width: 32rem;
+    font-size: 1.7rem;
+    color: #333333;
+    /* border: 2px solid red; */
+    height: 2rem;
+    margin-top: 13rem;
+    margin-left: 11.5rem;
+}
+/* .OrTextSlash{
+    border: 1px solid rgba(0, 0, 0, 0.269);
+    width: 17rem;
+    height: 0;
+    position: absolute;
+    /* margin-left: -1rem; */
+    /* margin-top: 1rem; */
+/* } */
+/* .OrTextSlash2{
+    border: 1px solid rgba(0, 0, 0, 0.269);
+    width: 18rem;
+    height: 0;
+    position: absolute;
+    /* margin-left: -18rem; */
+    /* margin-top: 1rem; */
+    /* margin-right: -120rem; */
+
+/* }   */
+
+
+
+
+
+
+
+
+                /* Right page image */
+.RightPage img{
+    width: 82rem;
+    margin-left:8rem ;
+    margin-top: -2rem;
+    /* border: 2px solid red; */
+}
