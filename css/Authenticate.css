@@ -1,6 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@700&family=Signika+Negative:wght@300&display=swap');
- 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
 
 *{
@@ -53,6 +55,7 @@ body{
     width: 60%;
     /* border: 2px solid red; */
     height: 100vh;
+    
 }
 .RightPage{
     width: 40%;
@@ -71,12 +74,23 @@ body{
     font-size: 3.3rem;
     color: #333333;
     margin-left: 4rem;
-    font-family: 'Lato';
+    /* font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
-    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; */
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhiI2B.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      
+      
+
+
 }
 .Info-Desctiption{
     margin-top: 1.5rem;
@@ -99,6 +113,7 @@ body{
     display: flex;
     align-items: center;
     position: relative;
+    pointer-events: none;
     /* border: 2px solid black; */
     height: 3.8rem;
     margin-left: 3rem;
@@ -108,10 +123,21 @@ body{
     /* outline: none; */
     color: #333333;
     border: 1px solid rgba(0, 0, 0, 0.269);
+    transition: 1s background-color  ease-in-out;
+    
 }
-
+.continue-Google:hover{
+    background-color: lightblue;
+}
+.continue-Google:active{
+    
+    /* padding: 5rem 2rem; */
+    transform: scale(0.99);
+}
 .continue-Google img {
     width: 2.2rem;
+    pointer-events: none;
+
     position: absolute;
     margin-top: -1.75rem;
     margin-left: -2.2rem;
@@ -132,10 +158,16 @@ display: inline-block;
     /* margin-top: -2rem; */
     margin-left: 2rem;
     font-style: normal;
+    pointer-events: none;
+
     font-weight: 400;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
     unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    
+
+
+
 }
 .orText{
     font-size: 1.7rem;
@@ -149,6 +181,8 @@ display: inline-block;
 .Page1-Info input {
     width: 38rem;
     padding: 1rem;
+    pointer-events: none;
+
     /* display: none; */
     margin-left: 3rem;
     border: 1px solid rgba(0, 0, 0, 0.269);
@@ -184,18 +218,18 @@ display: inline-block;
     /* display: none; */
     color: black;
     line-height: 2.3rem;
-    margin-left: 11.5rem;
+    margin-left: 11rem;
     margin-top: 2rem;
-    font-family: 'Lato';
+    font-family: 'Inter';
     font-style: normal;
-    /* font-weight: 700; */
+    font-weight: 500;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
-    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhiI2B.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 
 }
 .specialText{
-    margin-left: -1rem;
+    margin-left: -1.1rem;
     
 }
 .specialText-Text1{
@@ -204,12 +238,18 @@ display: inline-block;
 }
 .Login-Text-Container{
     width: 32rem;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     color: #333333;
     /* border: 2px solid red; */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhiI2B.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
     height: 2rem;
     margin-top: 13rem;
-    margin-left: 11.5rem;
+    margin-left: 11rem;
 }
 /* .OrTextSlash{
     border: 1px solid rgba(0, 0, 0, 0.269);
