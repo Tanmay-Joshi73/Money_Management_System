@@ -4,6 +4,7 @@ const mongoose=require('mongoose')
 const User=require('./Routes/route')
 const HomePage=fs.readFileSync(`${__dirname}/index.html`,'utf-8')
 const LoginPage=fs.readFileSync(`${__dirname}/Authenticate.html`,'utf-8')
+const CreatePage1=fs.readFileSync(`${__dirname}/Authenticate1.html`,'utf-8')
 const dotenv=require('dotenv')
 dotenv.config({path:'./.env'})
 const PORT=process.env.PORT
@@ -22,6 +23,9 @@ app.use('/Images',express.static('Images'))
     })
     app.get('/Login',(req,res)=>{
         res.end(LoginPage)
+    })
+    app.post('/Create',(req,res)=>{
+        res.send(CreatePage1)
     })
 
     ///Connection String

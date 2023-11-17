@@ -19,12 +19,12 @@ body{
     /* background-color:#aca2e8; */
   overflow:hidden;
   overflow-y:hidden;
-  cursor: none;
+  /* cursor: none; */
 }
-.cursor-dot{
+/* .cursor-dot{
   width: 5px;
   height: 5px;
-  /* z-index: 10000; */
+
   background-color: red
 }
 .cursor-outline{
@@ -39,8 +39,8 @@ body{
   transform: translate(-50%,-50%);
   border-radius: 50%;
   z-index: 1;
-  pointer-events: none;
-}
+  
+}  */
 
 ::selection{
   background-color: #aca2e8;
@@ -113,7 +113,7 @@ body{
     display: flex;
     align-items: center;
     position: relative;
-    pointer-events: none;
+    
     /* border: 2px solid black; */
     height: 3.8rem;
     margin-left: 3rem;
@@ -136,7 +136,7 @@ body{
 }
 .continue-Google img {
     width: 2.2rem;
-    pointer-events: none;
+    
 
     position: absolute;
     margin-top: -1.75rem;
@@ -158,7 +158,7 @@ display: inline-block;
     /* margin-top: -2rem; */
     margin-left: 2rem;
     font-style: normal;
-    pointer-events: none;
+    
 
     font-weight: 400;
     font-display: swap;
@@ -181,7 +181,7 @@ display: inline-block;
 .Page1-Info input {
     width: 38rem;
     padding: 1rem;
-    pointer-events: none;
+   
 
     /* display: none; */
     margin-left: 3rem;

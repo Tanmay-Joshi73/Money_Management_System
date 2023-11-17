@@ -1,0 +1,184 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@700&family=Signika+Negative:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Lato&family=Open+Sans&family=Roboto+Slab:wght@300&family=Roboto:wght@100;400&family=Signika+Negative:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter&family=Lato&family=Open+Sans&family=PT+Sans&family=Roboto+Slab:wght@300&family=Roboto:wght@100;400&family=Signika+Negative:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Lato&family=Open+Sans&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  
+}
+body{
+    /* background-color:#aca2e8; */
+  overflow:hidden;
+  overflow-y:hidden;
+  /* cursor: none; */
+}
+.cursor-dot{
+  width: 5px; 
+  height: 5px; 
+  z-index: 10000;
+  background-color: red;
+}
+.cursor-outline{
+  width: 30px;
+  height: 30px;
+  border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+.cursor-dot,.cursor-outline{
+  position:fixed; 
+  top:0;
+  left:0;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  z-index: 1; 
+ pointer-events: none; 
+}
+
+::selection{
+  background-color: #aca2e8;
+}
+
+.Authentication-page-1{
+    display: flex;
+}
+
+
+        /* Left page */
+.LeftPage{
+    width: 60%;
+    /* border: 2px solid red; */
+    height: 100vh;
+    
+    
+}
+.Page1-Info{
+   width: 80%;
+   height: 90%;
+   margin-top: 5rem;
+   margin-left: 5rem;
+   /* border: 2px solid green;  */
+}
+.Account-Creation-Text {
+    font-size: 2.5rem;
+    width: fit-content;
+    margin-top: 15rem;
+    margin-left: 7rem;
+    /* border: 2px solid pink; */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZNhiI2B.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF;
+}
+.Form-Info{
+    /* border: 2px solid blue; */
+    /* margin-top: 1rem; */
+    /* height: 110rem; */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZthiI2B.woff2) format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    padding:5rem 2rem;
+    margin-left: 2rem;
+}
+.Form-Info label{
+    display: block;
+    margin-left: 3rem;
+    margin-bottom: -1.8rem;
+    font-size: 1.5rem;
+}
+.Form-Info form{
+    /* border: 2px solid #6a51fb; */
+    margin-top:-2.2rem;
+    height: 115rem;
+}
+.Form-Info input{
+  /* width: 48rem; */
+    display: block;
+    width: 46rem;
+    padding: 1.3rem 1.8rem;
+    border-radius: 2.6%; 
+
+    margin-left: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.269);
+    margin-top: 3.5rem;
+    font-size: 1.5rem;
+    height: 1.9rem;
+    text-align: left;
+    transition: border-color 0.3s ease; /* Add a smooth transition effect for the border color */
+  }
+  
+  .Form-Info input:focus {
+      border-color:1px solid #0d7ef7; /* Change the border color to blue when the input is focused */
+  }
+#submit-button{
+  width: 13.8rem;
+  padding-left: 3rem;
+  /* padding-right: 1rem; */
+  padding-bottom: 2.9rem;
+  /* padding: 1.9rem 5rem; */
+  height: 4rem;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZthiI2B.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  margin-left: 82%;
+  margin-top: 13.6rem;
+  outline: none;
+  /* height: 12rm; */
+  border-radius: 5px;
+  background-color: #0d7ef7;
+  color: white;
+  display: block;
+  font-size: 1.6rem;
+  border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.RightPage{
+    width: 40%;
+    background-color: #6a51fb;
+    height: 100vh;
+    /* border: 2px solid black; */
+}
+
+
+
+
+
+
+
+.RightPage img{
+    width: 40rem;
+    margin-left:12rem ;
+    margin-top: 17rem;
+    /* border: 2px solid red; */
+}
