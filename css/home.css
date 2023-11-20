@@ -140,6 +140,7 @@ body{
 }
 .Left-Mid-Page{
     /* border: 2px solid black; */
+    
     width: 50%;
     height: 50vh;
     margin-left: 14rem;
@@ -202,7 +203,7 @@ body{
     /* line-height: 2rem; */
 }
 /* #SpanText{
-color: #007acc;
+color: #aca2e8;
 font-size:larger;
 } */
 #SpanText2{
