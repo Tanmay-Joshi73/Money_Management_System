@@ -7,7 +7,7 @@ const LoginPage=fs.readFileSync(`${__dirname}/Authenticate.html`,'utf-8')
 const CreatePage1=fs.readFileSync(`${__dirname}/Authenticate1.html`,'utf-8')
 const dotenv=require('dotenv')
 dotenv.config({path:'./.env'})
-const PORT=process.env.PORT
+const PORT=process.env.PORT||8000
 const app = express();
 const Connect=require('./connect/connection')
 
