@@ -6,24 +6,23 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/Home",
-      "dest": "./index.html"
+      "source": "/Home",
+      "destination": "/index.html"
     },
     {
-      "src": "/Login",
-      "dest": "./Authenticate.html"
+      "source": "/Login",
+      "destination": "/Authenticate.html"
     },
     {
-      "src": "/Create",
-      "dest": "./Authenticate1.html"
+      "source": "/Create",
+      "destination": "/Authenticate1.html"
     },
-    
     {
-      "src": "/(.*)",
-      "dest": "/$1.html"
+      "source": "/(.*)",
+      "destination": "/$1.html"
     }
-  ],
-  "cleanUrls": true
+  ]
 }
+
