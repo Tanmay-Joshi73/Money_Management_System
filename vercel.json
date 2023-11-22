@@ -1,12 +1,20 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "server.js", "use": "@vercel/static" },
-      { "src": "api/**/*.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/api/(.*)", "dest": "/server.js" }
-  
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "public/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/Home/Login",
+      "dest": "/Home/Login.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1.html"
+    }
+  ],
+  "cleanUrls": true
+}

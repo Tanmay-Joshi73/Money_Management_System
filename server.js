@@ -18,15 +18,7 @@ app.use('/Logo', express.static('Logo'));
 app.use('/SampleImage', express.static('SampleImage'));
 app.use('/Images',express.static('Images'))
 
-    // app.get('/Home',(req,res)=>{
-    //     res.send(HomePage)
-    // })
-    // app.get('/Login',(req,res)=>{
-    //     res.end(LoginPage)
-    // })
-    // app.post('/Create',(req,res)=>{
-    //     res.send(CreatePage1)
-    // })
+
 app.use('/',User)
     ///Connection String
 // const Start=async()=>{
