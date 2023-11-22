@@ -2,15 +2,24 @@
   "version": 2,
   "builds": [
     {
-      "src": "public/**/*",
-      "use": "@vercel/static"
+      "src": "./server.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/Home/Login",
-      "dest": "/Home/Login.html"
+      "src": "/Home",
+      "dest": "./index.html"
     },
+    {
+      "src": "/Login",
+      "dest": "./Authenticate.html"
+    },
+    {
+      "src": "/Create",
+      "dest": "./Authenticate1.html"
+    },
+    
     {
       "src": "/(.*)",
       "dest": "/$1.html"
