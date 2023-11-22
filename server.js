@@ -1,5 +1,6 @@
 const express = require('express');
 const fs=require('fs')
+const bodyparser=require('body-parser')
 const mongoose=require('mongoose')
 const User=require('./Routes/route')
 const HomePage=fs.readFileSync(`${__dirname}/index.html`,'utf-8')
@@ -10,6 +11,7 @@ dotenv.config({path:'./.env'})
 const PORT=process.env.PORT||8000
 const app = express();
 const Connect=require('./connect/connection')
+app.use(bodyparser.urlencoded({ extended: true }));
 
 // Serve static assets
 app.use('/css', express.static('css'));
