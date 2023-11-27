@@ -32,7 +32,21 @@ const MailOptions={
     from: 'tanmayjoshi072@gmail.com',
     to: workEmail,
     subject: 'New Form Submission',
-    text: `You have a new form submission from ${workEmail} we are glad that you visit our website,even our website will help you to managar your money.`
+    text: `
+    Title:  Money Manager: Empowering Your Financial Journey
+    
+    Introduction:
+    In today's dynamic world, effective money management is essential for personal well-being. Introducing  Money Manager – a powerful tool designed to revolutionize how individuals handle their finances. Discover a seamless blend of simplicity and sophistication that puts you in control of your financial destiny.
+    
+    Contribute:
+    1. Personalized Financial Solutions:
+    Embark on your journey by customizing your Money Manager experience. Share your insights and preferences, contributing to the creation of personalized financial solutions that cater to individual needs.
+    
+    2. User Experience Enhancement:
+    Participate in refining the user interface and overall user experience. Contribute ideas and solutions that make  Money Manager an intuitive and user-friendly platform for everyone, regardless of their financial expertise.
+    
+    3. Community Feedback:
+    Share your thoughts on the platform's functionalities. As a user, your input is invaluable in shaping the Money Manager to be the go-to financial tool for people from all walks of life..`
 }
 
 transportar.sendMail(MailOptions, (error, info) => {

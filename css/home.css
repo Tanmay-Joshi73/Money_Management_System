@@ -406,7 +406,7 @@ font-size:larger;
      font-family: 'Roboto Slab';
     font-style: normal;
     font-weight:bolder;
-    font-display: swap;;
+    font-display: swap;
 }
 .Login h1 ,.SignUp h1{
     font-size: 2.3rem; /* Increase the font size */
@@ -481,4 +481,78 @@ font-size:larger;
   .Right_Page img {
     max-width: 100%;
     transition: opacity 1s; /* Apply a 1-second opacity transition */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    /* Project Timeline Section */
+.Projet-Timeline-section{ 
+    display: relative;
+    max-width: 120rem;
+    margin: 10rem auto;
+}                    
+.container{
+    padding: 1.6rem 2.5rem;
+    position: relative;
+    width: 40%;
+    /* background: #007acc; */
+}
+.text-box {
+    position: relative;
+    background: white;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.6rem;
+    font-family: 'Roboto';
+    font-style: normal;
+    /* font-weight: 800; */
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    box-sizing: border-box;
+    z-index: 2; /* Ensure text appears above the line */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box-shadow property */
+}
+
+
+.Left-Container{
+    left: 0;
+}
+.Right-Container{
+    right: -50%;
+}
+.Projet-Timeline-section::after{
+    content: '';
+    position: absolute;
+    margin-top: 104%;
+    width: .1rem;
+    height: 100%;
+    background: #000;
+    top: 0;
+    left: 50%;
+    margin-left: -4rem;
+}
+.left-container-arrow{
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 2.8rem;
+    z-index: 1;
+    border-top: 1.4rem solid transparent;
+    border-left:1.5rem solid rgb(255, 255, 255) ;
+    border-bottom: 1.5rem solid transparent; 
+    right: -1.5rem;
 }
