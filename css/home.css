@@ -193,6 +193,7 @@ body{
 }
 .LeftInfoPage span{
     margin-left: 7.2rem;
+    
 }
 #Left-Mid-Page-Info {
     margin-left: -5rem;
@@ -202,10 +203,10 @@ body{
     padding: 0 2rem;
     /* line-height: 2rem; */
 }
-/* #SpanText{
-color: #aca2e8;
-font-size:larger;
-} */
+#SpanText{
+color: rgb(0, 0, 0);
+/* font-size:larger; */
+}
 #SpanText2{
     /* margin-right: 10rem; */
     margin-left: 4.9rem;
