@@ -23,13 +23,13 @@ app.use('/Images',express.static('Images'))
 
 app.use('/',User)
     ///Connection String
-// const Start=async()=>{
-    // try{
-    // await Connect()
+const Start=async()=>{
+    try{
+    await Connect()
     app.listen(PORT,'127.0.0.1',()=>console.log('Listening To The Server'))
 
-// }   catch(err){
-    // console.log(err)
-// }
-// }
-// Start()
+}   catch(err){
+    console.log(err)
+}
+}
+Start()

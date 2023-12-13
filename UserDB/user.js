@@ -4,11 +4,22 @@ const Schema=mongoose.Schema({
         type:String
     },
     Email:{
-        type:String
+        type:String,
+        unique:true,
+        required: true,
+        match: /^\S+@\S+\.\S+$/
     },
     Password:{
-        type:String
+        type:String,
+        required: true,
+        minlength: 6
+    }
+    ,
+    CreatedAt:{
+        type:Date,
+        default:Date.now()
     }
 })
 
 const Data=mongoose.model('Data',Schema)
+module.exports=Data
