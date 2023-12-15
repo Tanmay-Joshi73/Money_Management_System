@@ -81,7 +81,7 @@ exports.ProfiePage = async (req, res) => {
             Thank you.`
 
             let Subject=`Title:Thanks For Joining Us, Keep Helping Us Like This`
-            SendMail(Message,Subject,clientEmail)
+            SendMail(Message,clientEmail,Subject)
             
     } 
     }
