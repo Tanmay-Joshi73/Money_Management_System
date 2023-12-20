@@ -205,6 +205,7 @@ display: inline-block;
     margin-left: 3rem;
     margin-top: 1.6rem;
     outline: none;
+    cursor: pointer;
     border-radius: 5px;
     background-color: #0d7ef7;
     color: white;
@@ -235,6 +236,10 @@ display: inline-block;
 .specialText-Text1{
     font-weight: 500;
     color: #6a51fb;
+}
+.specialText-Text1 a{
+    text-decoration: none;
+    color:#6a51fb 
 }
 .Login-Text-Container{
     width: 32rem;
