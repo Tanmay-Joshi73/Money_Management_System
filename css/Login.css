@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  
+}
+body{
+    /* background-color:#aca2e8; */
+   overflow:hidden;
+  overflow-y:hidden; 
+  /* cursor: none; */
+}
+/* .cursor-dot{
+  width: 5px;
+  height: 5px;
+
+  background-color: red
+}
+.cursor-outline{
+  width: 30px;
+  height: 30px;
+  border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+.cursor-dot,.cursor-outline{
+  position:fixed;
+  top:0;
+  left:0;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  z-index: 1;
+  
+}  */
+
+::selection{
+  background-color: #aca2e8;
+}
+
+
+        /* Mid Page-Left */
+.Login-page{
+    display: flex;
+}
+.LeftPage{
+    width: 60%;
+    /* border: 2px solid red; */
+    height: 100vh;
+    
+}
+.Left-page-information{
+    width: 60%;
+    margin-top: 12rem;
+    margin-left: 22rem;
+    /* border: 2px solid red; */
+    height: 66vh;
+}
+.left-side-title{
+    font-size: 4rem;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 200;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/notosans/v35/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyB9A-9X6VLKzA.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+
+}
+.Form-Info{
+  /* border: 2px solid blue; */
+  margin-top: -2rem;
+  /* height: 110rem; */
+  
+  padding:5rem 2rem;
+  margin-left: 2rem;
+}
+.Form-Info label{
+  display: block;
+  color: black;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v35/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyB9A-9X6VLKzA.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  margin-left: -3rem;
+  margin-bottom: -1.8rem;
+  font-size: 1.7rem;
+}
+.Form-Info form{
+  /* border: 2px solid #6a51fb; */
+  margin-top:.1rem;
+  height: 115rem;
+}
+.Form-Info input{
+/* width: 48rem; */
+  display: block;
+  width: 36rem;
+  padding: 1.3rem 1.8rem;
+  border-radius: 2.6%; 
+  margin-left: -4rem;
+  border: 1px solid rgba(0, 0, 0, 0.269);
+  margin-top: 3.5rem;
+  font-size: 1.5rem;
+  height: 1.9rem;
+  text-align: left;
+  transition: border-color 0.3s ease; /* Add a smooth transition effect for the border color */
+}
+
+.Form-Info input:focus {
+    border-color:1px solid #0d7ef7; /* Change the border color to blue when the input is focused */
+}
+#submit-button{
+  width: 40rem;
+
+  padding: 1.6rem 1rem;
+  margin-left: -8%;
+  margin-top: 2rem;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #0d7ef7;
+  color: white;
+  display: block;
+  font-size: 1.6rem;
+  border: none;
+}
+
+.RightPage{
+    width: 40%;
+    background-color: #6a51fb;
+    height: 100vh;
+    /* border: 2px solid black; */
+}
+.Page1-Info{
+    border: 2px solid green;
+    width: 50rem;
+    height: 50rem;
+    margin-top: 14%;
+    margin-left: 25%;
+}
+.continue-Google {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  height: 3.8rem;
+  margin-left: -4rem;
+  border-radius: 2%;
+  width: 80%;
+
+  color: #333333;
+  border: 1px solid rgba(0, 0, 0, 0.269);
+  transition: 1s background-color  ease-in-out;
+}
+.continue-Google:hover{
+  background-color: lightblue;
+}
+.continue-Google:active{
+  
+  /* padding: 5rem 2rem; */
+  transform: scale(0.99);
+}
+.continue-Google img {
+  width: 2.2rem;
+  position: absolute;
+  margin-top: -1.75rem;
+  margin-left: -2.2rem;
+ 
+  /* margin-right: 1rem; Adjust the margin as needed */
+}
+.google-logo{
+  margin-left: 10.8rem;
+ /* border: 2px solid red; */
+}
+.google-logo{
+display: inline-block;
+}
+.continue-Google span {
+  font-size: 1.65rem;
+  font-family: 'Lato', sans-serif;
+  /* margin-top: -2rem; */
+  margin-left: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+ 
+}
+.orText{
+  font-size: 1.7rem;
+  margin-top: 2rem;
+  margin-left:31%;
+  width:40rem;
+  display: flex;
+}
+.final-text{
+  margin-top:2.5rem;
+  margin-left: -2rem;
+}
+.dont-account-text{
+    
+  font-size: 1.7rem;
+  margin-top: 1rem;
+  margin-left: 3rem;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Hw0aXpsog.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+#Special-text a{
+  text-decoration: none;
+  color: #6a51fb;
+}
+.RightPage img{
+  width: 45rem;
+  margin-left:8rem ;
+  margin-top: 20rem;
+  /* border: 2px solid red; */
+}

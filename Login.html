@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Authenticate</title>
+    <link rel="icon" href="./Images/Favicoon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="./css/Login.css">
 </head>
 <body>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <div class="Login-page">
+        <div class="LeftPage">
+            <div class="Left-page-information">
+                      <span class="left-side-title">Log in to your account</span> 
+                      <div class="Form-Info">
+                       
+
+                            <div class="continue-Google">
+                                <span>
+                                    <div class="google-logo"><img src="./SampleImage/Googe-image.webp" alt=""></div>
+                                     Continue With Google
+                                    </span>
+                            </div>
+                            <div class="orText"> <div class="OrTextSlash"></div><span>Or</span><div class="OrTextSlash2"></div></div>
+                            <form action="/Profile" method="post">
+                           
+
+                            <!-- Username Input -->
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" placeholder="Username" name="Username" required>
+                            <br>
+
+                             <!-- Password Input -->
+                             <label for="password">Password:</label>
+                             <input type="password" id="password" placeholder="Password" name="password" required>
+                             <br>
+                        
+                            <!-- Submit Button -->
+                          
+                            <button id="submit-button">Continue</button>
+                            <div class="final-text">
+                            
+                            <span class="dont-account-text">Don't have an account yet?<span id="Special-text"><a href="/Profile"> Sign up</a></span></span>
+                            
+                        </div>
+                        </form>
+                    </div>
+
+            </div>
+        </div>
+
+        <div class="RightPage">
+                <img src="./Images/Login-Page-Image.png" alt="Login">
+        </div>
+    </div>
     
 </body>
+<script src="./js/home.js"></script>
 </html>
