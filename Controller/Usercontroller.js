@@ -3,8 +3,8 @@ const tour=require('./../UserDB/user')
 const bcrypt=require('bcrypt')
 const nodemailer=require('nodemailer')
 const bodyparser=require('body-parser')
-const passport=require('passport')
-const GoogleStergey=require('passport-google-oauth2').Strategy
+// const passport=require('passport')
+// const GoogleStergey=require('passport-google-oauth2').Strategy
 let ClientEmail;
 let ClintName;
 let ClientPassword;
@@ -91,6 +91,41 @@ exports.ProfiePage = async (req, res) => {
         console.log(err)
     }
 }
+
+exports.LoginCheck = async (req, res) => {
+    const ClintName = req.body.Username;
+    const ClientPassword = req.body.Password;
+    const ClientEmail = req.body.email;
+
+    try {
+        // Check if the user exists based on email and name
+        const existingUser = await tour.findOne({ Name: ClintName, Email: ClientEmail });
+
+        if (existingUser) {
+            // User found, check the password
+            const isPasswordValid = await bcrypt.compare(ClientPassword, existingUser.Password);
+
+            if (isPasswordValid) {
+                // Password is valid, user successfully logged in
+                console.log('Login successful');
+                res.send('welcome to money-manager.com')
+            } else {
+                // Password is incorrect
+                console.log('Incorrect password');
+                res.status(401).send('Incorrect password');
+            }
+        } else {
+            // User not found based on email and name
+            console.log('User not found');
+            res.status(404).send('User not found');
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal server error');
+    }
+};
+
+
 
 
 
