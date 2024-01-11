@@ -3,6 +3,8 @@ const tour=require('./../UserDB/user')
 const bcrypt=require('bcrypt')
 const nodemailer=require('nodemailer')
 const bodyparser=require('body-parser')
+const passport=require('passport')
+const GoogleStergey=require('passport-google-oauth2').Strategy
 let ClientEmail;
 let ClintName;
 let ClientPassword;

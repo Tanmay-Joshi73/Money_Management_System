@@ -3,6 +3,9 @@
  
   @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
 
+  
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 html {
     font-size: 62.5%;
@@ -177,7 +180,13 @@ body{
     background-size: cover;
 }
 .LeftInfoPage{
-    font-family: 'Roboto Slab', sans-serif;
+    /* font-family: 'Roboto Slab', sans-serif; */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Hw0aXpsog.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
     /* border: 2px solid darkblue; */
     width: 40vw;
     margin-top: 5rem;
