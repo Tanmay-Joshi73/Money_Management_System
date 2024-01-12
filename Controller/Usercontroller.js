@@ -96,6 +96,8 @@ exports.LoginCheck = async (req, res) => {
     const ClintName = req.body.Username;
     const ClientPassword = req.body.Password;
     const ClientEmail = req.body.email;
+    let Subject='New Login In The Money-Manager'
+    let Message=`New Login Gets Detected From This User Account`
 
     try {
         // Check if the user exists based on email and name
@@ -107,7 +109,9 @@ exports.LoginCheck = async (req, res) => {
 
             if (isPasswordValid) {
                 // Password is valid, user successfully logged in
+                SendMail(Message,ClientEmail,Subject)
                 console.log('Login successful');
+                
                 res.send('welcome to money-manager.com')
             } else {
                 // Password is incorrect
