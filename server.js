@@ -20,7 +20,9 @@ app.use('/Logo', express.static('Logo'));
 app.use('/SampleImage', express.static('SampleImage'));
 app.use('/Images',express.static('Images'))
 
-
+app.get('/', (req, res) => {
+    res.redirect('/home');
+});
 app.use('/',User)
     ///Connection String
 const Start=async()=>{
