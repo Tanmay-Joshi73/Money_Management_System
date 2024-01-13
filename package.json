@@ -2,13 +2,13 @@
   "name": "final_year_project",
   "version": "1.0.0",
   "description": "This Is Money-Manager",
-  "main": "server.js",
+  "main": "app.js",
   "engines": {
     "node": "18.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "node app.js",
     "dev": "concurrently \"npm run start\" \"npm run open:browser\"",
     "open:browser": "start http://localhost:8000/Home"
   },
