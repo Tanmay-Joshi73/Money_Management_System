@@ -144,7 +144,7 @@ body{
     margin-top: 14%;
     margin-left: 25%;
 }
-.continue-Google {
+/* .continue-Google {
   display: flex;
   align-items: center;
   margin-top: 1rem;
@@ -159,32 +159,32 @@ body{
 }
 .continue-Google:hover{
   background-color: lightblue;
-}
-.continue-Google:active{
+} */
+/* .continue-Google:active{ */
   
   /* padding: 5rem 2rem; */
-  transform: scale(0.99);
-}
+  /* transform: scale(0.99); */
+/* }
 .continue-Google img {
   width: 2.2rem;
   position: absolute;
   margin-top: -1.75rem;
-  margin-left: -2.2rem;
+  margin-left: -2.2rem; */
  
   /* margin-right: 1rem; Adjust the margin as needed */
-}
+/* }
 .google-logo{
-  margin-left: 10.8rem;
+  margin-left: 10.8rem; */
  /* border: 2px solid red; */
-}
+/* }
 .google-logo{
 display: inline-block;
 }
 .continue-Google span {
   font-size: 1.65rem;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif; */
   /* margin-top: -2rem; */
-  margin-left: 2rem;
+  /* margin-left: 2rem;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -202,8 +202,8 @@ display: inline-block;
 .final-text{
   margin-top:2.5rem;
   margin-left: -2rem;
-}
-.dont-account-text{
+} */
+/* .dont-account-text{
     display:block;
   font-size: 1.7rem;
   margin-top: 1rem;
@@ -214,14 +214,14 @@ display: inline-block;
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Hw0aXpsog.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-#Special-text a{
+} */
+/* #Special-text a{
   text-decoration: none;
   color: #6a51fb;
-}
+} */
 .RightPage img{
-  width: 45rem;
-  margin-left:8rem ;
-  margin-top: 20rem;
+  width: 57rem;
+  margin-left:3rem ;
+  margin-top: 14rem;
   /* border: 2px solid red; */
 }

@@ -16,7 +16,7 @@ const HomePage=fs.readFileSync(`${__dirname}/../index.html`,'utf-8')
 const SignUp=fs.readFileSync(`${__dirname}/../Authenticate.html`,'utf-8')
 const CreatePage1=fs.readFileSync(`${__dirname}/../Authenticate1.html`,'utf-8')
 const Login=fs.readFileSync(`${__dirname}/../Login.html`,'utf-8')
-
+const ForgotPassword_Page=fs.readFileSync(`${__dirname}/../Forgot.html`,'utf-8')
 
 
 exports.Home=async(req,res)=>{
@@ -128,6 +128,10 @@ exports.LoginCheck = async (req, res) => {
         res.status(500).send('Internal server error');
     }
 };
+
+    exports.ForgotPassword=async(req,res)=>{
+        res.send(ForgotPassword_Page)
+    }
 
 
 
