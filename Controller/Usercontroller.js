@@ -130,8 +130,23 @@ exports.LoginCheck = async (req, res) => {
 };
 
     exports.ForgotPassword=async(req,res)=>{
-        res.send(ForgotPassword_Page)
+        await res.send(ForgotPassword_Page)
+        // console.log()
     }
+    
+    exports.ResetPass=async(req,res)=>{
+        ClientUserName=req.body.Username
+        ClientPassword=req.body.Password
+        ClientEmail=req.body.email
+        try{
+        // const existingUser=await tour.findOne({Name:ClientUserName,Email:ClientEmail})
+        // console.log(existingUser)
+         res.send(Login)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
 
 
 

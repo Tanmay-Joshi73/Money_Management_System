@@ -2,7 +2,7 @@
   "name": "final_year_project",
   "version": "1.0.0",
   "description": "This Is Money-Manager",
-  "main": "Landing_Page.js",
+  "main": "server.js",
   "engines": {
     "node": "18.x"
   },
