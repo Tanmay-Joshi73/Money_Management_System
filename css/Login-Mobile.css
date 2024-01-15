@@ -1,0 +1,124 @@
+/* Small screens (phones) */
+@media only screen and (max-width: 320px) {
+    body{
+        /* display: none; */
+    }
+    .LeftPage{
+        width: 100%;
+    }
+    .Left-page-information{
+        width: 90%;
+        margin-top: 8rem;
+        margin-left: 1rem;
+        /* border: 2px solid red; */
+        height: 70vh;
+    }
+    .left-side-title{
+        font-size: 2.6rem;        
+        margin-left: 2.5rem;
+    
+    }
+    .Form-Info{
+      
+      margin-top: -2rem;
+      /* height: 110rem; */
+      /* border: 2px solid red; */
+      padding:5rem 2rem;
+      margin-left: 1rem;
+    }
+    .Form-Info label{
+      margin-left: -2.5rem;
+      margin-bottom: -1.8rem;
+      font-size: 1.5rem;
+    }
+    .Form-Info form{
+        /* border: 2px solid #6a51fb; */
+        margin-top:.1rem;
+        height: 115rem;
+      }
+      .Form-Info input{
+      /* width: 48rem; */
+        width: 25rem;
+        padding: 1.1rem 1.8rem;
+        border-radius: 2.6%; 
+        margin-left: -2.5rem;
+        border: 1px solid rgba(0, 0, 0, 0.269);
+        margin-top: 3.5rem;
+        font-size: 1.5rem;
+        height: 1.9rem;
+        text-align: left;
+        transition: border-color 0.3s ease; /* Add a smooth transition effect for the border color */
+      }
+      
+      .Form-Info input:focus {
+          border-color:1px solid #0d7ef7; /* Change the border color to blue when the input is focused */
+      }
+      #submit-button{
+        width: 29rem;
+      
+        padding: 1.2rem 1rem;
+        margin-left: -10%;
+        margin-top: 2rem;
+        outline: none;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #0d7ef7;
+        color: white;
+        display: block;
+        font-size: 1.6rem;
+        border: none;
+      }
+      .final-text{
+        margin-top:2.5rem;
+        width: 150%;
+        margin-left: -2rem;
+        /* border:2px solid green; */
+      }
+      .dont-account-text{
+        
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        margin-left: 0rem;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Hw0aXpsog.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      #Special-text a{
+        text-decoration: none;
+        color: #6a51fb;
+      }
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .RightPage{
+        display: none;
+    }
+}

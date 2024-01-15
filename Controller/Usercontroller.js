@@ -131,22 +131,36 @@ exports.LoginCheck = async (req, res) => {
 
     exports.ForgotPassword=async(req,res)=>{
         await res.send(ForgotPassword_Page)
-        // console.log()
+        
     }
     
+
+
+
     exports.ResetPass=async(req,res)=>{
+    
         ClientUserName=req.body.Username
-        ClientPassword=req.body.Password
         ClientEmail=req.body.email
+        ClientPassword=req.body.Password
+        
         try{
-        // const existingUser=await tour.findOne({Name:ClientUserName,Email:ClientEmail})
-        // console.log(existingUser)
-         res.send(Login)
+            const salt = await bcrypt.genSalt(10);
+            const hash_Pass = await bcrypt.hash(ClientPassword, salt);
+            const Message='Successfully Password Changed'
+            const Subject='Request For Password Reset'
+            const existingUser= 
+                await tour.findOneAndUpdate(
+                {Name:ClientUserName,Email:ClientEmail},
+                {$set:{Password:hash_Pass}} 
+               )
+                    SendMail(Message,ClientEmail,Subject)
+                    res.redirect('/LoginPage')
+           
+            }
+        catch(err){
+            console.log(err)
+        }
     }
-    catch(err){
-        console.log(err)
-    }
-}
 
 
 
