@@ -1,8 +1,6 @@
 /* Small screens (phones) */
 @media only screen and (max-width: 320px) {
-    body{
-        /* display: none; */
-    }
+    
     .LeftPage{
         width: 100%;
     }
@@ -90,35 +88,87 @@
         text-decoration: none;
         color: #6a51fb;
       }
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     .RightPage{
         display: none;
     }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Styles for medium screens (tablets) go here */
+  .LeftPage{
+    width: 100%;
+}
+.Left-page-information{
+    width: 90%;
+    margin-top: 8rem;
+    margin-left: 19rem;
+    /* border: 2px solid red; */
+    height: 70vh;
+}
+.left-side-title{
+    font-size: 3.2rem;        
+    margin-left: 4.5rem;
+
+}
+.Form-Info{
+  
+  margin-top: -2rem;
+  /* height: 110rem; */
+  /* border: 2px solid red; */
+  padding:5rem 2rem;
+  margin-left: 2rem;
+}
+.Form-Info label{
+  margin-left: -2.5rem;
+  margin-bottom: -1.8rem;
+  font-size: 1.7rem;
+}
+.Form-Info form{
+  /* border: 2px solid #6a51fb; */
+  margin-top:.1rem;
+  height: 115rem;
+}
+
+#submit-button{
+  width: 39.8rem;
+
+  padding: 1.2rem 5rem;
+  margin-left: -6%;
+  margin-top: 2rem;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #0d7ef7;
+  color: white;
+  display: block;
+  font-size: 1.6rem;
+  border: none;
+}
+.final-text{
+  margin-top:2.5rem;
+  width: 150%;
+  margin-left: -2rem;
+  /* border:2px solid green; */
+}
+.dont-account-text{
+  
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  margin-left: 0rem;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Hw0aXpsog.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+#Special-text a{
+  text-decoration: none;
+  color: #6a51fb;
+}
+  
+  .RightPage{
+    display: none;
+  }
 }
