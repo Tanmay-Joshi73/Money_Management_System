@@ -1,0 +1,362 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@700&family=Signika+Negative:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
+
+@media only screen and (max-width: 320px) {
+
+        /* Mid Page-Left */
+.Authentication-page{
+    display: flex;
+}
+.LeftPage{
+    width: 100%;
+    
+    
+}
+
+.Page1-Info{
+    /* border: 2px solid green; */
+    width: 50rem;
+    height: 50rem;
+    margin-top: 15%;
+    margin-left: 0;
+}
+.Info-Title{
+  
+    font-size: 2.2rem;        
+    margin-left: 2.7rem;
+
+}
+.Info-Desctiption{
+    margin-top: 1.8rem;
+    margin-left: 2rem;
+}
+.Info-Desctiption span{
+    font-size: 1.5rem;
+
+}
+.continue-Google {
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+    /* border: 2px solid black; */
+    height: 3.9rem;
+    margin-left: 1.5rem;
+    border-radius: 2%;
+    margin-top: 5rem;
+    width: 58%;
+    /* outline: none; */
+    color: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.269);
+    transition: 1s background-color  ease-in-out;
+    
+}
+.continue-Google:hover{
+    background-color: lightblue;
+}
+.continue-Google:active{
+    
+    /* padding: 5rem 2rem; */
+    transform: scale(0.99);
+}
+.continue-Google img {
+    width: 2rem;
+    
+
+    position: absolute;
+    margin-top: -1.75rem;
+    margin-left: -2.2rem;
+  
+}
+.google-logo{
+    margin-left: 5.5rem;
+   
+}
+.google-logo{
+display: inline-block;
+}
+.continue-Google span {
+    font-size: 1.65rem;
+    font-family: 'Lato', sans-serif;
+    /* margin-top: -2rem; */
+    margin-left: 2rem;
+    font-style: normal;
+    
+
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    
+
+
+
+}
+.orText{
+    font-size: 1.7rem;
+    margin-left:30%;
+    /* border: 1px solid rgba(0, 0, 0, 0.269); */
+    width:40rem;
+    display: flex;
+    margin-top: 1rem;
+}
+
+.Page1-Info input {
+    width: 27rem;
+    padding: 1rem;
+    margin-left: 1.4rem;
+
+    margin-top:1.5rem;
+    font-size: 1.5rem;
+    height: 2.2rem;
+
+}
+
+.Page1-Info input::placeholder {
+    color: #7f8c8d; /* Placeholder text color */
+}
+
+#NextButton{
+    width: 29.5rem;
+    padding: 1.2rem;
+    margin-left: 1.4rem;
+    margin-top: 1.6rem;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #0d7ef7;
+    color: white;
+    display: block;
+    font-size: 1.6rem;
+    border: none;
+}
+
+.TermsAndPolicy{
+    font-size: 1.6rem;
+    /* display: none; */
+    color: black;
+    line-height: 2.3rem;
+    margin-left: 4rem;
+    margin-top: 3rem;
+ 
+
+}
+.specialText{
+    margin-left: -1.1rem;
+    
+}
+.specialText-Text1{
+    font-weight: 500;
+    color: #6a51fb;
+}
+.specialText-Text1 a{
+    text-decoration: none;
+    color:#6a51fb 
+}
+.Login-Text-Container{
+    width: 31rem;
+    font-size: 1.6rem;
+    color: #333333;
+    /* border: 2px solid red; */
+  
+    height: 2rem;
+    margin-top: 10rem;
+    margin-left: 4rem;
+}
+/* .OrTextSlash{
+    border: 1px solid rgba(0, 0, 0, 0.269);
+    width: 17rem;
+    height: 0;
+    position: absolute;
+    /* margin-left: -1rem; */
+    /* margin-top: 1rem; */
+/* } */
+/* .OrTextSlash2{
+    border: 1px solid rgba(0, 0, 0, 0.269);
+    width: 18rem;
+    height: 0;
+    position: absolute;
+    /* margin-left: -18rem; */
+    /* margin-top: 1rem; */
+    /* margin-right: -120rem; */
+
+/* }   */
+
+
+
+
+
+
+
+
+                /* Right page image */
+.RightPage {
+   display: none;
+}
+}
+
+
+
+
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .LeftPage{
+        width: 100%;
+        
+        
+    }
+    
+    .Page1-Info{
+        /* border: 2px solid green; */
+        width: 50rem;
+        height: 50rem;
+        margin-top: 3%;
+        margin-left: 0;
+    }
+    .Info-Title{
+      
+        font-size: 2rem;        
+        margin-left: 10rem;
+    
+    }
+    .Info-Desctiption{
+        margin-top: 1.8rem;
+        margin-left: 10rem;
+    }
+    .Info-Desctiption span{
+        font-size: 1.3rem;
+    
+    }
+    .continue-Google {
+        display: flex;
+        align-items: center;
+        position: relative;
+        
+        /* border: 2px solid black; */
+        height: 2.4rem;
+        margin-left: 6.5rem;
+        border-radius: 2%;
+        margin-top:2.5rem;
+        width: 60%;
+        /* outline: none; */
+        color: #333333;
+        border: 1px solid rgba(0, 0, 0, 0.269);
+        transition: 1s background-color  ease-in-out;
+        
+    }
+    .continue-Google:hover{
+        background-color: lightblue;
+    }
+    .continue-Google:active{
+        
+        /* padding: 5rem 2rem; */
+        transform: scale(0.99);
+    }
+    .continue-Google img {
+        width: 2rem;
+        
+    
+        position: absolute;
+        margin-top: -1.75rem;
+        margin-left: -2.2rem;
+      
+    }
+    .google-logo{
+        margin-left: 6rem;
+       
+    }
+    .google-logo{
+    display: inline-block;
+    }
+    .continue-Google span {
+        font-size: 1.65rem;
+        font-family: 'Lato', sans-serif;
+        /* margin-top: -2rem; */
+        margin-left: 2rem;
+        font-style: normal;
+        
+    
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        
+    
+    
+    
+    }
+    .orText{
+        font-size: 1.5rem;
+        margin-left:42%;
+        /* border: 1px solid rgba(0, 0, 0, 0.269); */
+        width:40rem;
+        display: flex;
+        margin-top: 1rem;
+    }
+    
+    .Page1-Info input {
+        width: 28rem;
+        padding: .9rem;
+        margin-left:6.5rem;
+        margin-top:.8rem;
+        font-size: 1.5rem;
+        height: .9rem;
+    
+    }
+    
+    #NextButton{
+        width: 30rem;
+        padding: .6rem;
+        margin-left: 6.6rem;
+        margin-top: 1.6rem;
+        outline: none;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #0d7ef7;
+        color: white;
+        display: block;
+        font-size: 1.4rem;
+        border: none;
+    }
+    
+    .TermsAndPolicy{
+        font-size: 1.2rem;
+        /* display: none; */
+        color: black;
+        line-height: 2.3rem;
+        margin-left: 12.3rem;
+        margin-top: 1.2rem;
+     
+    
+    }
+    .specialText{
+        margin-left: -1.1rem;
+        
+    }
+    .specialText-Text1{
+        font-weight: 500;
+        color: #6a51fb;
+    }
+    .specialText-Text1 a{
+        text-decoration: none;
+        color:#6a51fb 
+    }
+    .Login-Text-Container{
+        width: 31rem;
+        font-size: 1.2rem;
+        color: #333333;
+        /* border: 2px solid red; */
+        height: 2rem;
+        margin-top: 1.1rem;
+        margin-left: 12rem;
+    }
+.RightPage{
+    display:none
+}
+}
