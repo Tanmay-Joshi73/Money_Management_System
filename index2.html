@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyFY</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/homePhone.css" />
+    <link rel="icon" href="./Images/Favicoon.webp" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&amp;family=Signika+Negative:wght@300&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div
+      class="cursor-dot"
+      data-cursor-dot=""
+      style="left: 900px; top: 119px"
+    ></div>
+    <div class="cursor-outline" data-cursor-outline=""></div>
+
+    <header id="Header_ID">
+      <div class="Left-Side">
+        <img
+          src="./Logo/moneyfy-low-resolution-logo-color-on-transparent-background (1).png"
+          alt="MoneyFY Logo"
+        />
+      </div>
+      <div class="Right-Side">
+        <nav>
+          <ul>
+            <!-- <li><a href="#Home">Home</a></li> -->
+            <li><a href="#AboutUs">About Us</a></li>
+            <li onclick="SignUP()"><a href="/SignUp">Sign-Up</a></li>
+            <li onclick="Login()"><a href="/LoginPage">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="Middle-Page">
+      <div class="Left-Mid-Page">
+        <div class="LeftInfoPage">
+          <h1>Simply Save Money <br /><span id="SpanText">With US</span></h1>
+          <h2>
+            <span id="Left_Section_Span"
+              >We provide effective solutions on various ways of</span
+            ><br /><span id="SpanText2"
+              >managing money in an effective manner</span
+            >
+          </h2>
+          <form action="/submitform" method="post">
+            <input
+              type="email"
+              placeholder="Enter Your Work Email"
+              name="workemail"
+              required=""
+              title="Enter Your Work Email"
+            />
+            <button id="Get-Started-btn">Get Started</button>
+          </form>
+        </div>
+      </div>
+      <div class="Middle-Mid-Page">
+        <video autoplay="" loop="" muted="" playsinline="">
+          <source src="./Images/header-graphic-v08-vp9.webm" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="Right-Mid-Page"></div>
+    </div>
+
+    <div class="secondMid">
+      <div class="LeftPageInfo">
+        <img
+          src="./SampleImage/2c2945b8-269f-49c8-985b-1ae0a234b1bc_budget.avif"
+          alt="Sample Image"
+        />
+      </div>
+
+      <div class="RightPageInfo">
+        <div class="RightPageInfo-title">
+          <h1>Monthly budgeting made easy with MoneyFY.com</h1>
+        </div>
+        <div class="RightPageInfo-Information">
+          <span
+            >Our Work OS includes several features that take basic, static
+            budget planners to the next level:</span
+          >
+        </div>
+
+        <div class="RightPageInfo-Box">
+          <div class="RightPageInfo-Box1">
+            <div class="RightPageInfo-Box1-img">
+              <img
+                src="./Images/RightPageInfo-Box1 img-views.png"
+                alt="Views"
+              />
+            </div>
+            <div class="RightPageInfo-Box1-Info">
+              <div class="RightPageInfo-Box1-Info-title">
+                <span>12+ views</span>
+              </div>
+              <div class="RightPageInfo-Box1-Info-description">
+                <span>View your budget whenever you want</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Similar changes for other RightPageInfo-Box1 elements -->
+        </div>
+      </div>
+    </div>
+
+    <div class="Projet-Timeline-section">
+      <div class="container Left-Container">
+        <div class="text-box">
+          <h2>Alphanet Inc</h2>
+          <small>2022</small>
+          <p>Success Of My Life Is here</p>
+          <div class="right-container-arrow"></div>
+        </div>
+      </div>
+
+      <div class="container Right-Container">
+        <div class="text-box">
+          <h2>Alphanet Inc</h2>
+          <small>2022</small>
+          <p>Success Of My Life Is here</p>
+          <div class="left-container-arrow"></div>
+        </div>
+      </div>
+
+      <!-- Add more project timeline entries as needed -->
+    </div>
+
+    <script src="./js/home.js"></script>
+  </body>
+</html>
