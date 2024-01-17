@@ -328,6 +328,7 @@ color: rgb(0, 0, 0);
     height: 10rem;
     /* border: 2px solid red; */
   }
+  
   .RightPageInfo-Box1{
     display: flex;
   }
@@ -336,7 +337,10 @@ color: rgb(0, 0, 0);
     
     height: 100%;
     /* border: 2px solid black; */
-
+    transition: transform 1s;
+  }
+  .RightPageInfo-Box1:hover{
+        transform:scale(1.1);
   }
   .RightPageInfo-Box1:nth-child(2){
     margin-left: 1rem;
