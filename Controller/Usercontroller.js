@@ -6,6 +6,7 @@ const fs = require('fs')
 const exp = require('constants')
 const bodyparser = require('body-parser')
 const { LogTimings } = require('concurrently')
+const { hasSubscribers } = require('diagnostics_channel')
 // const passport=require('passport')
 // const GoogleStergey=require('passport-google-oauth2').Strategy
 const HomePage = fs.readFileSync(`${__dirname}/../index.html`, 'utf-8')
@@ -56,8 +57,11 @@ exports.ProfiePage = async (req, res) => {
         const clientPassword = req.body.password;
         const clientEmail = ClientEmail;
 
-        const salt = await bcrypt.genSalt(10);
-        const hash_Pass = await bcrypt.hash(clientPassword, salt);
+        // const salt = await bcrypt.genSalt(10);
+        // = await bcrypt.hash(clientPassword, salt);
+        const hash_Pass = await encrypt(clientPassword);
+
+
 
         if (await userdb.findOne({ Name: clientUserName })) {
             res.status(404).json({
@@ -144,8 +148,11 @@ exports.ResetPass = async (req, res) => {
     ClientPassword = req.body.Password
 
     try {
-        const salt = await bcrypt.genSalt(10);
-        const hash_Pass = await bcrypt.hash(ClientPassword, salt);
+        // const salt = await bcrypt.genSalt(10);
+        // const hash_Pass = await bcrypt.hash(ClientPassword, salt);
+
+        const hash_Pass = await encrypt(ClientPassword);
+
         const Message = 'Successfully Password Changed'
         const Subject = 'Request For Password Reset'
         const existingUser =
@@ -219,3 +226,13 @@ function SendMail(Message, workEmail, Subject, req, res) {
         }
     })
 }
+
+// This is An Async function for encryption of passowrd and this will return input password in hashed pass
+async function encrypt(pass) {
+    const salt = await bcrypt.genSalt(10);
+    const hash_Pass = await bcrypt.hash(pass, salt);
+    // console.log(hash_Pass);
+    return hash_Pass;
+
+}
+// encrypt("Ajinkya");

@@ -1,0 +1,21 @@
+/* Tablet Styles */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+
+    /* Add additional styles for tablets */
+}
+
+/* Larger Screens (Desktops, Laptops) */
+@media only screen and (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+
+    /* Add additional styles for larger screens */
+}
+@media only screen and (max-width: 600px) {
+    /* Styles for smaller screens go here */
+  }
+  
