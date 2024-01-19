@@ -168,14 +168,14 @@ body{
     /* border: 2px solid red; */
     width: 30rem;
     position: absolute;
-    right: 42rem;
+    right: 46.5rem;
     height: 60rem;
     top:11rem;
     z-index: 10;
    
 }
 .Middle-Mid-Page video{
-    width: 65rem;
+    width: 72rem;
     border-radius: 9rem;
     background-size: cover;
 }

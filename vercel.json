@@ -18,11 +18,8 @@
     {
       "source": "/Create",
       "destination": "/Authenticate1.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/$1.html"
     }
+   
   ]
 }
 

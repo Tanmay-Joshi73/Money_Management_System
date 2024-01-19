@@ -12,6 +12,7 @@ let ClientUserName;
 const fs=require('fs')
 const exp = require('constants')
 const { LogTimings } = require('concurrently')
+const { resolve } = require('path')
 const HomePage=fs.readFileSync(`${__dirname}/../index.html`,'utf-8')
 const SignUp=fs.readFileSync(`${__dirname}/../Authenticate.html`,'utf-8')
 const CreatePage1=fs.readFileSync(`${__dirname}/../Authenticate1.html`,'utf-8')
@@ -56,8 +57,8 @@ exports.ProfiePage = async (req, res) => {
         const clientPassword = req.body.password;
         const clientEmail = ClientEmail;
        
-        const salt = await bcrypt.genSalt(10);
-        const hash_Pass = await bcrypt.hash(clientPassword, salt);
+       const hash_Pass=await decreypt(clientPassword)
+       console.log(hash_Pass)
 
         if (await tour.findOne({ Name: clientUserName })) {
             res.status(404).json({
@@ -144,8 +145,8 @@ exports.LoginCheck = async (req, res) => {
         ClientPassword=req.body.Password
         
         try{
-            const salt = await bcrypt.genSalt(10);
-            const hash_Pass = await bcrypt.hash(ClientPassword, salt);
+            const hash_Pass=await decreypt(ClientPassword)
+
             const Message='Successfully Password Changed'
             const Subject='Request For Password Reset'
             const existingUser= 
@@ -218,3 +219,17 @@ function SendMail(Message,workEmail,Subject,req,res){
             // res.end('Email-sent:' + info.response)
         }
     })}
+
+        ///function to decreypt the pasword
+        async function decreypt(Pass){
+            try{
+            const salt =  await bcrypt.genSalt(10);
+            
+
+            const hash_Pass = await  bcrypt.hash(Pass, salt);
+            return hash_Pass
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
