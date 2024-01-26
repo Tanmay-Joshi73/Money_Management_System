@@ -1,6 +1,6 @@
 
   @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@700&family=Signika+Negative:wght@300&display=swap');
- 
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Slab:wght@300&family=Roboto:wght@100&family=Signika+Negative:wght@300&display=swap');
 
   
@@ -25,7 +25,7 @@ body{
 .cursor-outline{
     width: 30px;
     height: 30px;
-    border: 2px solid hsla(0, 0%, 100%, 0.5);
+    border: 2px solid rgb(218, 132, 244)
 }
 .cursor-dot,.cursor-outline{
     position:fixed;
@@ -197,7 +197,7 @@ body{
     margin-bottom: -110rem;
 }
 .LeftInfoPage h1{
-    margin-left: 13rem;
+    margin-left: 8.9rem;
     font-weight:bolder;
 }
 .LeftInfoPage span{
@@ -208,17 +208,19 @@ body{
     margin-left: -5rem;
 }
 #Left_Section_Span{
-    margin-left: -1rem;
+    margin-left: -3.4rem;
     padding: 0 2rem;
     /* line-height: 2rem; */
 }
 #SpanText{
 color: rgb(0, 0, 0);
+margin-left: 5.8rem;
 /* font-size:larger; */
+/* display: none; */
 }
 #SpanText2{
     /* margin-right: 10rem; */
-    margin-left: 4.9rem;
+    margin-left: 10.6rem;
 }
 .LeftInfoPage input{
     display: block;
@@ -274,7 +276,7 @@ color: rgb(0, 0, 0);
     width: 99%;
     display: flex;
     margin-left: 1rem;
-    height:70rem ;
+    height:63rem ;
     /* border: 2px solid red; */
 }
 .LeftPageInfo{
@@ -512,61 +514,48 @@ color: rgb(0, 0, 0);
 
 
 
-                    /* Project Timeline Section */
-.Projet-Timeline-section{ 
-    display: relative;
-    max-width: 120rem;
-    margin: 10rem auto;
+                    /* Connect to the moneyfy page */
+.connect-to-moneyfy-page{
+    /* width: 100%; */
+    /* border: 2px solid red; */
+    display:flex;
+    height: 60rem;
+    background: rgba(201, 201, 201, 0.094);
 }                    
-.container{
-    padding: 1.6rem 2.5rem;
-    position: relative;
-    width: 40%;
-    /* background: #007acc; */
+.connect-to-moneyfy-page .left-page{
+        width: 40%;
+        height:100%;
+        /* border: 2px solid green; */
 }
-.text-box {
-    position: relative;
-    background: white;
-    font-size: 1.5rem;
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.6rem;
+.connect-to-moneyfy-page .left-page .info-page{
+    width: 35rem;
+    margin-left: 24rem;
+    /* border: 2px solid black; */
+    margin-top: 5rem;
+    font-size: 2.5rem;
     font-family: 'Roboto';
     font-style: normal;
-    /* font-weight: 800; */
+    font-weight: 800;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format('woff2');
     unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-    box-sizing: border-box;
-    z-index: 2; /* Ensure text appears above the line */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box-shadow property */
 }
 
-
-.Left-Container{
-    left: 0;
+.connect-to-moneyfy-page .right-page {
+ width: 60%;
+ /* border: 2px solid red; */
 }
-.Right-Container{
-    right: -50%;
+.connect-to-moneyfy-page .right-page img{
+    width: 60rem;
+    /* border: 2px solid red;; */
+    margin-left: 20rem;
 }
-.Projet-Timeline-section::after{
-    content: '';
-    position: absolute;
-    margin-top: 104%;
-    width: .1rem;
-    height: 100%;
-    background: #000;
-    top: 0;
-    left: 50%;
-    margin-left: -4rem;
+.connect-to-moneyfy-page .left-page .info-page .info{
+    width: 50rem;
+    
 }
-.left-container-arrow{
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: 2.8rem;
-    z-index: 1;
-    border-top: 1.4rem solid transparent;
-    border-left:1.5rem solid rgb(255, 255, 255) ;
-    border-bottom: 1.5rem solid transparent; 
-    right: -1.5rem;
+.connect-to-moneyfy-page .left-page .info-page .info span{
+    font-family:'Courier New', Courier;
+    font-size:1.8rem;
+    font-stretch:narrower;
 }
