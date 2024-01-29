@@ -71,7 +71,7 @@ body{
     list-style: none;
     display: flex;
     /* border: 2px solid black; */
-    margin-right: -4rem;
+    margin-right: -3rem;
 }
 
 .Right-Side ul li {
@@ -168,9 +168,9 @@ body{
     /* border: 2px solid red; */
     width: 30rem;
     position: absolute;
-    right: 46.5rem;
+    right: 44.5rem;
     height: 60rem;
-    top:11rem;
+    top:10rem;
     z-index: 10;
    
 }

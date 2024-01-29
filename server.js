@@ -14,11 +14,7 @@ const Connect=require('./connect/connection')
 app.use(bodyparser.urlencoded({ extended: true }));
 
 // Serve static assets
-app.use('/css', express.static('css'));
-app.use('/js', express.static('js'));
-app.use('/Logo', express.static('Logo'));
-app.use('/SampleImage', express.static('SampleImage'));
-app.use('/Images',express.static('Images'))
+app.use(express.static(`${__dirname}/public`))
 
 app.get('/', (req, res) => {
     res.redirect('/home');
