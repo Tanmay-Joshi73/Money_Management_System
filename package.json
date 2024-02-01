@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "ndb": "^1.1.5"
+    "ndb": "^0.2.4"
   }
 }

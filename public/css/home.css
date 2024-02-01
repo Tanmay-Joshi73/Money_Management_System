@@ -25,7 +25,7 @@ body{
 .cursor-outline{
     width: 30px;
     height: 30px;
-    border: 2px solid rgb(218, 132, 244)
+    border: 2px solid rgba(255, 255, 255, 0.934)
 }
 .cursor-dot,.cursor-outline{
     position:fixed;
