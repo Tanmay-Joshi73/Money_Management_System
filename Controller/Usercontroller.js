@@ -72,7 +72,9 @@ exports.ProfiePage = async (req, res) => {
                 Password: hash_Pass,
                 Email: clientEmail
             });
-            res.end('Welcome To MoneyManager.com')
+            res.render('tracker',{
+                Usename:clientUserName
+            })
 
             let Message=`Dear Recipient,
 

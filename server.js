@@ -1,5 +1,6 @@
 const express = require('express');
 const fs=require('fs')
+const path=require('path')
 const bodyparser=require('body-parser')
 const mongoose=require('mongoose')
 const User=require('./Routes/route')
@@ -14,10 +15,12 @@ const Connect=require('./connect/connection')
 app.use(bodyparser.urlencoded({ extended: true }));
 
 // Serve static assets
+app.set("view engine","ejs")
+app.set("views",path.resolve('./views'))
 app.use(express.static(`${__dirname}/public`))
 
-app.get('/', (req, res) => {
-    res.redirect('/home');
+app.get('/', (req, res) => {   
+    res.render('tracker')
 });
 app.use('/',User)
     ///Connection String
