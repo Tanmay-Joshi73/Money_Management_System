@@ -353,6 +353,7 @@
             const Title = ExpenseTitle.value
             if (Title == '') { alert('please set the Title as well') }
             else {
+                const OriginaProductCost=parseInt(ExpenseCost.value)
                 cost = cost + parseInt(ExpenseCost.value)
                 TotalExpense.innerText = cost
                 budget=budget-cost
@@ -360,7 +361,7 @@
                         if(budget<=0){
                             alert('hey you got into the loss')
                         }
-                        ExpenseList(Title,cost)
+                        ExpenseList(Title,OriginaProductCost)
                 
             }
 

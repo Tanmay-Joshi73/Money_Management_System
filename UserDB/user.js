@@ -24,4 +24,6 @@ const Schema=mongoose.Schema({
 })
 
 const Data=mongoose.model('Data',Schema)
+
+
 module.exports=Data
