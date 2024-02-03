@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const validator=require('validator')
 const Schema=mongoose.Schema({
     Name:{
         type:String
@@ -7,7 +8,8 @@ const Schema=mongoose.Schema({
         type:String,
         unique:true,
         required: true,
-        match: /^\S+@\S+\.\S+$/
+        lowercase:true,
+        validate:[validator.isEmail,'Hey Please Provide The Email']
     },
     Password:{
         type:String,
