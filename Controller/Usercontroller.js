@@ -1,7 +1,7 @@
 const express = require('express')
 const { decreypt, SendMail } = require('./UsersFunction')
 const tour = require('./../UserDB/user')
-
+const JWT=require('jsonwebtoken')
 
 const bodyparser = require('body-parser')
 
@@ -13,6 +13,7 @@ const fs = require('fs')
 const exp = require('constants')
 const { LogTimings } = require('concurrently')
 const { resolve } = require('path')
+const { userInfo } = require('os')
 const HomePage = fs.readFileSync(`${__dirname}/../index.html`, 'utf-8')
 const SignUp = fs.readFileSync(`${__dirname}/../Authenticate.html`, 'utf-8')
 const CreatePage1 = fs.readFileSync(`${__dirname}/../Authenticate1.html`, 'utf-8')
@@ -38,7 +39,7 @@ exports.CreatePage1 = async (req, res) => {
                 Message: "Email Already Registered Try To Login"
             })
         }
-        console.log(ClientEmail)
+       
         await res.end(CreatePage1)
     }
     catch (err) {
@@ -58,7 +59,7 @@ exports.ProfiePage = async (req, res) => {
         const clientEmail = ClientEmail;
 
         const hash_Pass = await decreypt(clientPassword)
-        console.log(hash_Pass)
+       
 
         if (await tour.findOne({ Name: clientUserName })) {
             res.status(404).json({
@@ -69,9 +70,11 @@ exports.ProfiePage = async (req, res) => {
             // User Creation
             const User_Info = new tour({
                 Name: clientUserName,
-                Password: clientPassword,
+                Password: hash_Pass,
                 Email: clientEmail
             });
+            const token=JWT.sign({id:User_Info._id},process.env.JWTSECRETTOKEN,{expiresIn:process.env.JWE_EXPIRES_TIME})
+            
             await User_Info.save()
             res.render('tracker', {
                 Usename: clientUserName
@@ -87,7 +90,7 @@ exports.ProfiePage = async (req, res) => {
             Thank you.`
 
             let Subject = `Title:Thanks For Joining Us, Keep Helping Us Like This`
-            SendMail(Message, clientEmail, Subject)
+            // SendMail(Message, clientEmail, Subject)
 
         }
     }

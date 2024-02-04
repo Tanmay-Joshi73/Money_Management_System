@@ -1,6 +1,8 @@
 const mongoose=require('mongoose')
 const validator=require('validator')
-const Schema=mongoose.Schema({
+const bcrypt=require('bcrypt')
+
+const Schema=new mongoose.Schema({
     Name:{
         type:String
     },
