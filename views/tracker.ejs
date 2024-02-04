@@ -338,9 +338,9 @@
     let TotalMoney = 0;
     const ExpenseCost = document.getElementById('user-amount')
     const ExpenseTitle = document.getElementById('product-title')
-    const List=document.getElementById('list')
+    const List = document.getElementById('list')
     const TotalExpense = document.getElementById('expenditure-value')
-    const Balance=document.getElementById('balance-amount')
+    const Balance = document.getElementById('balance-amount')
     function Set() {
         TotalMoney = parseInt(Budget_Input.value)
         budget = budget + TotalMoney
@@ -353,31 +353,31 @@
             const Title = ExpenseTitle.value
             if (Title == '') { alert('please set the Title as well') }
             else {
-                        if(ExpenseCost.value<=0){
-                            alert('hey please set the accurate Expense Cost')
-                        }
-                        else{
-                const OriginaProductCost=parseInt(ExpenseCost.value)
-                cost = cost + parseInt(ExpenseCost.value)
-                TotalExpense.innerText = cost
-                budget=budget-cost
-                Balance.innerText=budget
-                        if(budget<=0){
-                            alert('hey you got into the loss')
-                        }
-                        ExpenseList(Title,OriginaProductCost)
-                
+                if (ExpenseCost.value <= 0) {
+                    alert('hey please set the accurate Expense Cost')
+                }
+                else {
+                    const OriginaProductCost = parseInt(ExpenseCost.value)
+                    cost = cost + parseInt(ExpenseCost.value)
+                    TotalExpense.innerText = cost
+                    budget = budget - cost
+                    Balance.innerText = budget
+                    if (budget <= 0) {
+                        alert('hey you got into the loss')
+                    }
+                    ExpenseList(Title, OriginaProductCost)
+
+                }
             }
-        }
 
         }
     }
 
-    function ExpenseList(Title,Cost){
-        const sublist=document.createElement('div')
-        sublist.classList.add('sublist-content','flex-space')
+    function ExpenseList(Title, Cost) {
+        const sublist = document.createElement('div')
+        sublist.classList.add('sublist-content', 'flex-space')
         List.appendChild(sublist)
-        sublist.innerHTML=`<p class="product">${Title}</p class="amount">${Cost} </p>`
+        sublist.innerHTML = `<p class="product">${Title}</p class="amount">${Cost} </p>`
     }
 
 </script>
