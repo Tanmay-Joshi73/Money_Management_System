@@ -336,6 +336,7 @@
     let budget = 0
     let cost = 0
     let TotalMoney = 0;
+    let ListArray = []
     const ExpenseCost = document.getElementById('user-amount')
     const ExpenseTitle = document.getElementById('product-title')
     const List = document.getElementById('list')
@@ -364,20 +365,62 @@
                     Balance.innerText = budget
                     if (budget <= 0) {
                         alert('hey you got into the loss')
+                        return
                     }
-                    ExpenseList(Title, OriginaProductCost)
+                    else { }
 
+                    // to store new values in the array of objects
+                    ListArray.push({ Name: Title, Value: OriginaProductCost })
+
+                    let titleExisted = false;
+
+                    if (ListArray.length > 1) {
+                        for (let i = 0; i < ListArray.length-1; i++) {
+                            console.log('hey it is in the loop');
+                            
+                            if (ListArray[i].Name === Title) {
+                                console.log(i)
+                                ListArray[i].Value += OriginaProductCost;
+                                titleExisted = true;
+                                break;
+                            }
+                        }
+                        
+
+                    }
+                    else {
+                        console.log('hey no new element is present')
+                        ExpenseList(Title, OriginaProductCost)
+                    }
                 }
+
+
+
+
+
+
+
+
             }
 
         }
     }
 
+
+
     function ExpenseList(Title, Cost) {
+
+
         const sublist = document.createElement('div')
         sublist.classList.add('sublist-content', 'flex-space')
         List.appendChild(sublist)
         sublist.innerHTML = `<p class="product">${Title}</p class="amount">${Cost} </p>`
+        // let editButton = document.createElement("button");
+        // editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+        // editButton.style.fontSize = "1.2em";
+        // editButton.addEventListener("click", () => {
+        // disableButtons(true)
+        //   });
     }
 
 </script>
