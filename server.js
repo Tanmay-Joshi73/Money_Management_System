@@ -18,6 +18,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.set("view engine","ejs")
 app.set("views",path.resolve('./views'))
 app.use(express.static(`${__dirname}/public`))
+// app.use(express.static(`${__dirname}/public/css`))
 
 app.get('/', (req, res) => {   
     res.render('tracker')
@@ -26,7 +27,7 @@ app.use('/',User)
     ///Connection String
 const Start=async()=>{
     try{
-    await Connect()
+    // await Connect()
     app.listen(PORT,'127.0.0.1',()=>console.log('Listening To The Server'))
 
 }   catch(err){

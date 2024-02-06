@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet" />
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="Tracker.css" />
+    <link rel="stylesheet" href="./../public/css/Tracker.css" />
 </head>
 <style>
     * {
@@ -331,96 +331,102 @@
 
 
 <script>
-    const Budget_Input = document.getElementById('total-amount')
-    let Total_Budget = document.getElementById('amount')
-    let budget = 0
-    let cost = 0
-    let TotalMoney = 0;
-    let ListArray = []
-    const ExpenseCost = document.getElementById('user-amount')
-    const ExpenseTitle = document.getElementById('product-title')
-    const List = document.getElementById('list')
-    const TotalExpense = document.getElementById('expenditure-value')
-    const Balance = document.getElementById('balance-amount')
-    function Set() {
-        TotalMoney = parseInt(Budget_Input.value)
-        budget = budget + TotalMoney
-        Total_Budget.innerText = budget
-    }
-
-    function Check() {
-        if (budget == 0) alert('set the total budget')
-        else {
-            const Title = ExpenseTitle.value
-            if (Title == '') { alert('please set the Title as well') }
-            else {
-                if (ExpenseCost.value <= 0) {
-                    alert('hey please set the accurate Expense Cost')
-                }
-                else {
-                    const OriginaProductCost = parseInt(ExpenseCost.value)
-                    cost = cost + parseInt(ExpenseCost.value)
-                    TotalExpense.innerText = cost
-                    budget = budget - cost
-                    Balance.innerText = budget
-                    if (budget <= 0) {
-                        alert('hey you got into the loss')
-                        return
-                    }
-                    else { }
-
-                    // to store new values in the array of objects
-                    ListArray.push({ Name: Title, Value: OriginaProductCost })
-
-                    let titleExisted = false;
-
-                    if (ListArray.length > 1) {
-                        for (let i = 0; i < ListArray.length-1; i++) {
-                            console.log('hey it is in the loop');
-                            
-                            if (ListArray[i].Name === Title) {
-                                console.log(i)
-                                ListArray[i].Value += OriginaProductCost;
-                                titleExisted = true;
-                                break;
-                            }
-                        }
-                        
-
-                    }
-                    else {
-                        console.log('hey no new element is present')
-                        ExpenseList(Title, OriginaProductCost)
-                    }
-                }
-
-
-
-
-
-
-
-
-            }
-
-        }
-    }
-
-
-
-    function ExpenseList(Title, Cost) {
-
-
-        const sublist = document.createElement('div')
-        sublist.classList.add('sublist-content', 'flex-space')
-        List.appendChild(sublist)
-        sublist.innerHTML = `<p class="product">${Title}</p class="amount">${Cost} </p>`
-        // let editButton = document.createElement("button");
-        // editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
-        // editButton.style.fontSize = "1.2em";
-        // editButton.addEventListener("click", () => {
-        // disableButtons(true)
-        //   });
-    }
-
+   let totalAmount = document.getElementById("total-amount");
+let userAmount = document.getElementById("user-amount");
+const checkAmountButton = document.getElementById("check-amount");
+const totalAmountButton = document.getElementById("total-amount-button");
+const productTitle = document.getElementById("product-title");
+const errorMessage = document.getElementById("budget-error");
+const productTitleError = document.getElementById("product-title-error");
+const productCostError = document.getElementById("product-cost-error");
+const amount = document.getElementById("amount");
+const expenditureValue = document.getElementById("expenditure-value");
+const balanceValue = document.getElementById("balance-amount");
+const list = document.getElementById("list");
+let tempAmount = 0;
+//Set Budget Part
+totalAmountButton.addEventListener("click", () => {
+  tempAmount = totalAmount.value;
+  //empty or negative input
+  if (tempAmount === "" || tempAmount < 0) {
+    errorMessage.classList.remove("hide");
+  } else {
+    errorMessage.classList.add("hide");
+    //Set Budget
+    amount.innerHTML = tempAmount;
+    //Set Balance
+    balanceValue.innerText = tempAmount - expenditureValue.innerText;
+    //Clear Input Box
+    totalAmount.value = "";
+  }
+});
+//Function To Disable Edit and Delete Button
+const disableButtons = (bool) => {
+  let editButtons = document.getElementsByClassName("edit");
+  Array.from(editButtons).forEach((element) => {
+    element.disabled = bool;
+  });
+};
+//Function To Modify List Elements
+const modifyElement = (element, edit = false) => {
+  let parentDiv = element.parentElement;
+  let currentBalance = balanceValue.innerText;
+  let currentExpense = expenditureValue.innerText;
+  let parentAmount = parentDiv.querySelector(".amount").innerText;
+  if (edit) {
+    let parentText = parentDiv.querySelector(".product").innerText;
+    productTitle.value = parentText;
+    userAmount.value = parentAmount;
+    disableButtons(true);
+  }
+  balanceValue.innerText = parseInt(currentBalance) + parseInt(parentAmount);
+  expenditureValue.innerText =
+    parseInt(currentExpense) - parseInt(parentAmount);
+  parentDiv.remove();
+};
+//Function To Create List
+const listCreator = (expenseName, expenseValue) => {
+  let sublistContent = document.createElement("div");
+  sublistContent.classList.add("sublist-content", "flex-space");
+  list.appendChild(sublistContent);
+  sublistContent.innerHTML = `<p class="product">${expenseName}</p><p class="amount">${expenseValue}</p>`;
+  let editButton = document.createElement("button");
+  editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+  editButton.style.fontSize = "1.2em";
+  editButton.addEventListener("click", () => {
+    modifyElement(editButton, true);
+  });
+  let deleteButton = document.createElement("button");
+  deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
+  deleteButton.style.fontSize = "1.2em";
+  deleteButton.addEventListener("click", () => {
+    modifyElement(deleteButton);
+  });
+  sublistContent.appendChild(editButton);
+  sublistContent.appendChild(deleteButton);
+  document.getElementById("list").appendChild(sublistContent);
+};
+//Function To Add Expenses
+checkAmountButton.addEventListener("click", () => {
+  //empty checks
+  if (!userAmount.value || !productTitle.value) {
+    productTitleError.classList.remove("hide");
+    return false;
+  }
+  //Enable buttons
+  disableButtons(false);
+  //Expense
+  let expenditure = parseInt(userAmount.value);
+  //Total expense (existing + new)
+  let sum = parseInt(expenditureValue.innerText) + expenditure;
+  expenditureValue.innerText = sum;
+  //Total balance(budget - total expense)
+  const totalBalance = tempAmount - sum;
+  balanceValue.innerText = totalBalance;
+  //Create list
+  listCreator(productTitle.value, userAmount.value);
+  //Empty inputs
+  productTitle.value = "";
+  userAmount.value = "";
+});
 </script>
