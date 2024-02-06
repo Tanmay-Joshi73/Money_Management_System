@@ -276,13 +276,13 @@
                         <option value="fa-house"> Home</option>
                         <option value="fa-bowl-food">Food</option>
                         <option value="fa-car">Car</option>
-                        <option value="fa-bowl-food">Food</option>
-                        <option value="fa-bowl-food">Food</option>
-                        <option value="fa-bowl-food">Food</option>
-                        <option value="fa-bowl-food">Food</option>
-                        <option value="fa-bowl-food">Food</option>
-                        <option value="fa-bowl-food">Food</option>
-                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-dog">Pets</option>
+                        <option value="fa-shirt">Clothes</option>
+                        <option value="fa-notes medical">Health</option>
+                        <option value="fa-train">Travel</option>
+                        <option value="fa-utensils">Eating Out</option>
+                        <option value="fa-Gifts">Gifts</option>
+                        <option value="fa-book">Books</option>
                         <!-- Add more options as needed -->
                     </select>
                     <button class="submit" id="check-amount">Check Amount</button>
@@ -458,7 +458,7 @@
         // Create expense note element
         const expenseNote = document.createElement("p");
         expenseNote.classList.add("product");
-        expenseNote.innerText = expenseName;
+        expenseNote.innerText = `    ${expenseName}`;
         expenseNote.style.marginLeft = "5px"; // Add left margin to create space between the icon and the note
         iconNoteContainer.appendChild(expenseNote); // Append the expense note to the container
 
