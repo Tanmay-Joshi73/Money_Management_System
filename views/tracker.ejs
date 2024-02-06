@@ -73,6 +73,29 @@
     .container input:focus {
         border-color: #587ef4;
     }
+    #category {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        /* Style for the options within the dropdown */
+        #category option {
+            padding: 5px;
+        }
+
+        /* Style for the selected option */
+        #category option:checked {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* Style for the dropdown arrow */
+        #category::-ms-expand {
+            display: none;
+        }
 
     .total-amount-container,
     .user-amount-container {
@@ -234,9 +257,8 @@
                         Value cannot be empty or negative
                     </p>
                     <input type="number" id="total-amount" placeholder="Enter Total Amount" />
-                    <button class="submit" id="total-amount-button" onclick="Set()">Set Budget</button>
+                    <button class="submit" id="total-amount-button">Set Budget</button>
                 </div>
-
                 <!-- Expenditure -->
                 <div class="user-amount-container">
                     <h3>Expenses</h3>
@@ -245,7 +267,12 @@
                     </p>
                     <input type="text" class="product-title" id="product-title" placeholder="Enter Title of Product" />
                     <input type="number" id="user-amount" placeholder="Enter Cost of Product" />
-                    <button class="submit" id="check-amount" onclick="Check()">Check Amount</button>
+                    <select id="category">
+                        <option value="home">Home</option>
+                        <option value="food">Food</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <button class="submit" id="check-amount">Check Amount</button>
                 </div>
             </div>
             <!-- Output -->
@@ -270,7 +297,7 @@
             <div class="list-container" id="list"></div>
         </div>
     </div>
-    <!-- Script -->
+
 </body>
 
 </html>
@@ -331,102 +358,116 @@
 
 
 <script>
-   let totalAmount = document.getElementById("total-amount");
-let userAmount = document.getElementById("user-amount");
-const checkAmountButton = document.getElementById("check-amount");
-const totalAmountButton = document.getElementById("total-amount-button");
-const productTitle = document.getElementById("product-title");
-const errorMessage = document.getElementById("budget-error");
-const productTitleError = document.getElementById("product-title-error");
-const productCostError = document.getElementById("product-cost-error");
-const amount = document.getElementById("amount");
-const expenditureValue = document.getElementById("expenditure-value");
-const balanceValue = document.getElementById("balance-amount");
-const list = document.getElementById("list");
-let tempAmount = 0;
-//Set Budget Part
-totalAmountButton.addEventListener("click", () => {
-  tempAmount = totalAmount.value;
-  //empty or negative input
-  if (tempAmount === "" || tempAmount < 0) {
-    errorMessage.classList.remove("hide");
-  } else {
-    errorMessage.classList.add("hide");
-    //Set Budget
-    amount.innerHTML = tempAmount;
-    //Set Balance
-    balanceValue.innerText = tempAmount - expenditureValue.innerText;
-    //Clear Input Box
-    totalAmount.value = "";
-  }
-});
-//Function To Disable Edit and Delete Button
-const disableButtons = (bool) => {
-  let editButtons = document.getElementsByClassName("edit");
-  Array.from(editButtons).forEach((element) => {
-    element.disabled = bool;
-  });
-};
-//Function To Modify List Elements
-const modifyElement = (element, edit = false) => {
-  let parentDiv = element.parentElement;
-  let currentBalance = balanceValue.innerText;
-  let currentExpense = expenditureValue.innerText;
-  let parentAmount = parentDiv.querySelector(".amount").innerText;
-  if (edit) {
-    let parentText = parentDiv.querySelector(".product").innerText;
-    productTitle.value = parentText;
-    userAmount.value = parentAmount;
-    disableButtons(true);
-  }
-  balanceValue.innerText = parseInt(currentBalance) + parseInt(parentAmount);
-  expenditureValue.innerText =
-    parseInt(currentExpense) - parseInt(parentAmount);
-  parentDiv.remove();
-};
-//Function To Create List
-const listCreator = (expenseName, expenseValue) => {
-  let sublistContent = document.createElement("div");
-  sublistContent.classList.add("sublist-content", "flex-space");
-  list.appendChild(sublistContent);
-  sublistContent.innerHTML = `<p class="product">${expenseName}</p><p class="amount">${expenseValue}</p>`;
-  let editButton = document.createElement("button");
-  editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
-  editButton.style.fontSize = "1.2em";
-  editButton.addEventListener("click", () => {
-    modifyElement(editButton, true);
-  });
-  let deleteButton = document.createElement("button");
-  deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
-  deleteButton.style.fontSize = "1.2em";
-  deleteButton.addEventListener("click", () => {
-    modifyElement(deleteButton);
-  });
-  sublistContent.appendChild(editButton);
-  sublistContent.appendChild(deleteButton);
-  document.getElementById("list").appendChild(sublistContent);
-};
-//Function To Add Expenses
-checkAmountButton.addEventListener("click", () => {
-  //empty checks
-  if (!userAmount.value || !productTitle.value) {
-    productTitleError.classList.remove("hide");
-    return false;
-  }
-  //Enable buttons
-  disableButtons(false);
-  //Expense
-  let expenditure = parseInt(userAmount.value);
-  //Total expense (existing + new)
-  let sum = parseInt(expenditureValue.innerText) + expenditure;
-  expenditureValue.innerText = sum;
-  //Total balance(budget - total expense)
-  const totalBalance = tempAmount - sum;
-  balanceValue.innerText = totalBalance;
-  //Create list
-  listCreator(productTitle.value, userAmount.value);
-  //Empty inputs
-  productTitle.value = "";
-  userAmount.value = "";
-});
+    let totalAmount = document.getElementById("total-amount");
+    let userAmount = document.getElementById("user-amount");
+    const checkAmountButton = document.getElementById("check-amount");
+    const totalAmountButton = document.getElementById("total-amount-button");
+    const productTitle = document.getElementById("product-title");
+    const errorMessage = document.getElementById("budget-error");
+    const productTitleError = document.getElementById("product-title-error");
+    const productCostError = document.getElementById("product-cost-error");
+    const amount = document.getElementById("amount");
+    const expenditureValue = document.getElementById("expenditure-value");
+    const balanceValue = document.getElementById("balance-amount");
+    const list = document.getElementById("list");
+    let tempAmount = 0;
+    //Set Budget Part
+    totalAmountButton.addEventListener("click", () => {
+        tempAmount = totalAmount.value;
+        //empty or negative input
+        if (tempAmount === "" || tempAmount < 0) {
+            errorMessage.classList.remove("hide");
+        } else {
+            errorMessage.classList.add("hide");
+            //Set Budget
+            amount.innerHTML = tempAmount;
+            //Set Balance
+            balanceValue.innerText = tempAmount - expenditureValue.innerText;
+            //Clear Input Box
+            totalAmount.value = "";
+        }
+    });
+    //Function To Disable Edit and Delete Button
+    const disableButtons = (bool) => {
+        let editButtons = document.getElementsByClassName("edit");
+        Array.from(editButtons).forEach((element) => {
+            element.disabled = bool;
+        });
+    };
+    //Function To Modify List Elements
+    const modifyElement = (element, edit = false) => {
+        let parentDiv = element.parentElement;
+        let currentBalance = balanceValue.innerText;
+        let currentExpense = expenditureValue.innerText;
+        let parentAmount = parentDiv.querySelector(".amount").innerText;
+        if (edit) {
+            let parentText = parentDiv.querySelector(".product").innerText;
+            productTitle.value = parentText;
+            userAmount.value = parentAmount;
+            disableButtons(true);
+        }
+        balanceValue.innerText = parseInt(currentBalance) + parseInt(parentAmount);
+        expenditureValue.innerText =
+            parseInt(currentExpense) - parseInt(parentAmount);
+        parentDiv.remove();
+    };
+    //Function To Create List
+    const listCreator = (expenseName, expenseValue) => {
+        const existingEntry = Array.from(list.children).find(child => {
+            const productName = child.querySelector(".product").innerText;
+            return productName === expenseName;
+        });
+
+        if (existingEntry) {
+            // Update the value of the existing entry
+            const existingAmountElement = existingEntry.querySelector(".amount");
+            const existingAmount = parseInt(existingAmountElement.innerText);
+            const newAmount = existingAmount + parseInt(expenseValue);
+            existingAmountElement.innerText = newAmount;
+        } else {
+            // Create a new entry if the product name doesn't exist
+            let sublistContent = document.createElement("div");
+            sublistContent.classList.add("sublist-content", "flex-space");
+            list.appendChild(sublistContent);
+            sublistContent.innerHTML = `<p class="product">${expenseName}</p><p class="amount">${expenseValue}</p>`;
+            let editButton = document.createElement("button");
+            editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+            editButton.style.fontSize = "1.2em";
+            editButton.addEventListener("click", () => {
+                modifyElement(editButton, true);
+            });
+            let deleteButton = document.createElement("button");
+            deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
+            deleteButton.style.fontSize = "1.2em";
+            deleteButton.addEventListener("click", () => {
+                modifyElement(deleteButton);
+            });
+            sublistContent.appendChild(editButton);
+            sublistContent.appendChild(deleteButton);
+            document.getElementById("list").appendChild(sublistContent);
+        }
+    };
+    //Function To Add Expenses
+    checkAmountButton.addEventListener("click", () => {
+        //empty checks
+        if (!userAmount.value || !productTitle.value) {
+            productTitleError.classList.remove("hide");
+            return false;
+        }
+        //Enable buttons
+        disableButtons(false);
+        //Expense
+        let expenditure = parseInt(userAmount.value);
+        //Total expense (existing + new)
+        let sum = parseInt(expenditureValue.innerText) + expenditure;
+        expenditureValue.innerText = sum;
+        //Total balance(budget - total expense)
+        const totalBalance = tempAmount - sum;
+        balanceValue.innerText = totalBalance;
+        //Create list
+        listCreator(productTitle.value, userAmount.value);
+        //Empty inputs
+        productTitle.value = "";
+        userAmount.value = "";
+    });
 </script>
