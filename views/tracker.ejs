@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Budget App</title>
     <!-- Font Awesome Icons -->
+    </head>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet" />
@@ -194,6 +196,9 @@
         border: none;
         color: #587ef4;
     }
+    /* #category option i{
+        width: 50px;
+    } */
 
     @media screen and (max-width: 600px) {
         .wrapper {
@@ -268,8 +273,16 @@
                     <input type="text" class="product-title" id="product-title" placeholder="Enter Title of Product" />
                     <input type="number" id="user-amount" placeholder="Enter Cost of Product" />
                     <select id="category">
-                        <option value="home">Home</option>
-                        <option value="food">Food</option>
+                        <option value="fa-house"> Home</option>
+                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-car">Car</option>
+                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-bowl-food">Food</option>
+                        <option value="fa-bowl-food">Food</option>
                         <!-- Add more options as needed -->
                     </select>
                     <button class="submit" id="check-amount">Check Amount</button>
@@ -359,6 +372,7 @@
 
 <script>
     let totalAmount = document.getElementById("total-amount");
+    let categorys=document.getElementById('category')
     let userAmount = document.getElementById("user-amount");
     const checkAmountButton = document.getElementById("check-amount");
     const totalAmountButton = document.getElementById("total-amount-button");
@@ -413,40 +427,69 @@
     };
     //Function To Create List
     const listCreator = (expenseName, expenseValue) => {
-        const existingEntry = Array.from(list.children).find(child => {
-            const productName = child.querySelector(".product").innerText;
-            return productName === expenseName;
-        });
+    const existingEntry = Array.from(list.children).find(child => {
+        const productName = child.querySelector(".product").innerText;
+        return productName === expenseName;
+    });
 
-        if (existingEntry) {
-            // Update the value of the existing entry
-            const existingAmountElement = existingEntry.querySelector(".amount");
-            const existingAmount = parseInt(existingAmountElement.innerText);
-            const newAmount = existingAmount + parseInt(expenseValue);
-            existingAmountElement.innerText = newAmount;
-        } else {
-            // Create a new entry if the product name doesn't exist
-            let sublistContent = document.createElement("div");
-            sublistContent.classList.add("sublist-content", "flex-space");
-            list.appendChild(sublistContent);
-            sublistContent.innerHTML = `<p class="product">${expenseName}</p><p class="amount">${expenseValue}</p>`;
-            let editButton = document.createElement("button");
-            editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
-            editButton.style.fontSize = "1.2em";
-            editButton.addEventListener("click", () => {
-                modifyElement(editButton, true);
-            });
-            let deleteButton = document.createElement("button");
-            deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
-            deleteButton.style.fontSize = "1.2em";
-            deleteButton.addEventListener("click", () => {
-                modifyElement(deleteButton);
-            });
-            sublistContent.appendChild(editButton);
-            sublistContent.appendChild(deleteButton);
-            document.getElementById("list").appendChild(sublistContent);
-        }
-    };
+    if (existingEntry) {
+        // Update the value of the existing entry
+        const existingAmountElement = existingEntry.querySelector(".amount");
+        const existingAmount = parseInt(existingAmountElement.innerText);
+        const newAmount = existingAmount + parseInt(expenseValue);
+        existingAmountElement.innerText = newAmount;
+    } else {
+        // Create a new entry if the product name doesn't exist
+        let sublistContent = document.createElement("div");
+        sublistContent.classList.add("sublist-content", "flex-space");
+
+        // Create container for icon and note
+        const iconNoteContainer = document.createElement("div");
+        iconNoteContainer.classList.add("flex"); // Style the container as a flex container
+        sublistContent.appendChild(iconNoteContainer); // Append the container to the sublist content
+
+        // Create icon element for the home icon
+        const homeIcon = document.createElement("i");
+        homeIcon.classList.add("fa-solid", categorys.value, "Home");
+        homeIcon.style.fontSize = "1.2em";
+        homeIcon.style.color = "#587ef4";
+        iconNoteContainer.appendChild(homeIcon); // Append the home icon to the container
+
+        // Create expense note element
+        const expenseNote = document.createElement("p");
+        expenseNote.classList.add("product");
+        expenseNote.innerText = expenseName;
+        expenseNote.style.marginLeft = "5px"; // Add left margin to create space between the icon and the note
+        iconNoteContainer.appendChild(expenseNote); // Append the expense note to the container
+
+        // Create expense value element
+        const expenseAmount = document.createElement("p");
+        expenseAmount.classList.add("amount");
+        expenseAmount.innerText = expenseValue;
+        sublistContent.appendChild(expenseAmount); // Append the expense amount
+
+        // Create edit button
+        let editButton = document.createElement("button");
+        editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+        editButton.style.fontSize = "1.2em";
+        editButton.addEventListener("click", () => {
+            modifyElement(editButton, true);
+        });
+        sublistContent.appendChild(editButton); // Append the edit button
+
+        // Create delete button
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
+        deleteButton.style.fontSize = "1.2em";
+        deleteButton.addEventListener("click", () => {
+            modifyElement(deleteButton);
+        });
+        sublistContent.appendChild(deleteButton); // Append the delete button
+
+        document.getElementById("list").appendChild(sublistContent);
+    }
+};
+
     //Function To Add Expenses
     checkAmountButton.addEventListener("click", () => {
         //empty checks
