@@ -385,6 +385,20 @@
     const balanceValue = document.getElementById("balance-amount");
     const list = document.getElementById("list");
     let tempAmount = 0;
+    let Expense_Info=[
+        {
+            Home:[],
+            Food:[],
+            Clothes:[],
+            Car:[],
+            Pets:[],
+            Health:[],
+            Travel:[],
+            Gifts:[],
+            EatingOut:[]
+            
+        }
+    ]
     //Set Budget Part
     totalAmountButton.addEventListener("click", () => {
         tempAmount = totalAmount.value;
@@ -431,6 +445,9 @@
         const productName = child.querySelector(".product").innerText;
         return productName === expenseName;
     });
+    const Time=new Date()
+    const Day=`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`
+    // console.log(Day)
 
     if (existingEntry) {
         // Update the value of the existing entry
@@ -440,6 +457,12 @@
         existingAmountElement.innerText = newAmount;
     } else {
         // Create a new entry if the product name doesn't exist
+        const selectedOption = categorys.options[categorys.selectedIndex].text;
+        
+            Expense_Info[0][selectedOption].push({Note:expenseName,Cost:expenseValue,DateAndTime:Time})
+            console.log(Expense_Info)
+        // Expense_Info.push({Note:expenseName,Cost:expenseValue,DateOfCreation:Day})
+        // console.log(Expense_Info)
         let sublistContent = document.createElement("div");
         sublistContent.classList.add("sublist-content", "flex-space");
 

@@ -27,7 +27,7 @@ app.use('/',User)
     ///Connection String
 const Start=async()=>{
     try{
-    // await Connect()
+    await Connect()
     app.listen(PORT,'127.0.0.1',()=>console.log('Listening To The Server'))
 
 }   catch(err){
