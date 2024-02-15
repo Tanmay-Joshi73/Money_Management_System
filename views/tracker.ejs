@@ -24,12 +24,20 @@
     body {
         background-color: #f7f9fd;
     }
-
+    .main-container{
+        display: flex;
+    }
+    /* .dataVisual{
+        /* border: 2px solid red; */
+    /* } */ 
     .wrapper {
-        width: 90%;
+        width: 45%;
+        margin-left: 5%;
+        margin-top: 1.5rem;
         font-size: 16px;
         max-width: 43.75em;
-        margin: 1em auto;
+        /* margin: 1em auto; */
+       
     }
 
     .container {
@@ -145,6 +153,7 @@
         padding: 1.8em 1.2em;
         box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
         border-radius: 0.6em;
+        /* width: 50%; */
     }
 
     .sublist-content {
@@ -195,6 +204,10 @@
         margin-right: 1.5em;
         border: none;
         color: #587ef4;
+    }
+    .dataVisual{
+        width: 50%;
+        display: inline-block;
     }
     /* #category option i{
         width: 50px;
@@ -251,7 +264,8 @@
 
 
 
-<body>
+<body>      
+    <div class="main-container">
     <div class="wrapper">
         <div class="container">
             <div class="sub-container">
@@ -262,7 +276,9 @@
                         Value cannot be empty or negative
                     </p>
                     <input type="number" id="total-amount" placeholder="Enter Total Amount" />
-                    <button class="submit" id="total-amount-button">Set Budget</button>
+                    <button class="submit" id="total-amount-button" style="display: block;">Set Budget</button>
+                    <button class="submit" id="total-amount-button  Graph">Graph</button>
+                    <button class="submit" id="total-amount-button  Graph">Line</button>
                 </div>
                 <!-- Expenditure -->
                 <div class="user-amount-container">
@@ -309,9 +325,14 @@
             <h3>Expense List</h3>
             <div class="list-container" id="list"></div>
         </div>
+        </div>
+            <div class="dataVisual">
+                <canvas id="myChart" width="200px" ></canvas>
+            </div>
     </div>
-
+</div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 </html>
 
@@ -369,8 +390,16 @@
 
 
 
-
+<script src="path/to/chartjs/dist/chart.umd.js"></script>
 <script>
+    // const Canvas_Chart=document.getElementById('Data')
+    const myChart = new Chart("myChart", {
+    type:"bar",
+    data: {
+    datasets:{}
+    },
+    options: {}
+    });
     let totalAmount = document.getElementById("total-amount");
     let categorys=document.getElementById('category')
     let userAmount = document.getElementById("user-amount");
@@ -441,6 +470,7 @@
     };
     //Function To Create List
     const listCreator = (expenseName, expenseValue) => {
+            GraphMaker()
     const existingEntry = Array.from(list.children).find(child => {
         const productName = child.querySelector(".product").innerText;
         return productName === expenseName;
@@ -536,4 +566,26 @@
         productTitle.value = "";
         userAmount.value = "";
     });
+
+    function GraphMaker(){
+        var data = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Sample Data',
+                data: [10, 20, 30, 40, 50, 60, 70],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Create the chart
+        var myChart = new Chart(Canvas_Chart, {
+            type: 'bar', // Specify the type of chart (e.g., bar, line, pie)
+            data: data, // Pass the data to the chart
+            options: {
+                // Customize chart options here (e.g., title, legend, etc.)
+            }
+        });
+    }
 </script>
