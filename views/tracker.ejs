@@ -153,7 +153,7 @@
         padding: 1.8em 1.2em;
         box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
         border-radius: 0.6em;
-        /* width: 50%; */
+      
     }
 
     .sublist-content {
@@ -206,7 +206,10 @@
         color: #587ef4;
     }
     .dataVisual{
-        width: 50%;
+        margin-top: 5rem;
+        margin-left: 2rem;
+        width: 45%;
+        /* border: 2px solid red; */
         display: inline-block;
     }
     /* #category option i{
@@ -277,8 +280,9 @@
                     </p>
                     <input type="number" id="total-amount" placeholder="Enter Total Amount" />
                     <button class="submit" id="total-amount-button" style="display: block;">Set Budget</button>
-                    <button class="submit" id="total-amount-button  Graph">Graph</button>
+                    <button class="submit" id="total-amount-button  Graph" onclick="GraphMaker()">Graph</button>
                     <button class="submit" id="total-amount-button  Graph">Line</button>
+                    <button class="submit" id="total-amount-button  Graph" onclick="PieChart()">Chart</button>
                 </div>
                 <!-- Expenditure -->
                 <div class="user-amount-container">
@@ -327,7 +331,9 @@
         </div>
         </div>
             <div class="dataVisual">
-                <canvas id="myChart" width="200px" ></canvas>
+                <canvas id="Data" width="200px" style="display: none;"></canvas>
+                <!-- <canvas id="Data1" width="200px" ></canvas>
+                <canvas id="Data1" width="200px" ></canvas> -->
             </div>
     </div>
 </div>
@@ -392,14 +398,9 @@
 
 <script src="path/to/chartjs/dist/chart.umd.js"></script>
 <script>
-    // const Canvas_Chart=document.getElementById('Data')
-    const myChart = new Chart("myChart", {
-    type:"bar",
-    data: {
-    datasets:{}
-    },
-    options: {}
-    });
+
+    const Canvas_Chart=document.getElementById('Data')
+    
     let totalAmount = document.getElementById("total-amount");
     let categorys=document.getElementById('category')
     let userAmount = document.getElementById("user-amount");
@@ -414,6 +415,25 @@
     const balanceValue = document.getElementById("balance-amount");
     const list = document.getElementById("list");
     let tempAmount = 0;
+    const CTX = new Chart("Data", {
+        type: 'bar',
+    data: {
+      labels: [],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+    })
+    let i=0;
     let Expense_Info=[
         {
             Home:[],
@@ -470,14 +490,13 @@
     };
     //Function To Create List
     const listCreator = (expenseName, expenseValue) => {
-            GraphMaker()
+      
     const existingEntry = Array.from(list.children).find(child => {
         const productName = child.querySelector(".product").innerText;
         return productName === expenseName;
     });
     const Time=new Date()
     const Day=`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`
-    // console.log(Day)
 
     if (existingEntry) {
         // Update the value of the existing entry
@@ -488,7 +507,7 @@
     } else {
         // Create a new entry if the product name doesn't exist
         const selectedOption = categorys.options[categorys.selectedIndex].text;
-        
+        FetchData(expenseValue,selectedOption)
             Expense_Info[0][selectedOption].push({Note:expenseName,Cost:expenseValue,DateAndTime:Time})
             console.log(Expense_Info)
         // Expense_Info.push({Note:expenseName,Cost:expenseValue,DateOfCreation:Day})
@@ -502,11 +521,11 @@
         sublistContent.appendChild(iconNoteContainer); // Append the container to the sublist content
 
         // Create icon element for the home icon
-        const homeIcon = document.createElement("i");
-        homeIcon.classList.add("fa-solid", categorys.value, "Home");
-        homeIcon.style.fontSize = "1.2em";
-        homeIcon.style.color = "#587ef4";
-        iconNoteContainer.appendChild(homeIcon); // Append the home icon to the container
+        const Itmes = document.createElement("i");
+        Itmes.classList.add("fa-solid", categorys.value, "Home");
+        Itmes.style.fontSize = "1.2em";
+        Itmes.style.color = "#587ef4";
+        iconNoteContainer.appendChild(Itmes); // Append the home icon to the container
 
         // Create expense note element
         const expenseNote = document.createElement("p");
@@ -567,25 +586,19 @@
         userAmount.value = "";
     });
 
+    
     function GraphMaker(){
-        var data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Sample Data',
-                data: [10, 20, 30, 40, 50, 60, 70],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        // Create the chart
-        var myChart = new Chart(Canvas_Chart, {
-            type: 'bar', // Specify the type of chart (e.g., bar, line, pie)
-            data: data, // Pass the data to the chart
-            options: {
-                // Customize chart options here (e.g., title, legend, etc.)
-            }
-        });
+        console.log('graph button just clickled')
+        if (i%2==0)
+        {Data.style.display='block';i+=1
     }
+    else{Data.style.display='none';i+=1;}         
+}
+    function FetchData(Money_Waste,options){
+      CTX.data.labels.push(options)
+      CTX.update()
+    }
+
+
+
 </script>
