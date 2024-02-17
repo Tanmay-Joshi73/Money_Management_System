@@ -416,23 +416,38 @@
     const list = document.getElementById("list");
     let tempAmount = 0;
     const CTX = new Chart("Data", {
-        type: 'bar',
+    type: 'bar',
     data: {
       labels: [],
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Expense Data',
+        data: [],
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
         borderWidth: 1
       }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
+      plugins: {
+        title: {
+          display: true,
+          text: 'Monthly Expenses',
+          font: {
+            family: 'Arial',
+            size: 20,
+            weight: 'bold'
+          }
         }
+      },
+      scales: {
+        y: { // defining min and max so hiding the dataset does not change scale range
+        min: 0,
+        max: 1000
+      }
       }
     }
-    })
+});
+
+
     let i=0;
     let Expense_Info=[
         {
@@ -458,10 +473,9 @@
             errorMessage.classList.add("hide");
             //Set Budget
             amount.innerHTML = tempAmount;
-            //Set Balance
-            balanceValue.innerText = tempAmount - expenditureValue.innerText;
-            //Clear Input Box
-            totalAmount.value = "";
+            
+
+           
         }
     });
     //Function To Disable Edit and Delete Button
@@ -475,6 +489,7 @@
     const modifyElement = (element, edit = false) => {
         let parentDiv = element.parentElement;
         let currentBalance = balanceValue.innerText;
+        
         let currentExpense = expenditureValue.innerText;
         let parentAmount = parentDiv.querySelector(".amount").innerText;
         if (edit) {
@@ -507,11 +522,10 @@
     } else {
         // Create a new entry if the product name doesn't exist
         const selectedOption = categorys.options[categorys.selectedIndex].text;
+      
         FetchData(expenseValue,selectedOption)
             Expense_Info[0][selectedOption].push({Note:expenseName,Cost:expenseValue,DateAndTime:Time})
-            console.log(Expense_Info)
-        // Expense_Info.push({Note:expenseName,Cost:expenseValue,DateOfCreation:Day})
-        // console.log(Expense_Info)
+        
         let sublistContent = document.createElement("div");
         sublistContent.classList.add("sublist-content", "flex-space");
 
@@ -594,11 +608,20 @@
     }
     else{Data.style.display='none';i+=1;}         
 }
-    function FetchData(Money_Waste,options){
-      CTX.data.labels.push(options)
+    function FetchData(Money_Waste,options,Budget){
+        if(Money_Waste>parseInt(balanceValue.innerText)){
+            alert('hey your buejet is exceeded')
+        }
+        else{
+        CTX.data.labels.push(options)
+      CTX.data.datasets[0].data.push(Money_Waste)
+  
       CTX.update()
     }
+}
 
+    // function RemoveGraphValue(){
 
+    // }
 
 </script>
