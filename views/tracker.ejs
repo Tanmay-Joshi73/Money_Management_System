@@ -422,6 +422,7 @@
     const balanceValue = document.getElementById("balance-amount");
     const list = document.getElementById("list");
     const selectedOption = undefined;
+    let ExistingEntry=[]
     let tempAmount = 0;
             //Bar Chart
     const CTX = new Chart("Data", {
@@ -555,15 +556,48 @@
     };
     //Function To Create List
     const listCreator = (expenseName, expenseValue) => {
-
-        const existingEntry = Array.from(list.children).find(child => {
-            const productName = child.querySelector(".product").innerText;
-            return productName === expenseName;
-        });
+        const selectedOption = categorys.options[categorys.selectedIndex].text;
+        let present=false
         const Time = new Date()
         const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`
+        console.log(ExistingEntry)
+        if(ExistingEntry.length==0){
+            ExistingEntry.push({Category:selectedOption,Note:expenseName,Cost:parseFloat(expenseValue),DateAndTime:Day})
+        }
+        else{   
+                for(let i=0;i<ExistingEntry.length;i++){
+                    if(ExistingEntry[i].Category==selectedOption){
+                        console.log('hey it is already present')
+                        ExistingEntry[i].Cost+=parseFloat(expenseValue)
+                        ExistingEntry[i].Note=expenseName
+                      let PresentCost=ExistingEntry[i].Cost
+                      let Note=ExistingEntry[i].Note
+                      present=true
+                      const existingAmountElement = existingEntry.querySelector(".amount");
+                      console.log(existingAmount)
+                      const existingAmount = parseInt(existingAmountElement.innerText);
+                      console.log(existingAmount)
+                    //   const newAmount = existingAmount + parseInt(expenseValue);
+                        // existingAmountElement.innerText = newAmount;
+                        break;
 
-        if (existingEntry) {
+                }
+                        
+                }
+                if(!present){
+                    ExistingEntry.push({Category:selectedOption,Note:expenseName,Cost:expenseValue,DateAndTime:Day})
+                    
+                }
+                console.log(ExistingEntry)
+         
+                    
+                }
+                
+
+            
+    
+    
+        if (false) {
             // Update the value of the existing entry
             const existingAmountElement = existingEntry.querySelector(".amount");
             const existingAmount = parseInt(existingAmountElement.innerText);
@@ -571,10 +605,10 @@
             existingAmountElement.innerText = newAmount;
         } else {
             // Create a new entry if the product name doesn't exist
-            const selectedOption = categorys.options[categorys.selectedIndex].text;
-
-            FetchData(expenseValue, selectedOption)
-            Expense_Info[0][selectedOption].push({ Note: expenseName, Cost: expenseValue, DateAndTime: Time })
+           
+            // console.log(selectedOption)
+            // FetchData(expenseValue, selectedOption)
+            // Expense_Info[0][selectedOption].push({ Note: expenseName, Cost: expenseValue, DateAndTime: Time })
 
             let sublistContent = document.createElement("div");
             sublistContent.classList.add("sublist-content", "flex-space");
@@ -618,7 +652,7 @@
             deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
             deleteButton.style.fontSize = "1.2em";
             deleteButton.addEventListener("click", () => {
-                RemoveData(selectedOption, expenseValue)
+                // RemoveData(selectedOption, expenseValue)
                 modifyElement(deleteButton);
             });
             sublistContent.appendChild(deleteButton); // Append the delete button
@@ -655,18 +689,27 @@
     function GraphMaker(text) {
         console.log('GraphMaker Fuction')
         if (i % 2 == 0) {
-            console.log('Inside The First IF BLock')
+           
                 if(text.innerText=='Bar'){
                     CTX.config.type='bar'
-                   
+                    CTX.config.options.scales.yAxes[0].display=true
+                    CTX.config.options.scales.xAxes[0].display=true
+                   CTX.update()
                     
-                //  Data.style.display = 'block'; 
+               
                 }
                 else if(text.innerText=='Line'){
                     CTX.config.type='line'
-                   
-                    // Data.style.display='block';;
-
+                    CTX.config.options.scales.yAxes[0].display=true
+                    CTX.config.options.scales.xAxes[0].display=true
+                    CTX.update()
+                }
+                else if (text.innerText=='Piechart'){
+                    CTX.config.type='doughnut'
+                    CTX.config.options.scales.yAxes[0].display=false
+                    CTX.config.options.scales.xAxes[0].display=false
+                    console.log(  CTX.config)
+                    CTX.update()
                 }
         }
         else { Data.style.display = 'none'; i += 1; }
@@ -685,12 +728,14 @@
         }
         return color;
     }
-
-    if (Money_Waste > parseInt(balanceValue.innerText)) {
-        alert('Hey, your budget is exceeded!');
-    } else {
+      
+ 
         // Push data to the chart dataset
         CTX.data.labels.push(options);
+        let labelsArr=[]
+        labelsArr.push(options)
+        console.log(labelsArr)
+        console.log(CTX.data.labels)
         CTX.data.datasets[0].data.push(Money_Waste);
 
         // Ensure backgroundColor is an array
@@ -706,7 +751,7 @@
 
       // Update the chart
         CTX.update(); // Update the chart
-    }
+    
     }
     function RemoveData(options, Money_Waste) {
         console.log('jsyt enteered this block of code')
