@@ -429,7 +429,7 @@
     const CTX = new Chart("Data", {
         type: 'bar',
         data: {
-            labels: [],
+            labels:[],
             datasets: [{
                 label: 'Expense Data',
                 data: [],
@@ -518,6 +518,7 @@
         let parentAmount = parentDiv.querySelector(".amount").innerText;
         let parentText;
         parentText = parentDiv.querySelector(".product").innerText;
+       
         if (edit) {
 
             productTitle.value = parentText;
@@ -535,11 +536,12 @@
     const selectedOption = categorys.options[categorys.selectedIndex].text;
     const Time = new Date();
     const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`;
-        console.log(`this is all the array element for the first time ${ExistingEntry}`)
+        // console.log(`this is all the array element for the first time ${ExistingEntry}`)
     // Find the index of the existing entry in ExistingEntry array
     let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
     if (existingEntryIndex !== -1) {
         // If an entry exists, update it
+        FetchData(expenseValue, selectedOption, 23)
         ExistingEntry[existingEntryIndex].Cost += parseFloat(expenseValue);
         ExistingEntry[existingEntryIndex].Note = expenseName;
         console.log(ExistingEntry)
@@ -556,7 +558,8 @@
     } else {
         // If no entry exists, create a new one
         ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
-        console.log(ExistingEntry);
+     
+        FetchData(expenseValue, selectedOption, 23)
 
         // Create sublist content for the new entry
         let sublistContent = document.createElement("div");
@@ -686,13 +689,36 @@
 
 
         // Push data to the chart dataset
-        CTX.data.labels.push(options);
+        
         let labelsArr = []
-        labelsArr.push(options)
-        console.log(labelsArr)
-        console.log(CTX.data.labels)
-        CTX.data.datasets[0].data.push(Money_Waste);
-
+        let present=false;
+        if(CTX.data.labels.length==0){
+            CTX.data.labels.push(options);
+            CTX.data.datasets[0].data.push(parseInt(Money_Waste));
+        }
+        else{
+           
+            let Chart_Product_Category=options
+                for(let i=0;i<CTX.data.labels.length;i++){
+                        if(CTX.data.labels[i]==options){
+                            let product_index=i;
+                            let Updated_product_money=parseInt(CTX.data.datasets[0].data[i]) + parseInt(Money_Waste)
+                            console.log(Updated_product_money)
+                            CTX.data.datasets[0].data[i]=Updated_product_money
+                            console.log(CTX.data.datasets[0].data)
+                            CTX.update()
+                            present=true
+                            break;
+                        }
+                        }
+                if(!present){
+                    CTX.data.labels.push(options)
+                     CTX.data.datasets[0].data.push(Money_Waste);  
+                }
+            
+        }
+        
+        // console.log(CTX.data.datasets[0].data[0])
         // Ensure backgroundColor is an array
         if (!Array.isArray(CTX.data.datasets[0].backgroundColor)) {
             CTX.data.datasets[0].backgroundColor = [];
@@ -709,7 +735,7 @@
 
     }
     function RemoveData(options, Money_Waste) {
-        console.log('jsyt enteered this block of code')
+        
         CTX.data.labels.pop(options)
         CTX.data.datasets[0].data.pop(Money_Waste)
         CTX.update({
