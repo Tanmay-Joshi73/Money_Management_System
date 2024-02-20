@@ -514,6 +514,7 @@
               break;
             }
         }
+        RemoveData(RemoveElement)
         let currentExpense = expenditureValue.innerText;
         let parentAmount = parentDiv.querySelector(".amount").innerText;
         let parentText;
@@ -734,10 +735,11 @@
         CTX.update(); // Update the chart
 
     }
-    function RemoveData(options, Money_Waste) {
-        
-        CTX.data.labels.pop(options)
-        CTX.data.datasets[0].data.pop(Money_Waste)
+    function RemoveData(options){
+           let Index_Of_A_Element_To_Be_Removed=CTX.data.labels.indexOf(options)
+           CTX.data.labels.pop(options)
+           CTX.data.datasets[0].data.pop(i)
+                   
         CTX.update({
             duration: 800, // Duration of the animation in milliseconds
             easing: 'easeInOutQuart' // Easing function for the animation
