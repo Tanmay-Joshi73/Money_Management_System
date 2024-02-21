@@ -424,6 +424,17 @@
     const list = document.getElementById("list");
     const selectedOption = undefined;
     let ExistingEntry = []
+    let StoreData=[
+        {Home:[]},
+        {Food:[]},
+        {Clothes:[]},
+        {Car:[]},
+        {Pets:[]},
+        {Health:[]},
+        {Travel:[]},
+        {Gifts:[]},
+        {EatingOut:[]}
+    ]
     let tempAmount = 0;
     // Charts Thats Change Dynamically
     const CTX = new Chart("Data", {
@@ -476,7 +487,7 @@
     ]
     //Set Budget Part
     totalAmountButton.addEventListener("click", () => {
-        console.log(tempAmount)
+      
         tempAmount = tempAmount + parseInt(totalAmount.value);
 
         //empty or negative input
@@ -504,7 +515,8 @@
         let parentDiv = element.parentElement;
         let currentBalance = balanceValue.innerText;
         let RemoveElement=parentDiv.getAttribute("data-category")
-            for(let i of ExistingEntry){
+                //This block of for loop is used to handle chart and also the list of items    
+        for(let i of ExistingEntry){
                 if(i.Category==RemoveElement){
               let Remove_Element_Index_Value=ExistingEntry.indexOf(i)
               
@@ -514,6 +526,19 @@
               break;
             }
         }
+                ///This block of loop is used to delete the element from the StoreData array which we are going to u
+                //send it to the database
+            for(let i of StoreData){
+                  
+                    if(RemoveElement in i){
+                            while(i[RemoveElement].length!=0){
+                                i[RemoveElement].pop()
+                            }
+                        break;
+                    }  
+            }
+            console.log(StoreData)
+                //this block of code is used to handle 
         RemoveData(RemoveElement)
         let currentExpense = expenditureValue.innerText;
         let parentAmount = parentDiv.querySelector(".amount").innerText;
@@ -537,15 +562,23 @@
     const selectedOption = categorys.options[categorys.selectedIndex].text;
     const Time = new Date();
     const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`;
-        // console.log(`this is all the array element for the first time ${ExistingEntry}`)
+    let cost=parseFloat(expenseValue)
     // Find the index of the existing entry in ExistingEntry array
     let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
     if (existingEntryIndex !== -1) {
         // If an entry exists, update it
+            //Now here i am adding the list of objects to store all expense to send it to the user
+            for(let i of StoreData){
+                if(selectedOption in i){
+                    i[selectedOption].push({expenseName,cost})
+                    break
+                }
+            } 
+            console.log(StoreData)
         FetchData(expenseValue, selectedOption, 23)
         ExistingEntry[existingEntryIndex].Cost += parseFloat(expenseValue);
         ExistingEntry[existingEntryIndex].Note = expenseName;
-        console.log(ExistingEntry)
+     
         // Find the corresponding sublist content associated with the updated entry
         let sublistContent = document.querySelector(`.sublist-content[data-category="${selectedOption}"]`);
         
@@ -558,8 +591,17 @@
         console.log(`This is value got same so that now Array is ${ExistingEntry}`)
     } else {
         // If no entry exists, create a new one
+        let cost=parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
+        
         ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
-     
+        for(let i of StoreData){
+                if(selectedOption in i){
+                    i[selectedOption].push({expenseName,cost})
+                    break
+                }
+            }
+            console.log(StoreData)
+                   
         FetchData(expenseValue, selectedOption, 23)
 
         // Create sublist content for the new entry
