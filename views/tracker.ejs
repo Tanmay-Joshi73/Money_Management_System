@@ -772,7 +772,7 @@
 
         // Add the random color to the backgroundColor array
         CTX.data.datasets[0].backgroundColor.push(color);
-
+        CTX.options.scales.yAxes[0].ticks.suggestedMin = 0;
         // Update the chart
         CTX.update(); // Update the chart
 
