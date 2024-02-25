@@ -52,7 +52,7 @@ exports.CreatePage1 = async (req, res) => {
 // Profile Page Creation
 exports.ProfiePage = async (req, res) => {
     try {
-        console.log()
+     
         const clientName = req.body.fullName;
         const clientUserName = req.body.Username;
         const clientPassword = req.body.password;
@@ -77,7 +77,7 @@ exports.ProfiePage = async (req, res) => {
             
             await User_Info.save()
             res.render('tracker', {
-                Usename: clientUserName
+                Username: clientUserName
             })
 
             let Message = `Dear Recipient,
@@ -117,7 +117,7 @@ exports.LoginCheck = async (req, res) => {
             if (isPasswordValid) {
                 // Password is valid, user successfully logged in
                 SendMail(Message, ClientEmail, Subject)
-                res.render('tracker')
+                res.render('tracker',{Username:ClintName})
 
             } else {
                 // Password is incorrect

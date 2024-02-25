@@ -12,8 +12,9 @@ dotenv.config({path:'./.env'})
 const PORT=process.env.PORT||8000
 const app = express();
 const Connect=require('./connect/connection')
+app.use(express.text())
 app.use(bodyparser.urlencoded({ extended: true }));
-
+app.use(express.urlencoded({ extended: true }))
 // Serve static assets
 app.set("view engine","ejs")
 app.set("views",path.resolve('./views'))
@@ -21,7 +22,7 @@ app.use(express.static(`${__dirname}/public`))
 // app.use(express.static(`${__dirname}/public/css`))
 
 app.get('/', (req, res) => {   
-    res.render('tracker')
+    res.redirect('/Home')
 });
 app.use('/',User)
     ///Connection String

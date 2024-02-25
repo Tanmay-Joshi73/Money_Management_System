@@ -4,7 +4,9 @@ const bcrypt=require('bcrypt')
 
 const Schema=new mongoose.Schema({
     Name:{
-        type:String
+        type:String,
+        unique:true,
+        required:true,
     },
     Email:{
         type:String,
@@ -24,6 +26,7 @@ const Schema=new mongoose.Schema({
         default:Date.now()
     }
 })
+Schema.index({Name:1},{unique:true})
 
 const Data=mongoose.model('Data',Schema)
 

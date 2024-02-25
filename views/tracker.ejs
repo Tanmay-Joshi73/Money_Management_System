@@ -408,7 +408,8 @@
 <script>
 
     const Canvas_Chart = document.getElementById('Data')
-
+    const Username='<%Username%>'
+    console.log(Username)
     let totalAmount = document.getElementById("total-amount");
     let categorys = document.getElementById('category')
     let userAmount = document.getElementById("user-amount");
@@ -424,23 +425,23 @@
     const list = document.getElementById("list");
     const selectedOption = undefined;
     let ExistingEntry = []
-    let StoreData=[
-        {Home:[]},
-        {Food:[]},
-        {Clothes:[]},
-        {Car:[]},
-        {Pets:[]},
-        {Health:[]},
-        {Travel:[]},
-        {Gifts:[]},
-        {EatingOut:[]}
+    let StoreData = [
+        { Home: [10] },
+        { Food: [10] },
+        { Clothes: [10] },
+        { Car: [10] },
+        { Pets: [10] },
+        { Health: [19] },
+        { Travel: [12] },
+        { Gifts: [23] },
+        { EatingOut: [12] }
     ]
     let tempAmount = 0;
     // Charts Thats Change Dynamically
     const CTX = new Chart("Data", {
         type: 'bar',
         data: {
-            labels:[],
+            labels: [],
             datasets: [{
                 label: 'Expense Data',
                 data: [],
@@ -487,7 +488,7 @@
     ]
     //Set Budget Part
     totalAmountButton.addEventListener("click", () => {
-      
+
         tempAmount = tempAmount + parseInt(totalAmount.value);
 
         //empty or negative input
@@ -514,37 +515,37 @@
     const modifyElement = (element, edit = false) => {
         let parentDiv = element.parentElement;
         let currentBalance = balanceValue.innerText;
-        let RemoveElement=parentDiv.getAttribute("data-category")
-                //This block of for loop is used to handle chart and also the list of items    
-        for(let i of ExistingEntry){
-                if(i.Category==RemoveElement){
-              let Remove_Element_Index_Value=ExistingEntry.indexOf(i)
-              
-              let removed_Element=ExistingEntry.pop(RemoveElement)
-              console.log(ExistingEntry)
-              console.log(removed_Element)
-              break;
+        let RemoveElement = parentDiv.getAttribute("data-category")
+        //This block of for loop is used to handle chart and also the list of items    
+        for (let i of ExistingEntry) {
+            if (i.Category == RemoveElement) {
+                let Remove_Element_Index_Value = ExistingEntry.indexOf(i)
+
+                let removed_Element = ExistingEntry.pop(RemoveElement)
+                console.log(ExistingEntry)
+                console.log(removed_Element)
+                break;
             }
         }
-                ///This block of loop is used to delete the element from the StoreData array which we are going to u
-                //send it to the database
-            for(let i of StoreData){
-                  
-                    if(RemoveElement in i){
-                            while(i[RemoveElement].length!=0){
-                                i[RemoveElement].pop()
-                            }
-                        break;
-                    }  
+        ///This block of loop is used to delete the element from the StoreData array which we are going to u
+        //send it to the database
+        for (let i of StoreData) {
+
+            if (RemoveElement in i) {
+                while (i[RemoveElement].length != 0) {
+                    i[RemoveElement].pop()
+                }
+                break;
             }
-            console.log(StoreData)
-                //this block of code is used to handle 
+        }
+        console.log(StoreData)
+        //this block of code is used to handle 
         RemoveData(RemoveElement)
         let currentExpense = expenditureValue.innerText;
         let parentAmount = parentDiv.querySelector(".amount").innerText;
         let parentText;
         parentText = parentDiv.querySelector(".product").innerText;
-       
+
         if (edit) {
 
             productTitle.value = parentText;
@@ -559,108 +560,108 @@
     };
     //Function To Create List
     const listCreator = (expenseName, expenseValue) => {
-    const selectedOption = categorys.options[categorys.selectedIndex].text;
-    const Time = new Date();
-    const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`;
-    let cost=parseFloat(expenseValue)
-    // Find the index of the existing entry in ExistingEntry array
-    let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
-    if (existingEntryIndex !== -1) {
-        // If an entry exists, update it
+        const selectedOption = categorys.options[categorys.selectedIndex].text;
+        const Time = new Date();
+        const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`;
+        let cost = parseFloat(expenseValue)
+        // Find the index of the existing entry in ExistingEntry array
+        let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
+        if (existingEntryIndex !== -1) {
+            // If an entry exists, update it
             //Now here i am adding the list of objects to store all expense to send it to the user
-            for(let i of StoreData){
-                if(selectedOption in i){
-                    i[selectedOption].push({expenseName,cost})
-                    break
-                }
-            } 
-            console.log(StoreData)
-        FetchData(expenseValue, selectedOption, 23)
-        ExistingEntry[existingEntryIndex].Cost += parseFloat(expenseValue);
-        ExistingEntry[existingEntryIndex].Note = expenseName;
-     
-        // Find the corresponding sublist content associated with the updated entry
-        let sublistContent = document.querySelector(`.sublist-content[data-category="${selectedOption}"]`);
-        
-        // Update the elements within the sublist content
-        let productNameElement = sublistContent.querySelector(".product");
-        let productCostElement = sublistContent.querySelector(".amount");
-        
-        productNameElement.innerText = expenseName;
-        productCostElement.innerText = ExistingEntry[existingEntryIndex].Cost.toFixed(2);
-        console.log(`This is value got same so that now Array is ${ExistingEntry}`)
-    } else {
-        // If no entry exists, create a new one
-        let cost=parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
-        
-        ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
-        for(let i of StoreData){
-                if(selectedOption in i){
-                    i[selectedOption].push({expenseName,cost})
+            for (let i of StoreData) {
+                if (selectedOption in i) {
+                    i[selectedOption].push({ expenseName, cost })
                     break
                 }
             }
             console.log(StoreData)
-                   
-        FetchData(expenseValue, selectedOption, 23)
+            FetchData(expenseValue, selectedOption, 23)
+            ExistingEntry[existingEntryIndex].Cost += parseFloat(expenseValue);
+            ExistingEntry[existingEntryIndex].Note = expenseName;
 
-        // Create sublist content for the new entry
-        let sublistContent = document.createElement("div");
-        sublistContent.classList.add("sublist-content", "flex-space");
-        sublistContent.setAttribute("data-category", selectedOption);
+            // Find the corresponding sublist content associated with the updated entry
+            let sublistContent = document.querySelector(`.sublist-content[data-category="${selectedOption}"]`);
 
-        // Create container for icon and note
-        const iconNoteContainer = document.createElement("div");
-        iconNoteContainer.classList.add("flex");
+            // Update the elements within the sublist content
+            let productNameElement = sublistContent.querySelector(".product");
+            let productCostElement = sublistContent.querySelector(".amount");
 
-        // Create icon element for the home icon
-        const Itmes = document.createElement("i");
-        Itmes.classList.add("fa-solid", categorys.value, "Home");
-        Itmes.style.fontSize = "1.2em";
-        Itmes.style.color = "#587ef4";
-        iconNoteContainer.appendChild(Itmes);
+            productNameElement.innerText = expenseName;
+            productCostElement.innerText = ExistingEntry[existingEntryIndex].Cost.toFixed(2);
+            console.log(`This is value got same so that now Array is ${ExistingEntry}`)
+        } else {
+            // If no entry exists, create a new one
+            let cost = parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
 
-        // Create expense note element
-        const expenseNote = document.createElement("p");
-        expenseNote.classList.add("product");
-        expenseNote.innerText = `    ${expenseName}`;
-        expenseNote.style.marginLeft = "5px"; // Add left margin to create space between the icon and the note
-        iconNoteContainer.appendChild(expenseNote);
+            ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
+            for (let i of StoreData) {
+                if (selectedOption in i) {
+                    i[selectedOption].push({ expenseName, cost })
+                    break
+                }
+            }
+            console.log(StoreData)
 
-        // Create expense value element
-        const expenseAmount = document.createElement("p");
-        expenseAmount.classList.add("amount");
-        expenseAmount.innerText = expenseValue;
+            FetchData(expenseValue, selectedOption, 23)
 
-        // Create edit button
-        let editButton = document.createElement("button");
-        editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
-        editButton.style.fontSize = "1.2em";
-        editButton.addEventListener("click", () => {
-            modifyElement(editButton, true);
-        });
+            // Create sublist content for the new entry
+            let sublistContent = document.createElement("div");
+            sublistContent.classList.add("sublist-content", "flex-space");
+            sublistContent.setAttribute("data-category", selectedOption);
 
-        // Create delete button
-        let deleteButton = document.createElement("button");
-        deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
-        deleteButton.style.fontSize = "1.2em";
-        deleteButton.addEventListener("click", () => {
-           
-             let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
-            console.log()
-            modifyElement(deleteButton);
-        });
+            // Create container for icon and note
+            const iconNoteContainer = document.createElement("div");
+            iconNoteContainer.classList.add("flex");
 
-        // Append elements to sublist content
-        sublistContent.appendChild(iconNoteContainer);
-        sublistContent.appendChild(expenseAmount);
-        sublistContent.appendChild(editButton);
-        sublistContent.appendChild(deleteButton);
+            // Create icon element for the home icon
+            const Itmes = document.createElement("i");
+            Itmes.classList.add("fa-solid", categorys.value, "Home");
+            Itmes.style.fontSize = "1.2em";
+            Itmes.style.color = "#587ef4";
+            iconNoteContainer.appendChild(Itmes);
 
-        // Append sublist content to the list
-        document.getElementById("list").appendChild(sublistContent);
-    }
-};
+            // Create expense note element
+            const expenseNote = document.createElement("p");
+            expenseNote.classList.add("product");
+            expenseNote.innerText = `    ${expenseName}`;
+            expenseNote.style.marginLeft = "5px"; // Add left margin to create space between the icon and the note
+            iconNoteContainer.appendChild(expenseNote);
+
+            // Create expense value element
+            const expenseAmount = document.createElement("p");
+            expenseAmount.classList.add("amount");
+            expenseAmount.innerText = expenseValue;
+
+            // Create edit button
+            let editButton = document.createElement("button");
+            editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+            editButton.style.fontSize = "1.2em";
+            editButton.addEventListener("click", () => {
+                modifyElement(editButton, true);
+            });
+
+            // Create delete button
+            let deleteButton = document.createElement("button");
+            deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
+            deleteButton.style.fontSize = "1.2em";
+            deleteButton.addEventListener("click", () => {
+
+                let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
+                console.log()
+                modifyElement(deleteButton);
+            });
+
+            // Append elements to sublist content
+            sublistContent.appendChild(iconNoteContainer);
+            sublistContent.appendChild(expenseAmount);
+            sublistContent.appendChild(editButton);
+            sublistContent.appendChild(deleteButton);
+
+            // Append sublist content to the list
+            document.getElementById("list").appendChild(sublistContent);
+        }
+    };
 
     //Function To Add Expenses
     checkAmountButton.addEventListener("click", () => {
@@ -732,35 +733,35 @@
 
 
         // Push data to the chart dataset
-        
+
         let labelsArr = []
-        let present=false;
-        if(CTX.data.labels.length==0){
+        let present = false;
+        if (CTX.data.labels.length == 0) {
             CTX.data.labels.push(options);
             CTX.data.datasets[0].data.push(parseInt(Money_Waste));
         }
-        else{
-           
-            let Chart_Product_Category=options
-                for(let i=0;i<CTX.data.labels.length;i++){
-                        if(CTX.data.labels[i]==options){
-                            let product_index=i;
-                            let Updated_product_money=parseInt(CTX.data.datasets[0].data[i]) + parseInt(Money_Waste)
-                            console.log(Updated_product_money)
-                            CTX.data.datasets[0].data[i]=Updated_product_money
-                            console.log(CTX.data.datasets[0].data)
-                            CTX.update()
-                            present=true
-                            break;
-                        }
-                        }
-                if(!present){
-                    CTX.data.labels.push(options)
-                     CTX.data.datasets[0].data.push(Money_Waste);  
+        else {
+
+            let Chart_Product_Category = options
+            for (let i = 0; i < CTX.data.labels.length; i++) {
+                if (CTX.data.labels[i] == options) {
+                    let product_index = i;
+                    let Updated_product_money = parseInt(CTX.data.datasets[0].data[i]) + parseInt(Money_Waste)
+                    console.log(Updated_product_money)
+                    CTX.data.datasets[0].data[i] = Updated_product_money
+                    console.log(CTX.data.datasets[0].data)
+                    CTX.update()
+                    present = true
+                    break;
                 }
-            
+            }
+            if (!present) {
+                CTX.data.labels.push(options)
+                CTX.data.datasets[0].data.push(Money_Waste);
+            }
+
         }
-        
+
         // console.log(CTX.data.datasets[0].data[0])
         // Ensure backgroundColor is an array
         if (!Array.isArray(CTX.data.datasets[0].backgroundColor)) {
@@ -777,15 +778,37 @@
         CTX.update(); // Update the chart
 
     }
-    function RemoveData(options){
-           let Index_Of_A_Element_To_Be_Removed=CTX.data.labels.indexOf(options)
-           CTX.data.labels.pop(options)
-           CTX.data.datasets[0].data.pop(i)
-                   
+    function RemoveData(options) {
+        let Index_Of_A_Element_To_Be_Removed = CTX.data.labels.indexOf(options)
+        CTX.data.labels.pop(options)
+        CTX.data.datasets[0].data.pop(i)
+
         CTX.update({
             duration: 800, // Duration of the animation in milliseconds
             easing: 'easeInOutQuart' // Easing function for the animation
         });
     }
+
+//     window.addEventListener('beforeunload', async(event) => {
+//     event.preventDefault(); // Prevent the default behavior of the beforeunload event
+//     const Text = StoreData; // Assuming this is the data you want to send
+//     const Server = new XMLHttpRequest();
+//     Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
+//     Server.setRequestHeader('Content-Type', 'text/plain');
+    
+//     Server.send(JSON.stringify(Text));
+//     // Handle server response if needed
+//     Server.onload = function() {
+//         if (Server.status >= 200 && Server.status < 300) {
+//             // Request was successful
+//             console.log('Response:', Server.responseText);
+//         } else {
+//             // Request failed
+//             console.error('Error:', Server.statusText);
+//         }
+//     };
+// });
+
+
 
 </script>
