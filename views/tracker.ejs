@@ -313,7 +313,7 @@
                             <option value="fa-book">Books</option>
                             <!-- Add more options as needed -->
                         </select>
-                        <button class="submit" id="check-amount">Check Amount</button>
+                        <button class="submit" id="check-amount">Add Entry</button>
                     </div>
                 </div>
                 <!-- Output -->
@@ -408,8 +408,6 @@
 <script>
 
     const Canvas_Chart = document.getElementById('Data')
-    const Username='<%Username%>'
-    console.log(Username)
     let totalAmount = document.getElementById("total-amount");
     let categorys = document.getElementById('category')
     let userAmount = document.getElementById("user-amount");
@@ -789,25 +787,26 @@
         });
     }
 
-//     window.addEventListener('beforeunload', async(event) => {
-//     event.preventDefault(); // Prevent the default behavior of the beforeunload event
-//     const Text = StoreData; // Assuming this is the data you want to send
-//     const Server = new XMLHttpRequest();
-//     Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
-//     Server.setRequestHeader('Content-Type', 'text/plain');
+    window.addEventListener('beforeunload', async(event) => {
+    event.preventDefault(); // Prevent the default behavior of the beforeunload event
     
-//     Server.send(JSON.stringify(Text));
-//     // Handle server response if needed
-//     Server.onload = function() {
-//         if (Server.status >= 200 && Server.status < 300) {
-//             // Request was successful
-//             console.log('Response:', Server.responseText);
-//         } else {
-//             // Request failed
-//             console.error('Error:', Server.statusText);
-//         }
-//     };
-// });
+    const Text = StoreData; // Assuming this is the data you want to send
+    const Server = new XMLHttpRequest();
+    Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
+    Server.setRequestHeader('Content-Type', 'text/plain');
+    
+    Server.send(JSON.stringify(Text));
+    // Handle server response if needed
+    Server.onload = function() {
+        if (Server.status >= 200 && Server.status < 300) {
+            // Request was successful
+            console.log('Response:', Server.responseText);
+        } else {
+            // Request failed
+            console.error('Error:', Server.statusText);
+        }
+    };
+});
 
 
 

@@ -5,12 +5,12 @@ const bcrypt=require('bcrypt')
 const Schema=new mongoose.Schema({
     Name:{
         type:String,
-        unique:true,
+        // unique:true,
         required:true,
     },
     Email:{
         type:String,
-        unique:true,
+        // unique:true,
         required: true,
         lowercase:true,
         validate:[validator.isEmail,'Hey Please Provide The Email']

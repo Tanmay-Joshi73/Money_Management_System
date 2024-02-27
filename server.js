@@ -1,5 +1,6 @@
 const express = require('express');
 const fs=require('fs')
+const session=require("express-session")
 const path=require('path')
 const bodyparser=require('body-parser')
 const mongoose=require('mongoose')
@@ -19,7 +20,15 @@ app.use(express.urlencoded({ extended: true }))
 app.set("view engine","ejs")
 app.set("views",path.resolve('./views'))
 app.use(express.static(`${__dirname}/public`))
-// app.use(express.static(`${__dirname}/public/css`))
+app.use((req,res,next)=>{
+    // console.log(req.headers)
+    next()
+})
+app.use(session({
+    secret: '1222114d', // Replace with your actual secret key
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.get('/', (req, res) => {   
     res.redirect('/Home')

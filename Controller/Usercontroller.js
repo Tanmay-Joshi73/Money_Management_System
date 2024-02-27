@@ -1,10 +1,11 @@
 const express = require('express')
 const { decreypt, SendMail } = require('./UsersFunction')
+const bcrypt=require('bcrypt')
 const tour = require('./../UserDB/user')
+const expenseTour=require('./../UserDB/data')
 const JWT=require('jsonwebtoken')
-
 const bodyparser = require('body-parser')
-
+let username;
 let ClientEmail;
 let ClintName;
 let ClientPassword;
@@ -14,6 +15,7 @@ const exp = require('constants')
 const { LogTimings } = require('concurrently')
 const { resolve } = require('path')
 const { userInfo } = require('os')
+const Data = require('./../UserDB/user')
 const HomePage = fs.readFileSync(`${__dirname}/../index.html`, 'utf-8')
 const SignUp = fs.readFileSync(`${__dirname}/../Authenticate.html`, 'utf-8')
 const CreatePage1 = fs.readFileSync(`${__dirname}/../Authenticate1.html`, 'utf-8')
@@ -57,7 +59,8 @@ exports.ProfiePage = async (req, res) => {
         const clientUserName = req.body.Username;
         const clientPassword = req.body.password;
         const clientEmail = ClientEmail;
-
+        // exports.name=ClientUserName
+        req.session.username=clientUserName
         const hash_Pass = await decreypt(clientPassword)
        
 
@@ -73,12 +76,17 @@ exports.ProfiePage = async (req, res) => {
                 Password: hash_Pass,
                 Email: clientEmail
             });
-            const token=JWT.sign({id:User_Info._id},process.env.JWTSECRETTOKEN,{expiresIn:process.env.JWE_EXPIRES_TIME})
-            
-            await User_Info.save()
-            res.render('tracker', {
-                Username: clientUserName
+            const Data_Info=await new expenseTour({
+                UserName:clientUserName
             })
+                
+                //  const Token=CreateToken(User_Info)
+
+            await User_Info.save()
+            await Data_Info.save()
+            module.exports=username
+            res.redirect('/Fetch')
+       
 
             let Message = `Dear Recipient,
 
@@ -105,7 +113,7 @@ exports.LoginCheck = async (req, res) => {
     const ClientEmail = req.body.email;
     let Subject = 'New Login In The Money-Manager'
     let Message = `New Login Gets Detected From This User Account`
-
+    req.session.username=ClintName
     try {
         // Check if the user exists based on email and name
         const existingUser = await tour.findOne({ Name: ClintName, Email: ClientEmail });
@@ -117,7 +125,8 @@ exports.LoginCheck = async (req, res) => {
             if (isPasswordValid) {
                 // Password is valid, user successfully logged in
                 SendMail(Message, ClientEmail, Subject)
-                res.render('tracker',{Username:ClintName})
+                res.redirect('/Fetch')
+
 
             } else {
                 // Password is incorrect
@@ -148,7 +157,7 @@ exports.ResetPass = async (req, res) => {
     ClientUserName = req.body.Username
     ClientEmail = req.body.email
     ClientPassword = req.body.Password
-
+  
     try {
         const hash_Pass = await decreypt(ClientPassword)
 
@@ -194,3 +203,37 @@ Share your thoughts on the platform's functionalities. As a user, your input is 
     SendMail(Message, workEmail, Subject)
     res.end(SignUp)
 }
+
+exports.TokenCheck = (req, res, next) => {
+    if(!req.headers.Name){
+       next()
+    }
+    else{
+        const error=new Error("Hey You Cant Process Further")
+        error.status=404
+        return error
+    }
+};
+
+
+
+ function CreateToken(user){
+    const Payload={Id:user._id}
+    const Expiry={
+        expiresIn:process.env.JWE_EXPIRES_TIME
+    }
+        const Token=JWT.sign(Payload,process.env.JWTSECRETTOKEN,Expiry)
+        return Token
+}
+// exports.VerifyToken=(req,res,next)=>{
+//     try{
+//         const Auth=req.headers['authorization']
+//         const token=Auth && Auth.split(' ')[1]
+//         if(token==null){
+//             return new Error("Cannot Proceed Further")
+//         }
+//         else{
+//             next()
+//         }
+//     }
+// }
