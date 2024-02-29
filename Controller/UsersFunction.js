@@ -42,3 +42,12 @@ exports.SendMail=(Message,workEmail,Subject,req,res)=>{
             // res.end('Email-sent:' + info.response)
         }
     })}
+
+    exports.CheckSession=(req,res,next)=>{
+        if(req.session.username==undefined){
+            res.redirect('/LoginPage')
+        }
+        else{
+            next()
+        }
+    }

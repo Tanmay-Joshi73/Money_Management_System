@@ -423,6 +423,7 @@
     const list = document.getElementById("list");
     const selectedOption = undefined;
     let ExistingEntry = []
+    let incre=0;
     let StoreData = [
         { Home: [10] },
         { Food: [10] },
@@ -517,6 +518,7 @@
         //This block of for loop is used to handle chart and also the list of items    
         for (let i of ExistingEntry) {
             if (i.Category == RemoveElement) {
+                incre--
                 let Remove_Element_Index_Value = ExistingEntry.indexOf(i)
 
                 let removed_Element = ExistingEntry.pop(RemoveElement)
@@ -569,6 +571,7 @@
             //Now here i am adding the list of objects to store all expense to send it to the user
             for (let i of StoreData) {
                 if (selectedOption in i) {
+                    incre++
                     i[selectedOption].push({ expenseName, cost })
                     break
                 }
@@ -595,6 +598,7 @@
             ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
             for (let i of StoreData) {
                 if (selectedOption in i) {
+                    incre++
                     i[selectedOption].push({ expenseName, cost })
                     break
                 }
@@ -788,6 +792,10 @@
     }
 
     window.addEventListener('beforeunload', async(event) => {
+            if(incre==0){
+
+            }
+            else{
     event.preventDefault(); // Prevent the default behavior of the beforeunload event
     
     const Text = StoreData; // Assuming this is the data you want to send
@@ -806,6 +814,7 @@
             console.error('Error:', Server.statusText);
         }
     };
+}
 });
 
 

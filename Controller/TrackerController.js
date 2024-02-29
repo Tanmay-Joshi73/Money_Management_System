@@ -30,6 +30,18 @@ exports.SavedData = async (req, res) => {
     
 };
 
+exports.fetch=async(req,res)=>{
+        if(req.session.username===undefined){
+            res.redirect('/LoginPage')
+        }
+        else{
+            const user=req.session.username
+            console.log(user)
+            const userData=await TrackerTour.findOne({UserName:user})
+            res.send(userData)
+        }
+}
+
 
 
 

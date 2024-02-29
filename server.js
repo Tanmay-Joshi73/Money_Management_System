@@ -27,7 +27,11 @@ app.use((req,res,next)=>{
 app.use(session({
     secret: '1222114d', // Replace with your actual secret key
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie:{
+        secure:false,
+        maxAge:7 * 24 * 60 * 60 * 1000
+    }
 }));
 
 app.get('/', (req, res) => {   
