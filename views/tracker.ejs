@@ -491,7 +491,7 @@
         tempAmount = tempAmount + parseInt(totalAmount.value);
 
         //empty or negative input
-        if (tempAmount === "" || tempAmount < 0) {
+        if (tempAmount === "" || tempAmount < 0 ) {
             errorMessage.classList.remove("hide");
         } else {
             errorMessage.classList.add("hide");
@@ -668,7 +668,8 @@
     //Function To Add Expenses
     checkAmountButton.addEventListener("click", () => {
         //empty checks
-        if (!userAmount.value || !productTitle.value) {
+        if (!userAmount.value || !productTitle.value || userAmount.value==0) {
+            productTitle.innerText="Values Cannot Be Empty"
             productTitleError.classList.remove("hide");
             return false;
         }
@@ -678,16 +679,22 @@
         let expenditure = parseInt(userAmount.value);
         //Total expense (existing + new)
         let sum = parseInt(expenditureValue.innerText) + expenditure;
-        expenditureValue.innerText = sum;
-        //Total balance(budget - total expense)
         const totalBalance = tempAmount - sum;
+            if(expenditure>totalBalance){
+                productTitleError.innerText="Balance Value Gets Exceeded"
+                productTitleError.classList.remove("hide")
+            }
+            else{
+        productTitleError.classList.add('hide')  
+        productTitle.innerText=""  
+        expenditureValue.innerText = sum;
         balanceValue.innerText = totalBalance;
         //Create list
         listCreator(productTitle.value, userAmount.value);
         //Empty inputs
         productTitle.value = "";
         userAmount.value = "";
-    });
+    }});
 
 
     function GraphMaker(text) {
