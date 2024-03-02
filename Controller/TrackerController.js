@@ -36,9 +36,9 @@ exports.fetch=async(req,res)=>{
         }
         else{
             const user=req.session.username
-            console.log(user)
+           
             const userData=await TrackerTour.findOne({UserName:user})
-            res.send(userData)
+            res.render('Display')
         }
 }
 

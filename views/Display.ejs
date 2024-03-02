@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #f5f5f5; */
+}
+
+/* Header */
+header {
+  background-color: #587ef4;
+  color: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Main Content */
+main {
+  display: flex;
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+/* Graph Side */
+.graph-side {
+  flex: 1;
+  /* background-color: #f0f0f0; */
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+/* Info Side */
+.info-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+/* Title Section */
+.title-section {
+  margin-bottom: 1rem;
+}
+
+/* Filter Section */
+.filter-section {
+  display: flex; /* Use flexbox for even spacing */
+  justify-content:center; /* Distribute buttons evenly */
+  margin-top: 1.2rem;
+}
+
+.filter-button {
+  background-color: #587ef4;
+  margin-left: 2rem;
+  color: #fff;
+  border: none;
+  padding: 1rem 2.8rem; /* Adjust padding for larger text */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-weight: bold; /* Add boldness for emphasis */
+}
+
+.filter-button:hover {
+  background-color: #4169e1;
+}
+.History{
+    /* border: 2px solid red; */
+    margin-top: 2rem;
+    height: 100%;
+}
+</style>
+<body>
+    <div class="main-container">
+        <header class="top-section">
+            <h1>Expense Tracker</h1>
+        </header>
+
+        <main class="middle-section">
+            <section class="graph-side">
+                <canvas id="data" width="400" height="300"></canvas>
+            </section>
+
+            <section class="info-side">
+                <div class="title-section">
+                    <h1>Transactions</h1>
+                </div>
+
+                <div class="filter-section">
+                    <button class="filter-button">7 Days</button>
+                    <button class="filter-button">15 Days</button>
+                    <button class="filter-button">30 Days</button>
+                </div>
+                <div class="History">
+                    <h1>History</h1>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const Canvas_Chart = document.getElementById('data');
+    const CTX = new Chart(Canvas_Chart, {
+        type: 'bar',
+        data: {
+            labels: [12],
+            datasets: [{
+                label: 'Expense Data',
+                data: [12],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Monthly Expenses',
+                    font: {
+                        family: 'Arial',
+                        size: 20,
+                        weight: 'bold'
+                    }
+                }
+            },
+            scales: {
+                y: { // defining min and max so hiding the dataset does not change scale range
+                    min: 0,
+                    max: 1000
+                }
+            }
+        }
+    });
+    console.log("hello world")
+</script>
+</html>
