@@ -15,31 +15,64 @@ exports.SavedData = async (req, res) => {
         // If it's not an array, convert it to an array with a single element
         Expense_Data = [Expense_Data];
     }
+    const existingData = await TrackerTour.findOne({ UserName: username });
 
-    const data = await TrackerTour.findOneAndUpdate(
-        { UserName: username },
-        { $addToSet: { [`Data.${formattedDate}`]: { $each: Expense_Data } } },
-        { 
-            new: true,
-            upsert:true,
-            projection: { Username: 1, Data: 1, _id: 0 } // Projection to include only Username and Data fields
+        if(!existingData.Data){
+            const data = await TrackerTour.findOneAndUpdate(
+                { UserName: username },
+                { $addToSet: { [`Data.${formattedDate}`]: { $each: Expense_Data } } },
+                {
+                    new: true,
+                    upsert: true,
+                    projection: { Username: 1, Data: 1, _id: 0 } // Projection to include only Username and Data fields
+                }
+            );
         }
-    );
-
-    // Handle the response
-    
-};
-
-exports.fetch=async(req,res)=>{
-        if(req.session.username===undefined){
-            res.redirect('/LoginPage')
-        }
+        
         else{
-            const user=req.session.username
-           
-            const userData=await TrackerTour.findOne({UserName:user})
-            res.render('Display')
+                const data=await TrackerTour.findOne({UserName:username})
+                const Current_Date_Data=data.Data.get(formattedDate)
+                    if(!Current_Date_Data){
+                        data=await await TrackerTour.findOneAndUpdate(
+                            { UserName: username },
+                            { $addToSet: { [`Data.${formattedDate}`]: { $each: Expense_Data } } },
+                            {
+                                new: true,
+                                upsert: true,
+                                projection: { Username: 1, Data: 1, _id: 0 } // Projection to include only Username and Data fields
+                            }
+                        );
+                    }
+
+
+           } 
+          }
+    
+ 
+        // Data for the specified date does not exist, proceed to add the new data
+       
+
+
+
+
+
+
+exports.fetch = async (req, res) => {
+    if (req.session.username === undefined) {
+        res.redirect('/LoginPage')
+    }
+    else {
+        const user = req.session.username
+        console.log(user)
+        const userData = await TrackerTour.findOne({ UserName: user })
+        const jsonObj=JSON.stringify({...userData})
+        const JSONdata={
+            Data:userData.Data
         }
+        // console.log(jsonObj._doc.Data)
+        // console.log(JSON.stringify(JSONdata))
+        res.render('Display', { userData: JSON.stringify(JSONdata) });
+    }
 }
 
 

@@ -8,7 +8,7 @@
 <style>
   body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .main-container {
@@ -98,7 +98,7 @@ main {
 
         <main class="middle-section">
             <section class="graph-side">
-                <canvas id="data" width="400" height="300"></canvas>
+                <canvas id="data" width="400" height="250"></canvas>
             </section>
 
             <section class="info-side">
@@ -119,40 +119,43 @@ main {
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
 
 <script>
-    const Canvas_Chart = document.getElementById('data');
-    const CTX = new Chart(Canvas_Chart, {
-        type: 'bar',
-        data: {
-            labels: [12],
-            datasets: [{
-                label: 'Expense Data',
-                data: [12],
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Monthly Expenses',
-                    font: {
-                        family: 'Arial',
-                        size: 20,
-                        weight: 'bold'
-                    }
-                }
-            },
-            scales: {
-                y: { // defining min and max so hiding the dataset does not change scale range
-                    min: 0,
-                    max: 1000
+ const Canvas_Chart = document.getElementById('data');
+ const parsedData = <%- JSON.stringify(userData) %>;
+const data=JSON.parse(parsedData)
+const CTX = new Chart(Canvas_Chart, {
+    type: 'bar',
+    data: {
+        labels: [], // Empty array for labels
+        datasets: [{
+            label: 'Expense Data', // Label for the dataset
+            data: [], // Empty array for data
+            backgroundColor: 'rgba(54, 162, 235, 0.6)', // Background color for the bars
+            borderWidth: 1 // Border width for the bars
+        }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Monthly Expenses', // Title for the chart
+                font: {
+                    family: 'Arial', // Font family for the title
+                    size: 20, // Font size for the title
+                    weight: 'bold' // Font weight for the title
                 }
             }
+        },
+        scales: {
+            y: { // Y-axis configuration
+                min: 0 // Minimum value for the y-axis
+                // You can also set max value if needed
+            }
         }
-    });
-    console.log("hello world")
+    }
+});
+console.log(data.Data)
 </script>
-</html>
+<html
