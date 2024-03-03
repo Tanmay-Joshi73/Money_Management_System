@@ -123,15 +123,13 @@ main {
 
 <script>
  const Canvas_Chart = document.getElementById('data');
- const parsedData = <%- JSON.stringify(userData) %>;
-const data=JSON.parse(parsedData)
-const CTX = new Chart(Canvas_Chart, {
+ const CTX = new Chart(Canvas_Chart, {
     type: 'bar',
     data: {
-        labels: [], // Empty array for labels
+        labels: ["Comon"], // Empty array for labels
         datasets: [{
             label: 'Expense Data', // Label for the dataset
-            data: [], // Empty array for data
+            data: [1212], // Empty array for data
             backgroundColor: 'rgba(54, 162, 235, 0.6)', // Background color for the bars
             borderWidth: 1 // Border width for the bars
         }]
@@ -156,6 +154,61 @@ const CTX = new Chart(Canvas_Chart, {
         }
     }
 });
-console.log(data.Data)
+
+
+
+
+
+
+ const parsedData = <%- JSON.stringify(userData) %>;
+const data=JSON.parse(parsedData)
+// Assuming data is your parsed JSON object
+let i=0;
+let j=0
+let storeData=[]
+let label=[]
+let ValuesForGraph=[]
+// Initialize an object to store filtered data
+const filteredData = {};
+const Category=['Home','Food','Clothes','Car','Pets','Health','Travel','Gifts','EatingOut']
+// Iterate through each date
+Object.keys(data).forEach(date => {
+  // Initialize an object to store filtered entries for the current date
+  const filteredEntries = {};
+
+  // Iterate through each category for the current date
+  Object.keys(data[date]).forEach(category => {
+    // Filter entries for the current category
+    const filteredCategoryEntries = data[date][category].filter(entry => {
+      
+      let parseData=JSON.parse(entry)
+     
+        
+      for (let i = 0; i < parseData.length; i++) {
+    const track = parseData[i];
+    for (let key in track) {
+        const value = track[key];
+        // console.log(`${key}:`, value);
+        
+          if(value.length!=0){
+            label.push(key)
+            ValuesForGraph.push(value)
+            storeData.push(track)   
+          
+          }
+    }
+}
+
+    }
+   )
+   }
+   )
+  }
+  )
+ 
+
+
+
+
 </script>
-<html
+</html>

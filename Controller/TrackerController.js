@@ -9,6 +9,7 @@ exports.Tracker = (req, res) => {
 exports.SavedData = async (req, res) => {
     const Data = new Date()
     const formattedDate = Data.toISOString().split('T')[0]; // Extracting YYYY-MM-DD
+    
     const username = req.session.username
     let Expense_Data = req.body
     if (!Array.isArray(Expense_Data)) {
@@ -18,7 +19,7 @@ exports.SavedData = async (req, res) => {
     const existingData = await TrackerTour.findOne({ UserName: username });
 
         if(!existingData.Data){
-            const data = await TrackerTour.findOneAndUpdate(
+            let data = await TrackerTour.findOneAndUpdate(
                 { UserName: username },
                 { $addToSet: { [`Data.${formattedDate}`]: { $each: Expense_Data } } },
                 {
@@ -30,7 +31,7 @@ exports.SavedData = async (req, res) => {
         }
         
         else{
-                const data=await TrackerTour.findOne({UserName:username})
+                let data=await TrackerTour.findOne({UserName:username})
                 const Current_Date_Data=data.Data.get(formattedDate)
                     if(!Current_Date_Data){
                         data=await await TrackerTour.findOneAndUpdate(
@@ -69,8 +70,8 @@ exports.fetch = async (req, res) => {
         const JSONdata={
             Data:userData.Data
         }
-        // console.log(jsonObj._doc.Data)
-        // console.log(JSON.stringify(JSONdata))
+
+        // console.log(JSONdata)
         res.render('Display', { userData: JSON.stringify(JSONdata) });
     }
 }
