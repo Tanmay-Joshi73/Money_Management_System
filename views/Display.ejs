@@ -126,11 +126,11 @@ main {
  const CTX = new Chart(Canvas_Chart, {
     type: 'bar',
     data: {
-        labels: ["Comon"], // Empty array for labels
+        labels: [], // Empty array for labels
         datasets: [{
             label: 'Expense Data', // Label for the dataset
-            data: [1212], // Empty array for data
-            backgroundColor: 'rgba(54, 162, 235, 0.6)', // Background color for the bars
+            data: [], // Empty array for data
+            backgroundColor:[ 'rgba(54, 162, 235, 0.6)'], // Background color for the bars
             borderWidth: 1 // Border width for the bars
         }]
     },
@@ -157,7 +157,14 @@ main {
 
 
 
-
+function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
 
  const parsedData = <%- JSON.stringify(userData) %>;
@@ -188,17 +195,39 @@ Object.keys(data).forEach(date => {
     const track = parseData[i];
     for (let key in track) {
         const value = track[key];
-        // console.log(`${key}:`, value);
-        
+          
+        let color=getRandomColor()
           if(value.length!=0){
-            label.push(key)
-            ValuesForGraph.push(value)
+            // console.log(value[0].cost)
+              if(CTX.data.labels.length==0){
+                  CTX.data.labels.push(key)
+                  CTX.data.datasets[0].data.push(value[0].cost)
+                  CTX.update()
+              }
+                else{
+                    if(CTX.data.labels.includes(key)){
+                      let indexNum=CTX.data.labels.indexOf(key)
+                      CTX.data.datasets[0].data[indexNum]=CTX.data.datasets[0].data[indexNum] + value[0].cost
+                      CTX.update()
+                    }
+                    else{
+                      CTX.data.labels.push(key)
+                      CTX.data.datasets[0].data.push(value[0].cost)
+                      console.log(CTX.data.datasets[0].backgroundColor.push(color))
+                      CTX.update()
+
+                    }
+                 
+                  }
+                }
+                
+
+
+            
             storeData.push(track)   
           
           }
-    }
-}
-
+        }
     }
    )
    }
