@@ -308,8 +308,6 @@
                             <option value="fa-shirt">Clothes</option>
                             <option value="fa-notes medical">Health</option>
                             <option value="fa-train">Travel</option>
-                            <option value="fa-utensils">Eating Out</option>
-                            <option value="fa-Gifts">Gifts</option>
                             <option value="fa-book">Books</option>
                             <!-- Add more options as needed -->
                         </select>
@@ -422,6 +420,7 @@
     const balanceValue = document.getElementById("balance-amount");
     const list = document.getElementById("list");
     const selectedOption = undefined;
+    let moneySaved;
     let ExistingEntry = []
     let incre=0;
     let StoreData = [
@@ -433,7 +432,8 @@
         { Health: [] },
         { Travel: [] },
         { Gifts: [] },
-        { EatingOut: [] }
+        { EatingOut: [] },
+        { Books:[]}
     ]
     let tempAmount = 0;
     // Charts Thats Change Dynamically
@@ -481,7 +481,8 @@
             Health: [],
             Travel: [],
             Gifts: [],
-            EatingOut: []
+            EatingOut: [],
+            Books:[]
 
         }
     ]
@@ -679,7 +680,14 @@
         //Total expense (existing + new)
         let sum = parseInt(expenditureValue.innerText) + expenditure;
         const totalBalance = tempAmount - sum;
-            
+        if (totalBalance < 0) {
+        // Display error or prevent further action
+        // alert("Insufficient balance for this expense.");
+        
+        return false;
+    }
+
+         moneySaved=totalBalance
         expenditureValue.innerText = sum;
         balanceValue.innerText = totalBalance;
         //Create list
@@ -796,6 +804,7 @@
 
             }
             else{
+                StoreData.push({moneySaved})
     event.preventDefault(); // Prevent the default behavior of the beforeunload event
     
     const Text = StoreData; // Assuming this is the data you want to send

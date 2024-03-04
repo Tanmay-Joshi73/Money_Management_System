@@ -41,6 +41,8 @@ main {
 
 /* Graph Side */
 .graph-side {
+  /* border: 2px solid red; */
+  margin-top: -1rem;
   flex: 1;
   /* background-color: #f0f0f0; */
   border-radius: 5px;
@@ -89,6 +91,11 @@ main {
     margin-top: 2rem;
     height: 100%;
 }
+.endsection-leftside{
+  width: 50%;
+  height: 10rem;
+  border:2px solid red;
+}
 </style>
 <body>
     <div class="main-container">
@@ -103,25 +110,27 @@ main {
 
             <section class="info-side">
                 <div class="title-section">
-                    <h1>Transactions</h1>
+                    <h1>Transactions:-</h1>
+                      <div class="Expense_values">
+                        <span id="Money_Expense:"> </span>
+                        <span id="saved">:</span>
+                      </div>
                 </div>
 
-                <div class="filter-section">
-                    <button class="filter-button">7 Days</button>
-                    <button class="filter-button">15 Days</button>
-                    <button class="filter-button">30 Days</button>
-                </div>
+                
                 <div class="History">
                     <h1>History</h1>
                 </div>
             </section>
         </main>
+          
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
 
 <script>
+const waste=document.getElementById('Money_Expense')
  const Canvas_Chart = document.getElementById('data');
  const CTX = new Chart(Canvas_Chart, {
     type: 'bar',
@@ -172,9 +181,8 @@ const data=JSON.parse(parsedData)
 // Assuming data is your parsed JSON object
 let i=0;
 let j=0
-let storeData=[]
-let label=[]
-let ValuesForGraph=[]
+let expense=0;
+
 // Initialize an object to store filtered data
 const filteredData = {};
 const Category=['Home','Food','Clothes','Car','Pets','Health','Travel','Gifts','EatingOut']
@@ -187,12 +195,13 @@ Object.keys(data).forEach(date => {
   Object.keys(data[date]).forEach(category => {
     // Filter entries for the current category
     const filteredCategoryEntries = data[date][category].filter(entry => {
-      
+        console.log(entry)
       let parseData=JSON.parse(entry)
-     
+      // console.log(entry)
         
       for (let i = 0; i < parseData.length; i++) {
     const track = parseData[i];
+    
     for (let key in track) {
         const value = track[key];
           
@@ -201,19 +210,22 @@ Object.keys(data).forEach(date => {
             // console.log(value[0].cost)
               if(CTX.data.labels.length==0){
                   CTX.data.labels.push(key)
+                
                   CTX.data.datasets[0].data.push(value[0].cost)
                   CTX.update()
               }
                 else{
                     if(CTX.data.labels.includes(key)){
                       let indexNum=CTX.data.labels.indexOf(key)
+                 
                       CTX.data.datasets[0].data[indexNum]=CTX.data.datasets[0].data[indexNum] + value[0].cost
                       CTX.update()
                     }
                     else{
                       CTX.data.labels.push(key)
                       CTX.data.datasets[0].data.push(value[0].cost)
-                      console.log(CTX.data.datasets[0].backgroundColor.push(color))
+                     
+                      CTX.data.datasets[0].backgroundColor.push(color)
                       CTX.update()
 
                     }
@@ -224,7 +236,6 @@ Object.keys(data).forEach(date => {
 
 
             
-            storeData.push(track)   
           
           }
         }
@@ -234,7 +245,9 @@ Object.keys(data).forEach(date => {
    )
   }
   )
- 
+    for(let i of CTX.data.datasets[0].data){
+      expense+=i
+    }
 
 
 

@@ -44,6 +44,9 @@ exports.SavedData = async (req, res) => {
                             }
                         );
                     }
+                    else{
+                        console.log('Current Data is here')
+                    }
 
 
            } 
