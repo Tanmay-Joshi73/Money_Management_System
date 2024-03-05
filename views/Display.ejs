@@ -199,20 +199,23 @@ Object.keys(data).forEach(date => {
         
         
       let parseData=JSON.parse(entry)
+      
       let len=parseData.length-1
       saved+=parseData[len].moneySaved
-      
+      console.log(parseData.pop())
         
       for (let i = 0; i < parseData.length; i++) {
+        
     const track = parseData[i];
-    
+       console.log(track)
     for (let key in track) {
         const value = track[key];
           
         let color=getRandomColor()
           if(value.length!=0){
+            
               expense+=value[0].cost
-                console.log(expense)
+              
               if(CTX.data.labels.length==0){
                   CTX.data.labels.push(key)
                 
@@ -224,12 +227,13 @@ Object.keys(data).forEach(date => {
                       let indexNum=CTX.data.labels.indexOf(key)
                  
                       CTX.data.datasets[0].data[indexNum]=CTX.data.datasets[0].data[indexNum] + value[0].cost
+                      
                       CTX.update()
                     }
                     else{
                       CTX.data.labels.push(key)
                       CTX.data.datasets[0].data.push(value[0].cost)
-                     
+                    
                       CTX.data.datasets[0].backgroundColor.push(color)
                       CTX.update()
 
@@ -237,12 +241,9 @@ Object.keys(data).forEach(date => {
                  
                   }
                 }
-
-                      //this else block might created a error
-                else{
-                  return false
-                }
-                
+                  
+                   
+                     
 
 
             
@@ -255,7 +256,7 @@ Object.keys(data).forEach(date => {
    )
   }
   )
-   moneyExpenseSpan.innerText=`Expense:-${expense}`
+   console.log(moneyExpenseSpan.innerText=`Expense:-${expense}`)
    savedSpan.innerText=`Money Saved:-${saved}`
 // Event listener for click events on the canvas
 Canvas_Chart.addEventListener('click', function(event) {
