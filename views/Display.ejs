@@ -112,8 +112,8 @@ main {
                 <div class="title-section">
                     <h1>Transactions:-</h1>
                       <div class="Expense_values">
-                        <span id="Money_Expense:"> </span>
-                        <span id="saved">:</span>
+                        <h1 id="Expense_Done"></h1>
+                        <h1 id="Amount_Saved"></h1>
                       </div>
                 </div>
 
@@ -130,7 +130,8 @@ main {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
 
 <script>
-const waste=document.getElementById('Money_Expense')
+  const moneyExpenseSpan=document.getElementById('Expense_Done')
+  const savedSpan = document.getElementById('Amount_Saved');
  const Canvas_Chart = document.getElementById('data');
  const CTX = new Chart(Canvas_Chart, {
     type: 'bar',
@@ -182,7 +183,7 @@ const data=JSON.parse(parsedData)
 let i=0;
 let j=0
 let expense=0;
-
+let saved=0;
 // Initialize an object to store filtered data
 const filteredData = {};
 const Category=['Home','Food','Clothes','Car','Pets','Health','Travel','Gifts','EatingOut']
@@ -190,14 +191,17 @@ const Category=['Home','Food','Clothes','Car','Pets','Health','Travel','Gifts','
 Object.keys(data).forEach(date => {
   // Initialize an object to store filtered entries for the current date
   const filteredEntries = {};
-
+      
   // Iterate through each category for the current date
   Object.keys(data[date]).forEach(category => {
     // Filter entries for the current category
     const filteredCategoryEntries = data[date][category].filter(entry => {
-        console.log(entry)
+        
+        
       let parseData=JSON.parse(entry)
-      // console.log(entry)
+      let len=parseData.length-1
+      saved+=parseData[len].moneySaved
+      
         
       for (let i = 0; i < parseData.length; i++) {
     const track = parseData[i];
@@ -207,7 +211,8 @@ Object.keys(data).forEach(date => {
           
         let color=getRandomColor()
           if(value.length!=0){
-            // console.log(value[0].cost)
+              expense+=value[0].cost
+                console.log(expense)
               if(CTX.data.labels.length==0){
                   CTX.data.labels.push(key)
                 
@@ -232,6 +237,11 @@ Object.keys(data).forEach(date => {
                  
                   }
                 }
+
+                      //this else block might created a error
+                else{
+                  return false
+                }
                 
 
 
@@ -245,10 +255,26 @@ Object.keys(data).forEach(date => {
    )
   }
   )
-    for(let i of CTX.data.datasets[0].data){
-      expense+=i
-    }
+   moneyExpenseSpan.innerText=`Expense:-${expense}`
+   savedSpan.innerText=`Money Saved:-${saved}`
+// Event listener for click events on the canvas
+Canvas_Chart.addEventListener('click', function(event) {
+    const elements = CTX.getElementsAtEventForMode(event, 'nearest', {intersect: true});
 
+    if (elements && elements.length > 0) {
+        // Get the clicked dataset index
+        const datasetIndex = elements[0].datasetIndex;
+        
+        // Get the clicked label index
+        const index = elements[0].index;
+
+        // Get the label text
+        const clickedLabel = CTX.data.labels[index];
+
+        // Perform any action with the clicked label
+        console.log('Clicked label:', clickedLabel);
+    }
+});
 
 
 

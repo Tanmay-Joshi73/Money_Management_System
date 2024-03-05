@@ -7,8 +7,9 @@ exports.Tracker = (req, res) => {
     res.render('tracker')
 }
 exports.SavedData = async (req, res) => {
-    const Data = new Date()
-    const formattedDate = Data.toISOString().split('T')[0]; // Extracting YYYY-MM-DD
+    const Time = new Date()
+    const isoDate = Time.toLocaleDateString(); // Get the date in local timezone
+    const formattedDate = isoDate.split('T')[0]; // Extracting YYYY-MM-DD
     
     const username = req.session.username
     let Expense_Data = req.body
@@ -33,6 +34,7 @@ exports.SavedData = async (req, res) => {
         else{
                 let data=await TrackerTour.findOne({UserName:username})
                 const Current_Date_Data=data.Data.get(formattedDate)
+                console.log(Current_Date_Data)
                     if(!Current_Date_Data){
                         data=await await TrackerTour.findOneAndUpdate(
                             { UserName: username },
