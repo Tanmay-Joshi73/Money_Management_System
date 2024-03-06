@@ -115,7 +115,7 @@ main {
     color: #587ef4;
 }
 .list {
-        background-color: #ffffff;
+        background-color: whitesmoke;
         padding: 1.8em 1.2em;
         box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
         border-radius: 0.6em;
@@ -208,7 +208,7 @@ main {
         datasets: [{
             label: 'Expense Data', // Label for the dataset
             data: [], // Empty array for data
-            backgroundColor:[ 'rgba(54, 162, 235, 0.6)'], // Background color for the bars
+            backgroundColor:[], // Background color for the bars
             borderWidth: 1 // Border width for the bars
         }]
     },
@@ -290,6 +290,7 @@ Object.keys(data).forEach(date => {
       saved+=parseData[len].moneySaved
       parseData.pop(parseData[len])
       Days++
+      // CTX.options.plugins.title.text += ` (${numDays} Days)`
       for (let i = 0; i < parseData.length; i++) {
         
     const track = parseData[i];
@@ -343,6 +344,25 @@ Object.keys(data).forEach(date => {
    )
   }
   )
+  if(Days==7){
+    console.log(CTX.options.plugins.title.text += ` (1 Week)`)
+  }
+  else if(Days==14){
+    console.log(CTX.options.plugins.title.text += ` (2 Week)`)
+  }
+  else if (Days==21){
+    console.log(CTX.options.plugins.title.text += ` (3 Week)`)
+  }
+  else if(Days==30 || Days ==31){
+    console.log(CTX.options.plugins.title.text += ` (1 Month)`)
+  }
+  else{
+    console.log(CTX.options.plugins.title.text += ` (${Days}Days)`)
+
+  }
+    
+  CTX.update()
+  
    moneyExpenseSpan.innerText=`Expense:-${expense}`
    savedSpan.innerText=`Money Saved:-${saved}`
 // Event listener for click events on the canvas
@@ -364,6 +384,8 @@ Object.keys(data).forEach(date => {
         
     }
 });
+// CTX.options.plugins.title.text += ` (${numDays} Days)`
+// CTX.update()
 // Function to create and display notes for a clicked label
 function getNote(clickedLabel, No = 0) {
     let expense_Info_And_Notes = [];
@@ -380,16 +402,8 @@ function getNote(clickedLabel, No = 0) {
             
         }
     });
-    console.log(expense_Info_And_Notes)
-   
-
-
     
-    // let index = No;
-    // let info = expense_Info_And_Notes[index];
-    // // console.log(expense_Info_And_Notes[index])
-    // // console.log(info)
-    // let note = info[clickedLabel];
+  
     const list = document.getElementById("list");
     list.innerHTML = '';
 
