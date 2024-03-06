@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet" />
 <!-- Stylesheet -->
 <link rel="stylesheet" href="./../public/css/Tracker.css" />
+
 </head>
 <style>
     * {
@@ -523,8 +524,8 @@
                 let Remove_Element_Index_Value = ExistingEntry.indexOf(i)
 
                 let removed_Element = ExistingEntry.pop(RemoveElement)
-                console.log(ExistingEntry)
-                console.log(removed_Element)
+                // console.log(ExistingEntry)
+                // console.log(removed_Element)
                 break;
             }
         }
@@ -539,7 +540,7 @@
                 break;
             }
         }
-        console.log(StoreData)
+        // console.log(StoreData)
         //this block of code is used to handle 
         RemoveData(RemoveElement)
         let currentExpense = expenditureValue.innerText;
@@ -591,7 +592,7 @@
 
             productNameElement.innerText = expenseName;
             productCostElement.innerText = ExistingEntry[existingEntryIndex].Cost.toFixed(2);
-            console.log(`This is value got same so that now Array is ${ExistingEntry}`)
+            // console.log(`This is value got same so that now Array is ${ExistingEntry}`)
         } else {
             // If no entry exists, create a new one
             let cost = parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
@@ -604,7 +605,7 @@
                     break
                 }
             }
-            console.log(StoreData)
+            // console.log(StoreData)
 
             FetchData(expenseValue, selectedOption, 23)
 
@@ -789,15 +790,25 @@
 
     }
     function RemoveData(options) {
-        let Index_Of_A_Element_To_Be_Removed = CTX.data.labels.indexOf(options)
-        CTX.data.labels.pop(options)
-        CTX.data.datasets[0].data.pop(i)
+    console.log(options);
+    let indexToRemove = CTX.data.labels.indexOf(options);
+
+    if (indexToRemove !== -1) {
+        CTX.data.labels.splice(indexToRemove, 1);
+        CTX.data.datasets[0].data.splice(indexToRemove, 1);
+        CTX.data.datasets[0].backgroundColor.splice(indexToRemove, 1);
 
         CTX.update({
             duration: 800, // Duration of the animation in milliseconds
             easing: 'easeInOutQuart' // Easing function for the animation
         });
     }
+
+    }
+
+
+
+
 
     window.addEventListener('beforeunload', async(event) => {
             if(incre==0){

@@ -124,7 +124,7 @@ exports.LoginCheck = async (req, res) => {
 
             if (isPasswordValid) {
                 // Password is valid, user successfully logged in
-                SendMail(Message, ClientEmail, Subject)
+                // SendMail(Message, ClientEmail, Subject)
                 res.redirect('/Fetch')
 
 

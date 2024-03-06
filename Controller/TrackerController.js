@@ -10,7 +10,7 @@ exports.SavedData = async (req, res) => {
     const Time = new Date()
     const isoDate = Time.toLocaleDateString(); // Get the date in local timezone
     const formattedDate = isoDate.split('T')[0]; // Extracting YYYY-MM-DD
-    
+    console.log(formattedDate);
     const username = req.session.username
     let Expense_Data = req.body
     if (!Array.isArray(Expense_Data)) {

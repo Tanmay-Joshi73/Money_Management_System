@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
   body {
   margin: 0;
@@ -22,7 +28,7 @@
 /* Header */
 header {
   background-color: #587ef4;
-  color: #fff;
+  color: #ffffff;
   padding: 1rem 2rem;
   text-align: center;
 }
@@ -51,6 +57,7 @@ main {
 
 /* Info Side */
 .info-side {
+ 
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -61,7 +68,9 @@ main {
 
 /* Title Section */
 .title-section {
-  margin-bottom: 1rem;
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Filter Section */
@@ -91,10 +100,68 @@ main {
     margin-top: 2rem;
     height: 100%;
 }
+.History {
+    margin-top: 20px;
+    
+    
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.History h2 {
+    margin: 0 0 10px 0;
+    padding-bottom: 5px;
+  
+    color: #587ef4;
+}
+.list {
+        background-color: #ffffff;
+        padding: 1.8em 1.2em;
+        box-shadow: 0 0.6em 1.2em rgba(28, 0, 80, 0.06);
+        border-radius: 0.6em;
+        font-size:1.2rem;
+        font-family: "Open Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-variation-settings:100;
+          
+
+    }
+
+    .sublist-content {
+        width: 100%;
+        border-left: 0.3em solid #587ef4;
+        margin-bottom: 0.6em;
+        padding: 0.5em 1em;
+        display: grid;
+        grid-template-columns: 3fr 2fr 1fr 1fr;
+    }
+
+    .product {
+        font-weight: 500;
+        color: #363d55;
+    }
+
+    .amount {
+        color: #414a67;
+        margin-left: 20%;
+    }
+
+    .icons-container {
+        width: 5em;
+        margin: 1.2em;
+        align-items: center;
+    }
+
+    .product-title {
+        margin-bottom: 1em;
+    }
+
 .endsection-leftside{
   width: 50%;
   height: 10rem;
-  border:2px solid red;
+  /* border:2px solid red; */
 }
 </style>
 <body>
@@ -118,8 +185,9 @@ main {
                 </div>
 
                 
-                <div class="History">
+                <div class="list">
                     <h1>History</h1>
+                    <div class="list-container" id="list"></div>
                 </div>
             </section>
         </main>
@@ -158,8 +226,25 @@ main {
         },
         scales: {
             y: { // Y-axis configuration
-                min: 0 // Minimum value for the y-axis
-                // You can also set max value if needed
+                min: 0, // Minimum value for the y-axis
+                grid: {
+                    display: true,
+                    color: 'rgba(0, 0, 0, 0.1)' // Color for the grid lines
+                },
+                ticks: {
+                    font: {
+                        size: 14, // Font size for the ticks
+                        weight: 'bold' // Font weight for the ticks
+                    }
+                }
+            },
+            x: { // X-axis configuration
+                ticks: {
+                    font: {
+                        size: 14, // Font size for the ticks
+                        weight: 'bold' // Font weight for the ticks
+                    }
+                }
             }
         }
     }
@@ -179,11 +264,12 @@ function getRandomColor() {
 
  const parsedData = <%- JSON.stringify(userData) %>;
 const data=JSON.parse(parsedData)
-// Assuming data is your parsed JSON object
 let i=0;
 let j=0
 let expense=0;
 let saved=0;
+let Days=0;
+let notes=[]
 // Initialize an object to store filtered data
 const filteredData = {};
 const Category=['Home','Food','Clothes','Car','Pets','Health','Travel','Gifts','EatingOut']
@@ -197,23 +283,24 @@ Object.keys(data).forEach(date => {
     // Filter entries for the current category
     const filteredCategoryEntries = data[date][category].filter(entry => {
         
-        
+
       let parseData=JSON.parse(entry)
-      
+       console.log(parseData)
       let len=parseData.length-1
       saved+=parseData[len].moneySaved
-      console.log(parseData.pop())
-        
+      parseData.pop(parseData[len])
+      Days++
       for (let i = 0; i < parseData.length; i++) {
         
     const track = parseData[i];
-       console.log(track)
+       
     for (let key in track) {
         const value = track[key];
-          
+      // console.log(track)
         let color=getRandomColor()
           if(value.length!=0){
-            
+            notes.push(track)
+            console.log(notes)
               expense+=value[0].cost
               
               if(CTX.data.labels.length==0){
@@ -256,10 +343,10 @@ Object.keys(data).forEach(date => {
    )
   }
   )
-   console.log(moneyExpenseSpan.innerText=`Expense:-${expense}`)
+   moneyExpenseSpan.innerText=`Expense:-${expense}`
    savedSpan.innerText=`Money Saved:-${saved}`
 // Event listener for click events on the canvas
-Canvas_Chart.addEventListener('click', function(event) {
+    Canvas_Chart.addEventListener('click', function(event) {
     const elements = CTX.getElementsAtEventForMode(event, 'nearest', {intersect: true});
 
     if (elements && elements.length > 0) {
@@ -271,13 +358,57 @@ Canvas_Chart.addEventListener('click', function(event) {
 
         // Get the label text
         const clickedLabel = CTX.data.labels[index];
+        getNote(clickedLabel,index)
 
-        // Perform any action with the clicked label
-        console.log('Clicked label:', clickedLabel);
+          // Perform any action with the clicked label
+        
     }
 });
+// Function to create and display notes for a clicked label
+function getNote(clickedLabel, No = 0) {
+    let expense_Info_And_Notes = notes;
+    
+    let index = No;
+    let info = expense_Info_And_Notes[index];
+    console.log(expense_Info_And_Notes[index])
+    console.log(info)
+    let note = info[clickedLabel];
+    const list = document.getElementById("list");
+    list.innerHTML = '';
 
+    note.forEach(item => {
+    let sublistContent = document.createElement("div");
+    sublistContent.style.marginTop = "2rem";
+    sublistContent.classList.add("sublist-content", "flex-space");
 
+    // Create a separate inner content div for each note
+    let innercontent = document.createElement('div');
+    innercontent.style.display = 'block';
 
+    // Create a paragraph element for expense name
+    let expenseNameParagraph = document.createElement("p");
+    expenseNameParagraph.textContent = item.expenseName;
+    expenseNameParagraph.classList.add("product");
+    expenseNameParagraph.style.display='inline-block'
+
+    // Create a paragraph element for expense cost
+    let expenseCostParagraph = document.createElement("p");
+    expenseCostParagraph.textContent = `${item.cost}₹`;
+    expenseCostParagraph.classList.add("amount");
+    expenseCostParagraph.style.display='inline-block'
+    // Append expense name and cost paragraphs to the inner content div
+    innercontent.appendChild(expenseNameParagraph);
+    innercontent.appendChild(expenseCostParagraph);
+
+    // Append the inner content div to the sublistContent div
+    sublistContent.appendChild(innercontent);
+
+    // Append the sublistContent div to the list container
+    list.appendChild(sublistContent);
+});
+
+      
+}
+      getNote()
 </script>
 </html>
