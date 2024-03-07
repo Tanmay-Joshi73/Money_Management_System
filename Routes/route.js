@@ -12,7 +12,7 @@ router.route('/LoginPage').get(Login)
 router.route('/LoginValidation').post(LoginCheck)
 router.route('/Forgot').get(ForgotPassword)
 router.route('/Reset').post(ResetPass)
-router.route('/Fetch').get(CheckSession,TodayTransaction,Tracker).post(TodayTransaction,Tracker)
+router.route('/Fetch').get(CheckSession,Tracker).post(Tracker)
 router.route('/ExitTracker').post(SavedData).get(SavedData)
 router.route('/Track').post(fetch).get(fetch)
 module.exports=router

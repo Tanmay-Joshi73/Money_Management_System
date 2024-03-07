@@ -566,7 +566,6 @@
     //Function To Create List
     const listCreator = (expenseName, expenseValue) => {
         const selectedOption = categorys.options[categorys.selectedIndex].text;
-        console.log(selectedOption)
         const Time = new Date();
         const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`;
         let cost = parseFloat(expenseValue)
@@ -600,7 +599,7 @@
         } else {
             // If no entry exists, create a new one
             let cost = parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
-                console.log(StoreData);
+
             ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
             for (let i of StoreData) {
                 if (selectedOption in i) {
@@ -686,7 +685,8 @@
         let sum = parseInt(expenditureValue.innerText) + expenditure;
         const totalBalance = tempAmount - sum;
         if (totalBalance < 0) {
-        
+        // Display error or prevent further action
+        // alert("Insufficient balance for this expense.");
         
         return false;
     }
@@ -761,9 +761,9 @@
                 if (CTX.data.labels[i] == options) {
                     let product_index = i;
                     let Updated_product_money = parseInt(CTX.data.datasets[0].data[i]) + parseInt(Money_Waste)
-                  
+                    console.log(Updated_product_money)
                     CTX.data.datasets[0].data[i] = Updated_product_money
-                    
+                    console.log(CTX.data.datasets[0].data)
                     CTX.update()
                     present = true
                     break;
