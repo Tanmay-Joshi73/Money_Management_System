@@ -85,7 +85,7 @@ exports.ProfiePage = async (req, res) => {
             await User_Info.save()
             await Data_Info.save()
             module.exports=username
-            res.redirect('/Fetch')
+            res.redirect('/Home')
        
 
             let Message = `Dear Recipient,
@@ -125,7 +125,7 @@ exports.LoginCheck = async (req, res) => {
             if (isPasswordValid) {
                 // Password is valid, user successfully logged in
                 // SendMail(Message, ClientEmail, Subject)
-                res.redirect('/Fetch')
+                res.redirect('/Home')
 
 
             } else {
