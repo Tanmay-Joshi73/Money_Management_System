@@ -9,8 +9,8 @@ exports.Tracker = (req, res) => {
 exports.SavedData = async (req, res) => {
     const Time = new Date()
     const isoDate = Time.toLocaleDateString(); // Get the date in local timezone
-    // const formattedDate = isoDate.split('T')[0]; // Extracting YYYY-MM-DD
-    const formattedDate='23/12/11'
+    const formattedDate = isoDate.split('T')[0]; // Extracting YYYY-MM-DD
+    // const formattedDate='23/12/11'
     console.log(formattedDate);
     const username = req.session.username
     let Expense_Data = req.body

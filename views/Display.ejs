@@ -270,26 +270,29 @@ let expense=0;
 let saved=0;
 let Days=0;
 let notes=[]
-// Initialize an object to store filtered data
+
 const filteredData = {};
 const Category=['Home','Food','Clothes','Car','Pets','Health','Travel','Gifts','EatingOut']
-// Iterate through each date
+
 Object.keys(data).forEach(date => {
-  // Initialize an object to store filtered entries for the current date
+
   const filteredEntries = {};
       
-  // Iterate through each category for the current date
+  
   Object.keys(data[date]).forEach(category => {
-    // Filter entries for the current category
+   
+    Days++
+    console.log(category)
     const filteredCategoryEntries = data[date][category].filter(entry => {
         
-
+      
       let parseData=JSON.parse(entry)
-      //  console.log(parseData)
+       
+
       let len=parseData.length-1
       saved+=parseData[len].moneySaved
       parseData.pop(parseData[len])
-      Days++
+    
       // CTX.options.plugins.title.text += ` (${numDays} Days)`
       for (let i = 0; i < parseData.length; i++) {
         
@@ -370,27 +373,25 @@ Object.keys(data).forEach(date => {
     const elements = CTX.getElementsAtEventForMode(event, 'nearest', {intersect: true});
 
     if (elements && elements.length > 0) {
-        // Get the clicked dataset index
+      
         const datasetIndex = elements[0].datasetIndex;
         
-        // Get the clicked label index
+     
         const index = elements[0].index;
 
-        // Get the label text
+        
         const clickedLabel = CTX.data.labels[index];
         getNote(clickedLabel,index)
 
-          // Perform any action with the clicked label
+          
         
     }
 });
-// CTX.options.plugins.title.text += ` (${numDays} Days)`
-// CTX.update()
-// Function to create and display notes for a clicked label
+
 function getNote(clickedLabel, No = 0) {
     let expense_Info_And_Notes = [];
     
-    // Iterate through notes to categorize expenses
+  
     notes.forEach(note => {
         if (note.hasOwnProperty(clickedLabel)) {
             let category = note[clickedLabel];
@@ -413,29 +414,25 @@ function getNote(clickedLabel, No = 0) {
     sublistContent.style.marginTop = "2rem";
     sublistContent.classList.add("sublist-content", "flex-space");
 
-    // Create a separate inner content div for each note
+   
     let innercontent = document.createElement('div');
     innercontent.style.display = 'block';
 
-    // Create a paragraph element for expense name
+  
     let expenseNameParagraph = document.createElement("p");
     expenseNameParagraph.textContent = item[clickedLabel][0].expenseName;
     expenseNameParagraph.classList.add("product");
     expenseNameParagraph.style.display='inline-block'
 
-    // Create a paragraph element for expense cost
     let expenseCostParagraph = document.createElement("p");
     expenseCostParagraph.textContent = `${item[clickedLabel][0].cost}₹`;
     expenseCostParagraph.classList.add("amount");
     expenseCostParagraph.style.display='inline-block'
-    // Append expense name and cost paragraphs to the inner content div
     innercontent.appendChild(expenseNameParagraph);
     innercontent.appendChild(expenseCostParagraph);
 
-    // Append the inner content div to the sublistContent div
     sublistContent.appendChild(innercontent);
 
-    // Append the sublistContent div to the list container
     list.appendChild(sublistContent);
 });
 
