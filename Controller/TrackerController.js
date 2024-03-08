@@ -9,7 +9,8 @@ exports.Tracker = (req, res) => {
 exports.SavedData = async (req, res) => {
     const Time = new Date()
     const isoDate = Time.toLocaleDateString(); // Get the date in local timezone
-    const formattedDate = isoDate.split('T')[0]; // Extracting YYYY-MM-DD
+    // const formattedDate = isoDate.split('T')[0]; // Extracting YYYY-MM-DD
+    const formattedDate='23/12/11'
     console.log(formattedDate);
     const username = req.session.username
     let Expense_Data = req.body
@@ -33,9 +34,9 @@ exports.SavedData = async (req, res) => {
         
         else{
                 let data=await TrackerTour.findOne({UserName:username})
-                const Current_Date_Data=data.Data.get(formattedDate)
-                console.log(Current_Date_Data)
-                    if(!Current_Date_Data){
+                // const Current_Date_Data=data.Data.get(formattedDate)
+                // console.log(Current_Date_Data)
+                    // if(!Current_Date_Data){
                         data=await await TrackerTour.findOneAndUpdate(
                             { UserName: username },
                             { $addToSet: { [`Data.${formattedDate}`]: { $each: Expense_Data } } },
@@ -45,11 +46,8 @@ exports.SavedData = async (req, res) => {
                                 projection: { Username: 1, Data: 1, _id: 0 } // Projection to include only Username and Data fields
                             }
                         );
-                    }
-                    else{
-                        console.log('Current Data is here')
-                    }
-
+                    
+                    
 
            } 
           }
