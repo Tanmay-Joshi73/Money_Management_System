@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet" />
+
 <style>
   body {
   margin: 0;
@@ -34,7 +36,7 @@ header {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin: 0;
 }
 
@@ -68,8 +70,9 @@ main {
 
 /* Title Section */
 .title-section {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
+  font-size: .5rem;
   font-style: normal;
 }
 
@@ -216,7 +219,7 @@ main {
         plugins: {
             title: {
                 display: true,
-                text: 'Monthly Expenses', // Title for the chart
+                text: 'Number OF Days', // Title for the chart
                 font: {
                     family: 'Arial', // Font family for the title
                     size: 20, // Font size for the title
@@ -282,7 +285,7 @@ Object.keys(data).forEach(date => {
   Object.keys(data[date]).forEach(category => {
    
     Days++
-    console.log(category)
+    // console.log(category)
     const filteredCategoryEntries = data[date][category].filter(entry => {
         
       
@@ -303,6 +306,7 @@ Object.keys(data).forEach(date => {
       // console.log(track)
         let color=getRandomColor()
           if(value.length!=0){
+            console.log(value)
             notes.push(track)
             // console.log(notes)
               expense+=value[0].cost

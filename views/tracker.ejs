@@ -287,6 +287,7 @@
                         <input type="number" id="total-amount" placeholder="Enter Total Amount" />
                         <button class="submit" id="total-amount-button" style="display: block;">Add Income</button>
                         <!-- <button class="submit" id="total-amount-button" style="display: block;" onclick="AddMoreBudjet()">Add More Budget</button> -->
+                        <p style="margin-top: 1rem;">Chart Style</p>
                         <button class="submit" id="total-amount-button  Graph" onclick="GraphMaker(this)">Line</button>
                         <button class="submit" id="total-amount-button  Graph" onclick="GraphMaker(this)">Bar</button>
                         <button class="submit" id="total-amount-button  Graph"
@@ -423,7 +424,7 @@
     const list = document.getElementById("list");
     const selectedOption = undefined;
     let moneySaved;
-    let ExistingEntry = []
+    // let ExistingEntry = []
     let incre=0;
     let StoreData = [
         { Home: [] },
@@ -519,33 +520,27 @@
     const modifyElement = (element, edit = false) => {
         let parentDiv = element.parentElement;
         let currentBalance = balanceValue.innerText;
+        
+        let amount_of_a_deleted_data=parseFloat(parentDiv.querySelector('.amount').textContent)
         let RemoveElement = parentDiv.getAttribute("data-category")
         //This block of for loop is used to handle chart and also the list of items    
-        for (let i of ExistingEntry) {
-            if (i.Category == RemoveElement) {
-                incre--
-                let Remove_Element_Index_Value = ExistingEntry.indexOf(i)
+      
+       
 
-                let removed_Element = ExistingEntry.pop(RemoveElement)
-                // console.log(ExistingEntry)
-                // console.log(removed_Element)
-                break;
-            }
-        }
-        ///This block of loop is used to delete the element from the StoreData array which we are going to u
+            ///This block of l  oop is used to delete the element from the StoreData array which we are going to u
         //send it to the database
         for (let i of StoreData) {
 
-            if (RemoveElement in i) {
-                while (i[RemoveElement].length != 0) {
-                    i[RemoveElement].pop()
-                }
-                break;
-            }
+        //     if (RemoveElement in i) {
+        //         while (i[RemoveElement].length != 0) {
+        //             i[RemoveElement].pop()
+        //         }
+        //         break;
+        //     }
         }
-        // console.log(StoreData)
+     
         //this block of code is used to handle 
-        RemoveData(RemoveElement)
+        RemoveData(RemoveElement,amount_of_a_deleted_data)
         let currentExpense = expenditureValue.innerText;
         let parentAmount = parentDiv.querySelector(".amount").innerText;
         let parentText;
@@ -563,52 +558,27 @@
             parseInt(currentExpense) - parseInt(parentAmount);
         parentDiv.remove();
     };
+
     //Function To Create List
     const listCreator = (expenseName, expenseValue) => {
         const selectedOption = categorys.options[categorys.selectedIndex].text;
         const Time = new Date();
         const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`;
-        let cost = parseFloat(expenseValue)
-        // Find the index of the existing entry in ExistingEntry array
-        let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
-        if (existingEntryIndex !== -1) {
-            // If an entry exists, update it
-            //Now here i am adding the list of objects to store all expense to send it to the user
-            for (let i of StoreData) {
-                if (selectedOption in i) {
-                    incre++
-                    i[selectedOption].push({ expenseName, cost })
-                    break
-                }
-            }
-            console.log(StoreData)
-            FetchData(expenseValue, selectedOption, 23)
-            ExistingEntry[existingEntryIndex].Cost += parseFloat(expenseValue);
-            ExistingEntry[existingEntryIndex].Note = expenseName;
-
-            // Find the corresponding sublist content associated with the updated entry
-            let sublistContent = document.querySelector(`.sublist-content[data-category="${selectedOption}"]`);
-
-            // Update the elements within the sublist content
-            let productNameElement = sublistContent.querySelector(".product");
-            let productCostElement = sublistContent.querySelector(".amount");
-
-            productNameElement.innerText = expenseName;
-            productCostElement.innerText = ExistingEntry[existingEntryIndex].Cost.toFixed(2);
-            // console.log(`This is value got same so that now Array is ${ExistingEntry}`)
-        } else {
+    
             // If no entry exists, create a new one
             let cost = parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
 
-            ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
+            // ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
+            // console.log(ExistingEntry);
             for (let i of StoreData) {
                 if (selectedOption in i) {
                     incre++
-                    i[selectedOption].push({ expenseName, cost })
+                    i[selectedOption].push({ expenseName, cost, Day })
                     break
                 }
             }
-            // console.log(StoreData)
+            
+            console.log(StoreData)
 
             FetchData(expenseValue, selectedOption, 23)
 
@@ -654,7 +624,7 @@
             deleteButton.style.fontSize = "1.2em";
             deleteButton.addEventListener("click", () => {
 
-                let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
+                // let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
                 console.log()
                 modifyElement(deleteButton);
             });
@@ -667,7 +637,7 @@
 
             // Append sublist content to the list
             document.getElementById("list").appendChild(sublistContent);
-        }
+      
     };
 
     //Function To Add Expenses
@@ -685,8 +655,7 @@
         let sum = parseInt(expenditureValue.innerText) + expenditure;
         const totalBalance = tempAmount - sum;
         if (totalBalance < 0) {
-        // Display error or prevent further action
-        // alert("Insufficient balance for this expense.");
+      
         
         return false;
     }
@@ -703,7 +672,7 @@
 
 
     function GraphMaker(text) {
-        console.log('GraphMaker Fuction')
+       
         if (i % 2 == 0) {
 
             if (text.innerText == 'Bar') {
@@ -761,9 +730,9 @@
                 if (CTX.data.labels[i] == options) {
                     let product_index = i;
                     let Updated_product_money = parseInt(CTX.data.datasets[0].data[i]) + parseInt(Money_Waste)
-                    console.log(Updated_product_money)
+                    // console.log(Updated_product_money)
                     CTX.data.datasets[0].data[i] = Updated_product_money
-                    console.log(CTX.data.datasets[0].data)
+                    // console.log(CTX.data.datasets[0].data)
                     CTX.update()
                     present = true
                     break;
@@ -792,15 +761,26 @@
         CTX.update(); // Update the chart
 
     }
-    function RemoveData(options) {
-    console.log(options);
+    function RemoveData(options,amount) {
+    // console.log(options);
+    // console.log(StoreData)
     let indexToRemove = CTX.data.labels.indexOf(options);
-
+  
+    let Category_Value=  CTX.config.data.datasets[0].data[indexToRemove]
+    // console.log(CTX.data.labels)
+    // console.log(indexToRemove)
     if (indexToRemove !== -1) {
-        CTX.data.labels.splice(indexToRemove, 1);
-        CTX.data.datasets[0].data.splice(indexToRemove, 1);
-        CTX.data.datasets[0].backgroundColor.splice(indexToRemove, 1);
+        // console.log(`amount is ${amount}`)
+        // console.log(`Value of that category is ${Category_Value}`)
+        let value=parseFloat(Category_Value)-amount
+        // console.log(`Deleted Value is ${value}`)
+        CTX.config.data.datasets[0].data[indexToRemove]=value
+                if(CTX.config.data.datasets[0].data[indexToRemove]==0){
+                        CTX.data.labels.splice(indexToRemove, 1);
+                     CTX.data.datasets[0].data.splice(indexToRemove, 1);
+                     CTX.data.datasets[0].backgroundColor.splice(indexToRemove, 1);
 
+                }
         CTX.update({
             duration: 800, // Duration of the animation in milliseconds
             easing: 'easeInOutQuart' // Easing function for the animation
@@ -815,28 +795,29 @@
 
     window.addEventListener('beforeunload', async(event) => {
             if(incre==0){
-
+                // console.log(incre)
             }
             else{
                 StoreData.push({moneySaved})
-    event.preventDefault(); // Prevent the default behavior of the beforeunload event
+                // console.log(StoreData)
+    // event.preventDefault(); // Prevent the default behavior of the beforeunload event
     
-    const Text = StoreData; // Assuming this is the data you want to send
-    const Server = new XMLHttpRequest();
-    Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
-    Server.setRequestHeader('Content-Type', 'text/plain');
+    // const Text = StoreData; // Assuming this is the data you want to send
+    // const Server = new XMLHttpRequest();
+    // Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
+    // Server.setRequestHeader('Content-Type', 'text/plain');
     
-    Server.send(JSON.stringify(Text));
-    // Handle server response if needed
-    Server.onload = function() {
-        if (Server.status >= 200 && Server.status < 300) {
-            // Request was successful
-            console.log('Response:', Server.responseText);
-        } else {
-            // Request failed
-            console.error('Error:', Server.statusText);
-        }
-    };
+    // Server.send(JSON.stringify(Text));
+    // // Handle server response if needed
+    // Server.onload = function() {
+    //     if (Server.status >= 200 && Server.status < 300) {
+    //         // Request was successful
+    //         console.log('Response:', Server.responseText);
+    //     } else {
+    //         // Request failed
+    //         console.error('Error:', Server.statusText);
+    //     }
+    // };
 }
 });
 
