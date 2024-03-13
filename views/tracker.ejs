@@ -408,39 +408,8 @@
 <script src="path/to/chartjs/dist/chart.umd.js"></script>
 <script>
 
+
     const Canvas_Chart = document.getElementById('Data')
-    let totalAmount = document.getElementById("total-amount");
-    let categorys = document.getElementById('category')
-    let userAmount = document.getElementById("user-amount");
-    const checkAmountButton = document.getElementById("check-amount");
-    const totalAmountButton = document.getElementById("total-amount-button");
-    const productTitle = document.getElementById("product-title");
-    const errorMessage = document.getElementById("budget-error");
-    const productTitleError = document.getElementById("product-title-error");
-    const productCostError = document.getElementById("product-cost-error");
-    const amount = document.getElementById("amount");
-    const expenditureValue = document.getElementById("expenditure-value");
-    const balanceValue = document.getElementById("balance-amount");
-    const list = document.getElementById("list");
-    const selectedOption = undefined;
-    let moneySaved;
-    // let ExistingEntry = []
-    let incre=0;
-    let StoreData = [
-        { Home: [] },
-        { Food: [] },
-        { Clothes: [] },
-        { Car: [] },
-        { Pets: [] },
-        { Health: [] },
-        { Travel: [] },
-        { Gifts: [] },
-        { EatingOut: [] },
-        { Books:[]},
-        { Other:[]}
-    ]
-    let tempAmount = 0;
-    // Charts Thats Change Dynamically
     const CTX = new Chart("Data", {
         type: 'bar',
         data: {
@@ -472,32 +441,67 @@
             }
         }
     });
+    let totalAmount = document.getElementById("total-amount");
+    let categorys = document.getElementById('category')
+    let userAmount = document.getElementById("user-amount");
+    const checkAmountButton = document.getElementById("check-amount");
+    const totalAmountButton = document.getElementById("total-amount-button");
+    const productTitle = document.getElementById("product-title");
+    const errorMessage = document.getElementById("budget-error");
+    const productTitleError = document.getElementById("product-title-error");
+    const productCostError = document.getElementById("product-cost-error");
+    const amount = document.getElementById("amount");
+    const expenditureValue = document.getElementById("expenditure-value");
+    const balanceValue = document.getElementById("balance-amount");
+    const list = document.getElementById("list");
+    const selectedOption = undefined;
+    let moneySaved;
+    let no;
+    let divCreation = 0
+    // let ExistingEntry = []
+    let incre = 0;
+    let StoreData = [
+        { Home: [] },
+        { Food: [] },
+        { Clothes: [] },
+        { Car: [] },
+        { Pets: [] },
+        { Health: [] },
+        { Travel: [] },
+        { Gifts: [] },
+        { EatingOut: [] },
+        { Books: [] },
+        { Other: [] }
+    ]
+    let tempAmount = 0;
+    // Charts Thats Change Dynamically
 
 
     let i = 0;
-    let Expense_Info = [
-        {
-            Home: [],
-            Food: [],
-            Clothes: [],
-            Car: [],
-            Pets: [],
-            Health: [],
-            Travel: [],
-            Gifts: [],
-            EatingOut: [],
-            Books:[],
-            Other:[]
+    let DivValue = -1
+    let DivInfo =
+    {
+        Home: 0,
+        Food: 0,
+        Clothes: 0,
+        Car: 0,
+        Pets: 0,
+        Health: 0,
+        Travel: 0,
+        Gifts: 0,
+        EatingOut: 0,
+        Books: 0,
+        Other: 0
 
-        }
-    ]
+    }
+
     //Set Budget Part
     totalAmountButton.addEventListener("click", () => {
 
         tempAmount = tempAmount + parseInt(totalAmount.value);
 
         //empty or negative input
-        if (tempAmount === "" || tempAmount < 0 ) {
+        if (tempAmount === "" || tempAmount < 0) {
             errorMessage.classList.remove("hide");
         } else {
             errorMessage.classList.add("hide");
@@ -520,27 +524,64 @@
     const modifyElement = (element, edit = false) => {
         let parentDiv = element.parentElement;
         let currentBalance = balanceValue.innerText;
-        
-        let amount_of_a_deleted_data=parseFloat(parentDiv.querySelector('.amount').textContent)
+        let childDivs = list.querySelectorAll('div');
+
+
+        // console.log(list)
+        // console.log(ExistingEntry)
+        let amount_of_a_deleted_data = parseFloat(parentDiv.querySelector('.amount').textContent)
         let RemoveElement = parentDiv.getAttribute("data-category")
+        let divsWithSameCategory = document.querySelectorAll(`[data-category="${RemoveElement}"]`);
+
+        // let Removed_Element_Category=parentDiv.querySelector('.Choice').textContent
+        // console.log(RemoveElement)
+        let divNoToRemove = parseInt(parentDiv.querySelector('.DivNO').textContent)
+        console.log(`Remove Element =${RemoveElement}  That No ${divNoToRemove}`)
         //This block of for loop is used to handle chart and also the list of items    
-      
-       
+   
 
-            ///This block of l  oop is used to delete the element from the StoreData array which we are going to u
-        //send it to the database
-        for (let i of StoreData) {
+        for (let i in DivInfo) {
+            if (DivInfo.hasOwnProperty(i)) {
+                if (i == RemoveElement) {
+                  
+                    DivInfo[i] = DivInfo[i] - 1
 
-        //     if (RemoveElement in i) {
-        //         while (i[RemoveElement].length != 0) {
-        //             i[RemoveElement].pop()
-        //         }
-        //         break;
-        //     }
+                    divsWithSameCategory.forEach(el => {
+                        let divNoElements = el.querySelectorAll('.DivNO');
+                        
+                        divNoElements.forEach(divNoElement => {
+                            let divNo = parseInt(divNoElement.textContent);
+                           
+                            if (divNo > divNoToRemove) {
+                                divNoElement.textContent = divNo - 1;
+                            }
+                            
+                        });
+                    });            
+                }
+
+            }
         }
-     
+       // Assuming divNoToRemove holds the index of the element you want to remove from StoreData
+    //    console.log(StoreData)
+        // StoreData.splice(divNoToRemove, 1);
+        for (let i = 0; i < StoreData.length; i++) {
+           
+    if (StoreData[i][RemoveElement]) {
+        StoreData[i][RemoveElement].splice(divNoToRemove, 1);
+        
+    }
+    break;
+
+}
+
+            
+
+        // //        
+
+
         //this block of code is used to handle 
-        RemoveData(RemoveElement,amount_of_a_deleted_data)
+        RemoveData(RemoveElement, amount_of_a_deleted_data)
         let currentExpense = expenditureValue.innerText;
         let parentAmount = parentDiv.querySelector(".amount").innerText;
         let parentText;
@@ -564,86 +605,113 @@
         const selectedOption = categorys.options[categorys.selectedIndex].text;
         const Time = new Date();
         const Day = `${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()}`;
-    
-            // If no entry exists, create a new one
-            let cost = parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
+        let Product_Incre = 0;
 
-            // ExistingEntry.push({ Category: selectedOption, Note: expenseName, Cost: parseFloat(expenseValue), DateAndTime: Day });
-            // console.log(ExistingEntry);
-            for (let i of StoreData) {
-                if (selectedOption in i) {
-                    incre++
-                    i[selectedOption].push({ expenseName, cost, Day })
-                    break
-                }
+        let cost = parseFloat(expenseValue)// this varaiable is only created for storing data into the storeData array
+
+        for (let i in DivInfo) {
+            if (i == selectedOption) {
+                DivInfo[selectedOption] = DivInfo[selectedOption] + 1
+
+                DivValue = DivInfo[selectedOption] - 1
+                
+                break
             }
-            
-            console.log(StoreData)
 
-            FetchData(expenseValue, selectedOption, 23)
+        }
+        for (let i of StoreData) {
 
-            // Create sublist content for the new entry
-            let sublistContent = document.createElement("div");
-            sublistContent.classList.add("sublist-content", "flex-space");
-            sublistContent.setAttribute("data-category", selectedOption);
 
-            // Create container for icon and note
-            const iconNoteContainer = document.createElement("div");
-            iconNoteContainer.classList.add("flex");
+            if (selectedOption in i) {
+                // console.log(i)
+                incre++
+                Product_Incre++
+                i[selectedOption].push({ expenseName, cost, Day })
+                // console.log(i)
+                break
+            }
+        }
 
-            // Create icon element for the home icon
-            const Itmes = document.createElement("i");
-            Itmes.classList.add("fa-solid", categorys.value, "Home");
-            Itmes.style.fontSize = "1.2em";
-            Itmes.style.color = "#587ef4";
-            iconNoteContainer.appendChild(Itmes);
 
-            // Create expense note element
-            const expenseNote = document.createElement("p");
-            expenseNote.classList.add("product");
-            expenseNote.innerText = `    ${expenseName}`;
-            expenseNote.style.marginLeft = "5px"; // Add left margin to create space between the icon and the note
-            iconNoteContainer.appendChild(expenseNote);
+        FetchData(expenseValue, selectedOption, 23)
+        divCreation++
+       
+        // Create sublist content for the new entry
+        let sublistContent = document.createElement("div");
+        sublistContent.classList.add("sublist-content", "flex-space");
+        sublistContent.setAttribute("data-category", selectedOption);
 
-            // Create expense value element
-            const expenseAmount = document.createElement("p");
-            expenseAmount.classList.add("amount");
-            expenseAmount.innerText = expenseValue;
+        // Create container for icon and note
+        const iconNoteContainer = document.createElement("div");
+        iconNoteContainer.classList.add("flex");
 
-            // Create edit button
-            let editButton = document.createElement("button");
-            editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
-            editButton.style.fontSize = "1.2em";
-            editButton.addEventListener("click", () => {
-                modifyElement(editButton, true);
-            });
+        // Create icon element for the home icon
+        const Itmes = document.createElement("i");
+        Itmes.classList.add("fa-solid", categorys.value, "Home");
+        Itmes.style.fontSize = "1.2em";
+        Itmes.style.color = "#587ef4";
+        iconNoteContainer.appendChild(Itmes);
 
-            // Create delete button
-            let deleteButton = document.createElement("button");
-            deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
-            deleteButton.style.fontSize = "1.2em";
-            deleteButton.addEventListener("click", () => {
+        // Create expense note element
+        const expenseNote = document.createElement("p");
+        expenseNote.classList.add("product");
+        expenseNote.innerText = `    ${expenseName}`;
+        expenseNote.style.marginLeft = "5px"; // Add left margin to create space between the icon and the note
+        iconNoteContainer.appendChild(expenseNote);
 
-                // let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
-                console.log()
-                modifyElement(deleteButton);
-            });
+        // Create expense value element
+        const expenseAmount = document.createElement("p");
+        expenseAmount.classList.add("amount");
+        expenseAmount.innerText = expenseValue;
 
-            // Append elements to sublist content
-            sublistContent.appendChild(iconNoteContainer);
-            sublistContent.appendChild(expenseAmount);
-            sublistContent.appendChild(editButton);
-            sublistContent.appendChild(deleteButton);
+        const Catagory = document.createElement("p");
+        Catagory.classList.add("Choice");
+        Catagory.innerText = selectedOption;
+        Catagory.style.display = 'none'
 
-            // Append sublist content to the list
-            document.getElementById("list").appendChild(sublistContent);
-      
+        const DivNum = document.createElement("p");
+        DivNum.classList.add("DivNO");
+        DivNum.innerText = DivValue;
+        DivNum.style.display = 'none'
+
+        // Create edit button
+        let editButton = document.createElement("button");
+        editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+        editButton.style.fontSize = "1.2em";
+        editButton.addEventListener("click", () => {
+            modifyElement(editButton, true, list);
+        });
+
+        // Create delete button
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
+        deleteButton.style.fontSize = "1.2em";
+        deleteButton.addEventListener("click", () => {
+
+            // let existingEntryIndex = ExistingEntry.findIndex(entry => entry.Category === selectedOption);
+
+            modifyElement(deleteButton);
+        });
+
+        // Append elements to sublist content
+        sublistContent.appendChild(iconNoteContainer);
+        sublistContent.appendChild(expenseAmount);
+        sublistContent.appendChild(editButton);
+        sublistContent.appendChild(deleteButton);
+        sublistContent.append(Catagory)
+        sublistContent.append(DivNum)
+
+        // Append sublist content to the list
+        list.appendChild(sublistContent)
+        // document.getElementById("list").appendChild(sublistContent);
+
+
     };
 
     //Function To Add Expenses
     checkAmountButton.addEventListener("click", () => {
         //empty checks
-        if (!userAmount.value || !productTitle.value || userAmount.value==0) {
+        if (!userAmount.value || !productTitle.value || userAmount.value == 0) {
             productTitleError.classList.remove("hide");
             return false;
         }
@@ -655,12 +723,13 @@
         let sum = parseInt(expenditureValue.innerText) + expenditure;
         const totalBalance = tempAmount - sum;
         if (totalBalance < 0) {
-      
-        
-        return false;
-    }
+            // Display error or prevent further action
+            // alert("Insufficient balance for this expense.");
 
-         moneySaved=totalBalance
+            return false;
+        }
+
+        moneySaved = totalBalance
         expenditureValue.innerText = sum;
         balanceValue.innerText = totalBalance;
         //Create list
@@ -672,7 +741,7 @@
 
 
     function GraphMaker(text) {
-       
+        console.log('GraphMaker Fuction')
         if (i % 2 == 0) {
 
             if (text.innerText == 'Bar') {
@@ -761,65 +830,65 @@
         CTX.update(); // Update the chart
 
     }
-    function RemoveData(options,amount) {
-    // console.log(options);
-    // console.log(StoreData)
-    let indexToRemove = CTX.data.labels.indexOf(options);
-  
-    let Category_Value=  CTX.config.data.datasets[0].data[indexToRemove]
-    // console.log(CTX.data.labels)
-    // console.log(indexToRemove)
-    if (indexToRemove !== -1) {
-        // console.log(`amount is ${amount}`)
-        // console.log(`Value of that category is ${Category_Value}`)
-        let value=parseFloat(Category_Value)-amount
-        // console.log(`Deleted Value is ${value}`)
-        CTX.config.data.datasets[0].data[indexToRemove]=value
-                if(CTX.config.data.datasets[0].data[indexToRemove]==0){
-                        CTX.data.labels.splice(indexToRemove, 1);
-                     CTX.data.datasets[0].data.splice(indexToRemove, 1);
-                     CTX.data.datasets[0].backgroundColor.splice(indexToRemove, 1);
+    function RemoveData(options, amount) {
+        // console.log(options);
+        // console.log(StoreData)
+        let indexToRemove = CTX.data.labels.indexOf(options);
 
-                }
-        CTX.update({
-            duration: 800, // Duration of the animation in milliseconds
-            easing: 'easeInOutQuart' // Easing function for the animation
-        });
-    }
+        let Category_Value = CTX.config.data.datasets[0].data[indexToRemove]
+        // console.log(CTX.data.labels)
+        // console.log(indexToRemove)
+        if (indexToRemove !== -1) {
+            // console.log(`amount is ${amount}`)
+            // console.log(`Value of that category is ${Category_Value}`)
+            let value = parseFloat(Category_Value) - amount
+            // console.log(`Deleted Value is ${value}`)
+            CTX.config.data.datasets[0].data[indexToRemove] = value
+            if (CTX.config.data.datasets[0].data[indexToRemove] == 0) {
+                CTX.data.labels.splice(indexToRemove, 1);
+                CTX.data.datasets[0].data.splice(indexToRemove, 1);
+                CTX.data.datasets[0].backgroundColor.splice(indexToRemove, 1);
 
-    }
-
-
-
-
-
-    window.addEventListener('beforeunload', async(event) => {
-            if(incre==0){
-                // console.log(incre)
             }
-            else{
-                StoreData.push({moneySaved})
-                // console.log(StoreData)
-    // event.preventDefault(); // Prevent the default behavior of the beforeunload event
-    
-    // const Text = StoreData; // Assuming this is the data you want to send
-    // const Server = new XMLHttpRequest();
-    // Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
-    // Server.setRequestHeader('Content-Type', 'text/plain');
-    
-    // Server.send(JSON.stringify(Text));
-    // // Handle server response if needed
-    // Server.onload = function() {
-    //     if (Server.status >= 200 && Server.status < 300) {
-    //         // Request was successful
-    //         console.log('Response:', Server.responseText);
-    //     } else {
-    //         // Request failed
-    //         console.error('Error:', Server.statusText);
-    //     }
-    // };
-}
-});
+            CTX.update({
+                duration: 800, // Duration of the animation in milliseconds
+                easing: 'easeInOutQuart' // Easing function for the animation
+            });
+        }
+
+    }
+
+
+
+
+
+    window.addEventListener('beforeunload', async (event) => {
+        if (incre == 0) {
+            // console.log(incre)
+        }
+        else {
+            StoreData.push({ moneySaved })
+            // console.log(StoreData)
+            // event.preventDefault(); // Prevent the default behavior of the beforeunload event
+
+            // const Text = StoreData; // Assuming this is the data you want to send
+            // const Server = new XMLHttpRequest();
+            // Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
+            // Server.setRequestHeader('Content-Type', 'text/plain');
+
+            // Server.send(JSON.stringify(Text));
+            // // Handle server response if needed
+            // Server.onload = function() {
+            //     if (Server.status >= 200 && Server.status < 300) {
+            //         // Request was successful
+            //         console.log('Response:', Server.responseText);
+            //     } else {
+            //         // Request failed
+            //         console.error('Error:', Server.statusText);
+            //     }
+            // };
+        }
+    });
 
 
 
