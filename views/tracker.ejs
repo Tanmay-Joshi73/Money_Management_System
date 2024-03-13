@@ -408,7 +408,14 @@
 <script src="path/to/chartjs/dist/chart.umd.js"></script>
 <script>
 
+let userData = <%- JSON.stringify(userData) %>;
+let parseData=JSON.parse(userData)
+console.log(parseData.Data)
 
+// const parsedData = <%- JSON.stringify(userData) %>;
+// const data=JSON.parse(parsedData)
+// console.log(data
+       
     const Canvas_Chart = document.getElementById('Data')
     const CTX = new Chart("Data", {
         type: 'bar',
@@ -441,6 +448,8 @@
             }
         }
     });
+//    processData(parseData.Data)
+  
     let totalAmount = document.getElementById("total-amount");
     let categorys = document.getElementById('category')
     let userAmount = document.getElementById("user-amount");
@@ -574,6 +583,7 @@
     break;
 
 }
+console.log(StoreData)
 
             
 
@@ -858,7 +868,27 @@
 
     }
 
+    function processData(data) {
+        // Loop through each date in the userData
+        for (let date in data) {
+            // Extract the data for the current date
+            let dateData = data[date];
 
+            // Loop through each entry in the dateData
+            dateData.forEach(entry => {
+                // Extract the category and expense data
+                for (let category in entry) {
+                    // Skip 'moneySaved' entry
+                    if (category !== 'moneySaved') {
+                        let categoryData = entry[category];
+
+                        // Check if the category data is an array
+                        
+                }
+            }
+            });
+        }
+    }
 
 
 
@@ -868,25 +898,25 @@
         }
         else {
             StoreData.push({ moneySaved })
-            // console.log(StoreData)
-            // event.preventDefault(); // Prevent the default behavior of the beforeunload event
+            console.log(StoreData)
+            event.preventDefault(); // Prevent the default behavior of the beforeunload event
 
-            // const Text = StoreData; // Assuming this is the data you want to send
-            // const Server = new XMLHttpRequest();
-            // Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
-            // Server.setRequestHeader('Content-Type', 'text/plain');
+            const Text = StoreData; // Assuming this is the data you want to send
+            const Server = new XMLHttpRequest();
+            Server.open("POST", '/ExitTracker', true); // Adjust the endpoint URL as per your server setup
+            Server.setRequestHeader('Content-Type', 'text/plain');
 
-            // Server.send(JSON.stringify(Text));
-            // // Handle server response if needed
-            // Server.onload = function() {
-            //     if (Server.status >= 200 && Server.status < 300) {
-            //         // Request was successful
-            //         console.log('Response:', Server.responseText);
-            //     } else {
-            //         // Request failed
-            //         console.error('Error:', Server.statusText);
-            //     }
-            // };
+            Server.send(JSON.stringify(Text));
+            // Handle server response if needed
+            Server.onload = function() {
+                if (Server.status >= 200 && Server.status < 300) {
+                    // Request was successful
+                    console.log('Response:', Server.responseText);
+                } else {
+                    // Request failed
+                    console.error('Error:', Server.statusText);
+                }
+            };
         }
     });
 
