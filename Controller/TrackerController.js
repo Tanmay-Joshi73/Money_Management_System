@@ -75,7 +75,7 @@ exports.fetch = async (req, res) => {
         }
 
         // console.log(JSONdata)
-        res.render('tracker', { userData: JSON.stringify(JSONdata.Data) });
+        res.render('tracker', { userData: JSON.stringify(userData) });
     }
 }
 

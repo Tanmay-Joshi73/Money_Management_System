@@ -410,7 +410,8 @@
 
 let userData = <%- JSON.stringify(userData) %>;
 let parseData=JSON.parse(userData)
-console.log(parseData.Data)
+
+console.log(parseData)
 
 // const parsedData = <%- JSON.stringify(userData) %>;
 // const data=JSON.parse(parsedData)
@@ -448,8 +449,12 @@ console.log(parseData.Data)
             }
         }
     });
-//    processData(parseData.Data)
-  
+    if(!parseData.Data){
+        console.log('not prestn')
+    }
+    else{
+   processData(parseData.Data)
+    }
     let totalAmount = document.getElementById("total-amount");
     let categorys = document.getElementById('category')
     let userAmount = document.getElementById("user-amount");
@@ -464,6 +469,7 @@ console.log(parseData.Data)
     const balanceValue = document.getElementById("balance-amount");
     const list = document.getElementById("list");
     const selectedOption = undefined;
+    
     let moneySaved;
     let no;
     let divCreation = 0
@@ -583,7 +589,7 @@ console.log(parseData.Data)
     break;
 
 }
-console.log(StoreData)
+
 
             
 
@@ -869,26 +875,82 @@ console.log(StoreData)
     }
 
     function processData(data) {
-        // Loop through each date in the userData
-        for (let date in data) {
-            // Extract the data for the current date
-            let dateData = data[date];
+    let dateItems;
+    let info;
+    let Data;
+    let moneySaved = 0;
 
-            // Loop through each entry in the dateData
-            dateData.forEach(entry => {
-                // Extract the category and expense data
-                for (let category in entry) {
-                    // Skip 'moneySaved' entry
-                    if (category !== 'moneySaved') {
-                        let categoryData = entry[category];
+    // Initialize an object to store total expenses for each category
+    let categoryExpenses = {};
 
-                        // Check if the category data is an array
-                        
-                }
+    // Loop through each date in the data object
+    for (let item in data) {
+        // Get the data for the current date
+        dateItems = data[item];
+        
+        // Iterate over each entry in the dateItems array
+        dateItems.forEach(entry => {
+            // Iterate over each key in the entry object
+            for (let key in entry) {
+                // Parse the JSON string to extract the data
+                Data = JSON.parse(entry[key]);
+                
+                // Iterate over each element in the parsed data array
+                Data.forEach(item => {
+                    // Iterate over each key-value pair in the current element
+                    for (let key in item) {
+                        if (item[key].length !== 0) {
+                            // Get the category name
+                            let category = Object.keys(item)[0];
+
+                            // Check if the category is 'moneySaved'
+                            if (category !== 'moneySaved') {
+                                item[key].forEach(expense => {
+                                    let expenseValue = parseFloat(expense.cost);
+
+                                    // Check if the category already exists in the categoryExpenses object
+                                    if (category in categoryExpenses) {
+                                        // If the category exists, add the expense value to its total
+                                        categoryExpenses[category] += expenseValue;
+                                    } else {
+                                        // If the category doesn't exist, initialize it with the expense value
+                                        categoryExpenses[category] = expenseValue;
+                                    }
+                                });
+                            } else {
+                                // If the category is 'moneySaved', add its value to the moneySaved variable
+                                moneySaved += parseFloat(item[key]);
+                            }
+                        }
+                    }
+                });
             }
-            });
-        }
+        });
     }
+
+    // Now, populate the chart data based on the category expenses
+    for (let category in categoryExpenses) {
+        // Push the category name to the chart labels
+        CTX.data.labels.push(category);
+        const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            if (!Array.isArray(CTX.data.datasets[0].backgroundColor)) {
+    CTX.data.datasets[0].backgroundColor = [];
+}
+        CTX.data.datasets[0].backgroundColor.push(color);
+        CTX.options.scales.yAxes[0].ticks.suggestedMin = 0;
+        // Push the total expense for the category to the chart dataset
+        CTX.data.datasets[0].data.push(categoryExpenses[category]);
+    }
+
+    // Update the chart
+    CTX.update();
+}
+
+
 
 
 
