@@ -36,7 +36,11 @@ body{
     z-index: 1;
     pointer-events: none;
 }
-
+#EmailText{
+    display: none;
+    /* margin-left: -2px; */
+    
+}
 ::selection{
     background-color: #aca2e8;
 }

@@ -183,7 +183,7 @@ exports.ResetPass = async (req, res) => {
 
 
 exports.sendMail = async (req, res) => {
-    const workEmail = await req.body.workemail
+    const workEmail = await req.body
     let Message = ` 
 
 Introduction:
